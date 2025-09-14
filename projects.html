@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="https://soyth.ch/en/" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Soyth offers free, open-source Business IT tools built with HTML, CSS, and JavaScript to enhance productivity and streamline workflows for businesses and developers."
+    />
+    <meta
+      name="keywords"
+      content="Soyth, Business IT, open-source tools, HTML, CSS, JavaScript, productivity"
+    />
+    <meta name="author" content="Soyth" />
+    <title>Soyth - Business IT Tools</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="alternate" hreflang="en" href="https://soyth.ch/en" />
+    <link rel="alternate" hreflang="de" href="https://soyth.ch/de" />
+    <link rel="alternate" hreflang="fr" href="https://soyth.ch/fr" />
+    <link rel="alternate" hreflang="it" href="https://soyth.ch/it" />
+    <link rel="alternate" hreflang="rm" href="https://soyth.ch/rm" />
+    <link rel="alternate" hreflang="x-default" href="https://soyth.ch/en" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--text-primary)"
+            stroke-width="1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M6,4 L18,4 L22,12 L18,20 L6,20 L2,12 Z M12,8 A4,4 0 0,1 16,12 A4,4 0 0,1 12,16"
+            />
+          </svg>
+          <a
+            href="https://soyth.ch/en/"
+            style="text-decoration: none; color: inherit"
+            >Soyth</a
+          >
+        </div>
+        <div class="header-actions">
+          <div class="search-icon-mobile" onclick="showSearchModal()">
+            <div class="search-line"></div>
+            <div class="search-circle"></div>
+          </div>
+          <div class="burger-menu" onclick="toggleMobileMenu()">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+        <nav class="nav-desktop">
+          <a href="#" class="nav-link" onclick="showProjectsMenu()">Projects</a>
+          <a href="#" class="nav-link" onclick="showModal('about')">About</a>
+          <a href="#" class="nav-link" onclick="showModal('skills')">Skills</a>
+          <a href="#" class="nav-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="#" class="nav-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+            <span id="themeIcon">Dark</span>
+          </button>
+          <div class="search-icon-desktop" onclick="showSearchModal()">
+            <div class="search-line"></div>
+            <div class="search-circle"></div>
+          </div>
+        </nav>
+        <nav class="nav-mobile" id="mobileNav">
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showProjectsMenu(); closeMobileMenu()"
+            >Projects</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('about'); closeMobileMenu()"
+            >About</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('skills'); closeMobileMenu()"
+            >Skills</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('cookies'); closeMobileMenu()"
+            >Cookies</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('contact'); closeMobileMenu()"
+            >Contact</a
+          >
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            style="margin: 0; align-self: center"
+          >
+            <span id="mobileThemeIcon">Dark</span>
+          </button>
+        </nav>
+        <nav class="nav-projects" id="projectsNav">
+          <div class="back-arrow" onclick="closeProjectsMenu()">
+            <div class="back-line"></div>
+            <div class="back-line"></div>
+          </div>
+          <a href="https://soyth.ch/en/HTMLCompiler.html" class="nav-link"
+            >HTML Compiler</a
+          >
+          <a href="https://soyth.ch/en/PasswordGenerator.html" class="nav-link"
+            >Password Generator</a
+          >
+          <a href="https://soyth.ch/en/TextFormatter.html" class="nav-link"
+            >Text Formatter</a
+          >
+          <a href="https://soyth.ch/en/UnitConverter.html" class="nav-link"
+            >Unit Converter</a
+          >
+          <a href="https://soyth.ch/en/QRCodeGenerator.html" class="nav-link"
+            >QR Code Generator</a
+          >
+          <a href="https://soyth.ch/en/ColorConverter.html" class="nav-link"
+            >Color Converter</a
+          >
+          <a href="https://soyth.ch/en/Translator.html" class="nav-link"
+            >Soyth Translate</a
+          >
+          <a href="https://soyth.ch/en/ImageCompressor.html" class="nav-link"
+            >Image Compressor</a
+          >
+          <a href="https://soyth.ch/en/JSONFormatter.html" class="nav-link"
+            >JSON Formatter</a
+          >
+          <a href="https://soyth.ch/en/UUIDGenerator.html" class="nav-link"
+            >UUID Generator</a
+          >
+          <a
+            href="https://soyth.ch/en/LoremIpsumGenerator.html"
+            class="nav-link"
+            >Lorem Ipsum Generator</a
+          >
+          <a href="https://soyth.ch/en/PomodoroTimer.html" class="nav-link"
+            >Pomodoro Timer</a
+          >
+          <a href="https://soyth.ch/en/TimestampConverter.html" class="nav-link"
+            >Timestamp Converter</a
+          >
+        </nav>
+      </div>
+    </header>
+    <button id="scrollButton" class="scroll-btn" onclick="scrollToDirection()">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <main>
+      <section class="projects-section">
+        <h2>Our Tools</h2>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <i class="tool-icon">code</i>
+            <h3>HTML Compiler</h3>
+            <p>
+              Compile and test HTML code directly in your browser with real-time
+              previews.
+            </p>
+            <div class="tool-tech">HTML, CSS, JavaScript</div>
+            <div class="tool-status">Beta</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/HTMLCompiler.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('HTML Compiler', 'https://soyth.ch/en/HTMLCompiler.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">lock</i>
+            <h3>Password Generator</h3>
+            <p>
+              Create secure, customizable passwords for enhanced online
+              security.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/PasswordGenerator.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Password Generator', 'https://soyth.ch/en/PasswordGenerator.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">text_fields</i>
+            <h3>Text Formatter</h3>
+            <p>Format and clean text for consistent styling and readability.</p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/TextFormatter.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Text Formatter', 'https://soyth.ch/en/TextFormatter.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">compare_arrows</i>
+            <h3>Unit Converter</h3>
+            <p>
+              Convert between various units for measurements and calculations.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/UnitConverter.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Unit Converter', 'https://soyth.ch/en/UnitConverter.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">qr_code</i>
+            <h3>QR Code Generator</h3>
+            <p>
+              Generate QR codes for URLs, text, or contact information
+              instantly.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/QRCodeGenerator.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('QR Code Generator', 'https://soyth.ch/en/QRCodeGenerator.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">color_lens</i>
+            <h3>Color Converter</h3>
+            <p>
+              Convert between color formats like HEX, RGB, and HSL effortlessly.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/ColorConverter.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Color Converter', 'https://soyth.ch/en/ColorConverter.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">translate</i>
+            <h3>Soyth Translate</h3>
+            <p>Translate text across multiple languages with ease.</p>
+            <div class="tool-tech">JavaScript, API</div>
+            <div class="tool-status">Beta</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/Translator.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Soyth Translate', 'https://soyth.ch/en/Translator.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">image</i>
+            <h3>Image Compressor</h3>
+            <p>
+              Compress images to reduce file size while maintaining quality.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Beta</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/ImageCompressor.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Image Compressor', 'https://soyth.ch/en/ImageCompressor.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">code</i>
+            <h3>JSON Formatter</h3>
+            <p>
+              Format and validate JSON data for better readability and
+              debugging.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/JSONFormatter.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('JSON Formatter', 'https://soyth.ch/en/JSONFormatter.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">vpn_key</i>
+            <h3>UUID Generator</h3>
+            <p>Generate unique identifiers for your applications.</p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/UUIDGenerator.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('UUID Generator', 'https://soyth.ch/en/UUIDGenerator.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">library_books</i>
+            <h3>Lorem Ipsum Generator</h3>
+            <p>
+              Generate placeholder text for design and development purposes.
+            </p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/LoremIpsumGenerator.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Lorem Ipsum Generator', 'https://soyth.ch/en/LoremIpsumGenerator.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">timer</i>
+            <h3>Pomodoro Timer</h3>
+            <p>Boost productivity with a customizable Pomodoro timer.</p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/PomodoroTimer.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Pomodoro Timer', 'https://soyth.ch/en/PomodoroTimer.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <i class="tool-icon">access_time</i>
+            <h3>Timestamp Converter</h3>
+            <p>Convert timestamps to human-readable dates and vice versa.</p>
+            <div class="tool-tech">JavaScript</div>
+            <div class="tool-status">Stable</div>
+            <div class="tool-buttons">
+              <a
+                href="https://soyth.ch/en/TimestampConverter.html"
+                class="btn btn-primary"
+                >Try Now</a
+              >
+              <button
+                class="btn btn-share"
+                onclick="shareTool('Timestamp Converter', 'https://soyth.ch/en/TimestampConverter.html')"
+              >
+                Share
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="showModal('about')">About</a>
+          <a href="#" class="footer-link" onclick="showModal('skills')"
+            >Skills</a
+          >
+          <a href="#" class="footer-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="/en/privacy-policy.html" class="footer-link"
+            >Privacy Policy</a
+          >
+          <a href="/en/terms-policy.html" class="footer-link">Terms Policy</a>
+          <a href="#" class="footer-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <a href="/en/support.html" class="footer-link">Support Us</a>
+          <a
+            href="https://github.com/swizra/soyth.ch"
+            class="footer-link"
+            target="_blank"
+            >GitHub</a
+          >
+        </div>
+        <div class="footer-bottom">
+          <div class="custom-language-selector">
+            <button class="btn language-toggle" onclick="toggleLanguageMenu()">
+              <span id="selectedLanguage">English</span>
+            </button>
+            <ul class="language-menu" id="languageMenu">
+              <li>
+                <a href="/en/" onclick="selectLanguage('en', 'English')"
+                  >English</a
+                >
+              </li>
+              <li>
+                <a href="/de/" onclick="selectLanguage('de', 'Deutsch')"
+                  >Deutsch</a
+                >
+              </li>
+              <li>
+                <a href="/fr/" onclick="selectLanguage('fr', 'Français')"
+                  >Français</a
+                >
+              </li>
+              <li>
+                <a href="/it/" onclick="selectLanguage('it', 'Italiano')"
+                  >Italiano</a
+                >
+              </li>
+              <li>
+                <a href="/rm/" onclick="selectLanguage('rm', 'Rumantsch')"
+                  >Rumantsch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <p class="footer-copyright">
+            © <span id="currentYear"></span> Soyth.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <h2>About</h2>
+        <p>
+          Soyth provides a showcase of Business IT tools built with HTML, CSS,
+          and JavaScript to enhance productivity and streamline processes for
+          businesses and developers.
+        </p>
+        <p>
+          Explore the source code and contribute to the projects via the
+          provided links.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/about.html'"
+          >
+            Read More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('aboutModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="skillsModal" class="modal">
+      <div class="modal-content">
+        <h2>Skills</h2>
+        <p>
+          Expertise in tools, frameworks, and methodologies for delivering
+          efficient Business IT solutions, with a focus on collaboration and
+          productivity.
+        </p>
+        <p>
+          Review the skills section or contact for collaboration opportunities.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/skills.html'"
+          >
+            Read More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('skillsModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="cookiesModal" class="modal">
+      <div class="modal-content">
+        <h2>Cookie Policy</h2>
+        <p>
+          We use cookies to enhance your experience on our website. Essential
+          cookies are necessary for the site to function and cannot be disabled.
+          We may also use Google Analytics to collect anonymous data on site
+          usage to improve our services, but this is only enabled with your
+          consent.
+        </p>
+        <p>
+          You can manage your cookie preferences at any time by clicking "Manage
+          Cookies" in the cookie banner or footer. For more details, view our
+          <a href="/en/cookie-policy.html" class="cookie-link" target="_blank"
+            >Cookie Policy</a
+          >.
+        </p>
+        <div class="modal-buttons">
+          <button class="btn" onclick="showModal('cookiePreferences')">
+            Manage
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('cookiesModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="cookiePreferencesModal" class="modal">
+      <div class="modal-content">
+        <h2>Manage Cookie Preferences</h2>
+        <p>Customize which cookies you allow us to use.</p>
+        <div class="cookie-options">
+          <div class="cookie-option">
+            <input type="checkbox" id="essentialCookies" checked disabled />
+            <label for="essentialCookies"
+              >Essential Cookies (Required for site functionality)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="analyticsCookies" />
+            <label for="analyticsCookies"
+              >Analytics Cookies (Help us understand site performance via Google
+              Analytics)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="marketingCookies" />
+            <label for="marketingCookies"
+              >Marketing Cookies (Support our marketing efforts)</label
+            >
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn" onclick="closeModal('cookiePreferencesModal')">
+            Cancel
+          </button>
+          <button class="btn btn-primary" onclick="saveCookiePreferences()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <h2>Contact</h2>
+        <p>
+          Interested in collaboration or have questions? Reach out via email for
+          direct communication.
+        </p>
+        <p>
+          No personal data is collected, ensuring your privacy and security.
+        </p>
+        <div class="modal-buttons">
+          <a href="mailto:hello@soyth.ch" class="btn btn-primary">Send Email</a>
+          <button class="btn" onclick="closeModal('contactModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="searchModal" class="modal">
+      <div class="modal-content search-modal-content">
+        <div class="search-modal-header">
+          <h2>Search</h2>
+          <div class="back-arrow-search" onclick="closeModal('searchModal')">
+            <div class="back-line"></div>
+            <div class="back-line"></div>
+          </div>
+        </div>
+        <div class="search-bar-header">
+          <input
+            type="text"
+            id="siteSearch"
+            placeholder="Search soyth.ch"
+            oninput="searchSite()"
+            autofocus
+          />
+        </div>
+        <div class="search-stats">
+          <span id="searchSpeed">Search Speed: 0 ms</span>
+          <span id="searchResultsCount">Items Found: 0</span>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+        <div class="modal-buttons"></div>
+      </div>
+    </div>
+    <script>
+      function loadGoogleAnalytics() {
+        const consent = JSON.parse(
+          localStorage.getItem("cookieConsent") || "{}"
+        );
+        if (consent.analytics) {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src =
+            "https://www.googletagmanager.com/gtag/js?id=G-T9JP67T6DX";
+          document.head.appendChild(script);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+          gtag("config", "G-T9JP67T6DX", { anonymize_ip: true });
+        }
+      }
+      function showCookieBanner() {
+        const cookieConsent = localStorage.getItem("cookieConsent");
+        if (!cookieConsent) {
+          document.getElementById("cookieBanner").style.display = "block";
+        }
+      }
+      function acceptAllCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: true,
+            marketing: true,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+        loadGoogleAnalytics();
+      }
+      function rejectNonEssentialCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: false,
+            marketing: false,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+      }
+      function showModal(type) {
+        event.preventDefault();
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          modal.style.display = "none";
+        });
+        document.body.classList.remove("no-scroll");
+        const modal = document.getElementById(type + "Modal");
+        if (modal) {
+          if (type === "cookiePreferences") {
+            const consent = JSON.parse(
+              localStorage.getItem("cookieConsent") || "{}"
+            );
+            document.getElementById("analyticsCookies").checked =
+              consent.analytics || false;
+            document.getElementById("marketingCookies").checked =
+              consent.marketing || false;
+          }
+          modal.style.display = "block";
+          document.body.classList.add("no-scroll");
+          document.querySelector(".logo").classList.remove("logo-hidden");
+        }
+      }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = "none";
+          document.body.classList.remove("no-scroll");
+        }
+      }
+      function saveCookiePreferences() {
+        const preferences = {
+          essential: true,
+          analytics: document.getElementById("analyticsCookies").checked,
+          marketing: document.getElementById("marketingCookies").checked,
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(preferences));
+        document.getElementById("cookiePreferencesModal").style.display =
+          "none";
+        document.getElementById("cookieBanner").style.display = "none";
+        document.body.classList.remove("no-scroll");
+        if (preferences.analytics) {
+          loadGoogleAnalytics();
+        }
+      }
+      function detectAndRedirectLanguage() {
+        const userLang = (
+          navigator.language || navigator.userLanguage
+        ).toLowerCase();
+        const supportedLangs = {
+          en: "/en/",
+          de: "/de/",
+          fr: "/fr/",
+          it: "/it/",
+          rm: "/rm/",
+        };
+        let selectedLang = "en";
+        for (const lang in supportedLangs) {
+          if (userLang.startsWith(lang)) {
+            selectedLang = lang;
+            break;
+          }
+        }
+        const currentPath = window.location.pathname;
+        if (
+          !Object.values(supportedLangs).some((path) =>
+            currentPath.startsWith(path)
+          )
+        ) {
+          window.location.href = supportedLangs[selectedLang];
+        } else {
+          const langCode = currentPath.split("/")[1] || "en";
+          const langText = {
+            en: "English",
+            de: "Deutsch",
+            fr: "Français",
+            it: "Italiano",
+            rm: "Rumantsch",
+          }[langCode];
+          document.getElementById("selectedLanguage").textContent = langText;
+        }
+      }
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById("themeIcon");
+        const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+        const isDark = body.classList.toggle("dark");
+        themeIcon.textContent = isDark ? "Light" : "Dark";
+        mobileThemeIcon.textContent = isDark ? "Light" : "Dark";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      }
+      function initTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        if (shouldUseDark) {
+          document.body.classList.add("dark");
+          document.getElementById("themeIcon").textContent = "Light";
+          document.getElementById("mobileThemeIcon").textContent = "Light";
+        }
+      }
+      function toggleMobileMenu() {
+        const mobileNav = document.getElementById("mobileNav");
+        const burgerMenu = document.querySelector(".burger-menu");
+        const logo = document.querySelector(".logo");
+        const isActive = mobileNav.classList.contains("active");
+
+        if (isActive) {
+          mobileNav.classList.remove("active");
+          burgerMenu.classList.remove("active");
+          logo.classList.remove("logo-hidden");
+          document.body.classList.remove("no-scroll");
+        } else {
+          mobileNav.classList.add("active");
+          burgerMenu.classList.add("active");
+          logo.classList.add("logo-hidden");
+          document.body.classList.add("no-scroll");
+        }
+      }
+      function closeMobileMenu() {
+        const burger = document.querySelector(".burger-menu");
+        const mobileNav = document.getElementById("mobileNav");
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+      }
+      function shareTool(title, url) {
+        if (navigator.share) {
+          navigator
+            .share({
+              title: title,
+              text: `Discover this open-source Business IT tool: ${title}`,
+              url: url,
+            })
+            .catch((error) => console.log("Error sharing:", error));
+        } else {
+          alert(
+            "Sharing is not supported in this browser. Copy the link: " + url
+          );
+        }
+      }
+      function toggleLanguageMenu() {
+        const menu = document.getElementById("languageMenu");
+        const isActive = menu.classList.toggle("active");
+        document.body.classList.toggle("no-scroll", isActive);
+        if (isActive) {
+          const toggleButton = document.querySelector(".language-toggle");
+          const menuWidth = toggleButton.offsetWidth;
+          menu.style.width = `${menuWidth}px`;
+        }
+      }
+      function selectLanguage(lang, text) {
+        document.getElementById("selectedLanguage").textContent = text;
+        document.getElementById("languageMenu").classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+      window.addEventListener("click", function (event) {
+        const languageSelector = document.querySelector(
+          ".custom-language-selector"
+        );
+        if (!languageSelector.contains(event.target)) {
+          document.getElementById("languageMenu").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+        }
+      });
+      window.onclick = function (event) {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            document.body.classList.remove("no-scroll");
+          }
+        });
+      };
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modals = document.querySelectorAll(".modal");
+          modals.forEach((modal) => {
+            if (modal.style.display === "block") {
+              modal.style.display = "none";
+              document.body.classList.remove("no-scroll");
+            }
+          });
+          document.getElementById("languageMenu").classList.remove("active");
+          document.getElementById("projectsNav").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+          closeMobileMenu();
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        initTheme();
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+        detectAndRedirectLanguage();
+        showCookieBanner();
+        loadGoogleAnalytics();
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 768) {
+            closeMobileMenu();
+          }
+        });
+      });
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", function (e) {
+          if (!localStorage.getItem("theme")) {
+            if (e.matches) {
+              document.body.classList.add("dark");
+              document.getElementById("themeIcon").textContent = "Light";
+              document.getElementById("mobileThemeIcon").textContent = "Light";
+            } else {
+              document.body.classList.remove("dark");
+              document.getElementById("themeIcon").textContent = "Dark";
+              document.getElementById("mobileThemeIcon").textContent = "Dark";
+            }
+          }
+        });
+    </script>
+    <script>
+      let lastScrollTop = 0;
+      let isButtonVisible = false;
+      let lastDirectionChangePosition = 0;
+
+      function updateScrollButton() {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollButton = document.getElementById("scrollButton");
+        const scrollDistance = Math.abs(
+          scrollTop - lastDirectionChangePosition
+        );
+
+        if (
+          scrollTop > 100 &&
+          scrollTop < documentHeight - windowHeight - 100
+        ) {
+          if (!isButtonVisible) {
+            scrollButton.style.opacity = "1";
+            scrollButton.style.pointerEvents = "auto";
+            isButtonVisible = true;
+          }
+        } else {
+          scrollButton.style.opacity = "0";
+          scrollButton.style.pointerEvents = "none";
+          isButtonVisible = false;
+        }
+
+        if (scrollDistance >= 100) {
+          if (scrollTop > lastScrollTop) {
+            scrollButton.classList.add("rotate-down");
+            scrollButton.setAttribute("data-direction", "bottom");
+          } else if (scrollTop < lastScrollTop) {
+            scrollButton.classList.remove("rotate-down");
+            scrollButton.setAttribute("data-direction", "top");
+          }
+          lastDirectionChangePosition = scrollTop;
+        }
+
+        lastScrollTop = Math.max(scrollTop, 0);
+      }
+
+      function scrollToDirection() {
+        const scrollButton = document.getElementById("scrollButton");
+        const direction = scrollButton.getAttribute("data-direction");
+        if (direction === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      window.addEventListener("scroll", updateScrollButton);
+    </script>
+    <script>
+      function showProjectsMenu() {
+        event.preventDefault();
+        const projectsNav = document.getElementById("projectsNav");
+        const mobileNav = document.getElementById("mobileNav");
+        projectsNav.classList.add("active");
+        mobileNav.classList.remove("active");
+        document.querySelector(".burger-menu").classList.remove("active");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeProjectsMenu() {
+        const projectsNav = document.getElementById("projectsNav");
+        projectsNav.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+        if (window.innerWidth <= 768) {
+          document.querySelector(".burger-menu").classList.add("active");
+          document.getElementById("mobileNav").classList.add("active");
+        }
+      }
+    </script>
+    <script>
+      function showSearchModal() {
+        event.preventDefault();
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          modal.style.display = "none";
+        });
+        document.body.classList.remove("no-scroll");
+        const searchModal = document.getElementById("searchModal");
+        if (searchModal) {
+          searchModal.style.display = "block";
+          document.body.classList.add("no-scroll");
+          document.querySelector(".logo").classList.remove("logo-hidden");
+          document.getElementById("siteSearch").focus();
+        }
+        closeMobileMenu();
+      }
+
+      function searchSite() {
+        const startTime = performance.now();
+        const query = document.getElementById("siteSearch").value.toLowerCase();
+        const resultsContainer = document.getElementById("searchResults");
+        resultsContainer.innerHTML = "";
+        let resultCount = 0;
+
+        const searchableElements = document.querySelectorAll("h1, h2, h3");
+        searchableElements.forEach((element) => {
+          const text = element.textContent.toLowerCase();
+          if (text.includes(query) && query !== "") {
+            const resultItem = document.createElement("div");
+            resultItem.className = "search-result-item";
+            resultItem.textContent = element.textContent;
+            resultItem.addEventListener("click", () => {
+              element.scrollIntoView({ behavior: "smooth", block: "center" });
+              closeModal("searchModal");
+            });
+            resultsContainer.appendChild(resultItem);
+            resultCount++;
+          }
+        });
+
+        const endTime = performance.now();
+        const searchTime = (endTime - startTime).toFixed(2);
+        document.getElementById(
+          "searchSpeed"
+        ).textContent = `Search Speed: ${searchTime} ms`;
+        document.getElementById(
+          "searchResultsCount"
+        ).textContent = `Items Found: ${resultCount}`;
+      }
+    </script>
+    <script>
+      function loadFirebaseAnalytics() {
+        const consent = JSON.parse(
+          localStorage.getItem("cookieConsent") || "{}"
+        );
+        if (consent.analytics) {
+          const firebaseScript = document.createElement("script");
+          firebaseScript.type = "module";
+          firebaseScript.src = "/js/firebase.js";
+          document.head.appendChild(firebaseScript);
+        }
+      }
+    </script>
+  </body>
+</html>
