@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="https://soyth.ch/en/TimestampConverter.html" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Convert between Unix timestamps and human-readable dates with Soyth's free, open-source Timestamp Converter. Supports multiple time zones and formats."
+    />
+    <meta
+      name="keywords"
+      content="Timestamp Converter, Soyth, Unix timestamp, date converter, time zones, JavaScript, Date API, Business IT tools"
+    />
+    <meta name="author" content="Soyth" />
+    <title>Soyth - Timestamp Converter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/tools/TimestampConverter.css" />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://soyth.ch/en/TimestampConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://soyth.ch/de/TimestampConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://soyth.ch/fr/TimestampConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="it"
+      href="https://soyth.ch/it/TimestampConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="rm"
+      href="https://soyth.ch/rm/TimestampConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://soyth.ch/en/TimestampConverter.html"
+    />
+  </head>
+  <body>
+    <div class="cookie-banner" id="cookieBanner">
+      <div class="cookie-content">
+        <p>
+          We use cookies. Some cookies are essential for this site to function
+          and cannot be turned off. Others are set to help us understand how our
+          service performs and is used, and to support our marketing efforts.
+          Learn more in our
+          <a href="/en/cookie-policy.html" target="_blank">Cookie Policy</a>.
+        </p>
+        <div class="cookie-buttons">
+          <button class="cookie-btn" onclick="showModal('cookiePreferences')">
+            Manage Cookies
+          </button>
+          <button class="cookie-btn" onclick="rejectNonEssentialCookies()">
+            Reject Non-Essential
+          </button>
+          <button
+            class="cookie-btn cookie-btn-primary"
+            onclick="acceptAllCookies()"
+          >
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--text-primary)"
+            stroke-width="1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M6,4 L18,4 L22,12 L18,20 L6,20 L2,12 Z M12,8 A4,4 0 0,1 16,12 A4,4 0 0,1 12,16"
+            />
+          </svg>
+          <a
+            href="https://soyth.ch/en/"
+            style="text-decoration: none; color: inherit"
+            >Soyth</a
+          >
+        </div>
+        <div
+          class="burger-menu"
+          onclick="toggleMobileMenu()"
+          aria-label="Toggle mobile menu"
+        >
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+        <nav class="nav-desktop">
+          <a href="#" class="nav-link" onclick="showProjectsMenu()">Projects</a>
+          <a href="#" class="nav-link" onclick="showModal('about')">About</a>
+          <a href="#" class="nav-link" onclick="showModal('skills')">Skills</a>
+          <a href="#" class="nav-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="#" class="nav-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            <span id="themeIcon">Dark</span>
+          </button>
+        </nav>
+        <nav class="nav-mobile" id="mobileNav">
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showProjectsMenu(); closeMobileMenu()"
+            >Projects</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('about'); closeMobileMenu()"
+            >About</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('skills'); closeMobileMenu()"
+            >Skills</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('cookies'); closeMobileMenu()"
+            >Cookies</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('contact'); closeMobileMenu()"
+            >Contact</a
+          >
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            style="margin: 0; align-self: center"
+            aria-label="Toggle theme"
+          >
+            <span id="mobileThemeIcon">Dark</span>
+          </button>
+        </nav>
+        <nav class="nav-projects" id="projectsNav">
+          <div
+            class="back-arrow"
+            onclick="closeProjectsMenu()"
+            aria-label="Close projects menu"
+          >
+            <div class="back-line"></div>
+            <div class="back-line"></div>
+          </div>
+          <a href="https://soyth.ch/en/HTMLCompiler.html" class="nav-link"
+            >HTML Compiler</a
+          >
+          <a href="https://soyth.ch/en/PasswordGenerator.html" class="nav-link"
+            >Password Generator</a
+          >
+          <a href="https://soyth.ch/en/TextFormatter.html" class="nav-link"
+            >Text Formatter</a
+          >
+          <a href="https://soyth.ch/en/UnitConverter.html" class="nav-link"
+            >Unit Converter</a
+          >
+          <a href="https://soyth.ch/en/QRCodeGenerator.html" class="nav-link"
+            >QR Code Generator</a
+          >
+          <a href="https://soyth.ch/en/ColorConverter.html" class="nav-link"
+            >Color Converter</a
+          >
+          <a href="https://soyth.ch/en/Translator.html" class="nav-link"
+            >Soyth Translator</a
+          >
+          <a href="https://soyth.ch/en/ImageCompressor.html" class="nav-link"
+            >Image Compressor</a
+          >
+          <a href="https://soyth.ch/en/JSONFormatter.html" class="nav-link"
+            >JSON Formatter</a
+          >
+          <a href="https://soyth.ch/en/UUIDGenerator.html" class="nav-link"
+            >UUID Generator</a
+          >
+          <a
+            href="https://soyth.ch/en/LoremIpsumGenerator.html"
+            class="nav-link"
+            >Lorem Ipsum Generator</a
+          >
+          <a href="https://soyth.ch/en/PomodoroTimer.html" class="nav-link"
+            >Pomodoro Timer</a
+          >
+          <a href="https://soyth.ch/en/TimestampConverter.html" class="nav-link"
+            >Timestamp Converter</a
+          >
+        </nav>
+      </div>
+    </header>
+    <button
+      id="scrollButton"
+      class="scroll-btn"
+      onclick="scrollToDirection()"
+      aria-label="Scroll to top or bottom"
+    >
+      <i class="fas fa-arrow-up" role="img" aria-hidden="true"></i>
+    </button>
+
+    <main>
+      <section
+        class="timestamp-converter"
+        aria-labelledby="timestamp-converter-title"
+      >
+        <h1 id="timestamp-converter-title">Timestamp Converter</h1>
+        <div class="timestamp-options">
+          <div class="timestamp-option">
+            <label for="inputFormat">Input Format:</label>
+            <div class="custom-select-wrapper">
+              <select
+                id="inputFormat"
+                class="custom-select"
+                aria-label="Select input format"
+              >
+                <option value="timestamp" selected>Unix Timestamp</option>
+                <option value="date">Human-Readable Date</option>
+              </select>
+              <span class="custom-select-arrow"></span>
+            </div>
+          </div>
+          <div class="timestamp-option timestamp-input" style="display: block">
+            <label for="timestampInput">Unix Timestamp:</label>
+            <input
+              type="text"
+              id="timestampInput"
+              placeholder="e.g., 1697059200"
+              min="0"
+              step="1"
+              aria-label="Enter Unix timestamp"
+            />
+          </div>
+          <div class="timestamp-option date-input" style="display: none">
+            <label for="dateInput">Date (YYYYMMDDHHMMSS):</label>
+            <input
+              type="text"
+              id="dateInput"
+              placeholder="e.g., 20250101123045"
+              aria-label="Enter date in YYYYMMDDHHMMSS format"
+              maxlength="14"
+              pattern="\d{14}"
+            />
+          </div>
+          <div class="timestamp-option">
+            <label for="timezone">Time Zone:</label>
+            <div class="custom-select-wrapper">
+              <select
+                id="timezone"
+                class="custom-select"
+                aria-label="Select time zone"
+              >
+                <option value="UTC" selected>UTC</option>
+                <option value="America/New_York">America/New_York</option>
+                <option value="America/Los_Angeles">America/Los_Angeles</option>
+                <option value="Europe/London">Europe/London</option>
+                <option value="Europe/Paris">Europe/Paris</option>
+                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                <option value="Australia/Sydney">Australia/Sydney</option>
+              </select>
+              <span class="custom-select-arrow"></span>
+            </div>
+          </div>
+          <div class="timestamp-option">
+            <label for="outputFormat">Output Date Format:</label>
+            <div class="custom-select-wrapper">
+              <select
+                id="outputFormat"
+                class="custom-select"
+                aria-label="Select output date format"
+              >
+                <option value="default" selected>
+                  Default (YYYY-MM-DD HH:mm:ss)
+                </option>
+                <option value="iso">ISO 8601</option>
+                <option value="short">Short (MM/DD/YYYY HH:mm)</option>
+                <option value="long">Long (MMMM D, YYYY, HH:mm:ss)</option>
+              </select>
+              <span class="custom-select-arrow"></span>
+            </div>
+          </div>
+        </div>
+        <div class="timestamp-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="convertTimestamp()"
+            aria-label="Convert timestamp"
+          >
+            Convert
+          </button>
+          <button
+            class="btn btn-secondary"
+            id="copyButton"
+            onclick="copyResult()"
+            aria-label="Copy result"
+          >
+            Copy
+          </button>
+          <button
+            class="btn btn-secondary"
+            onclick="clearInputs()"
+            aria-label="Clear inputs"
+          >
+            Clear
+          </button>
+        </div>
+        <div id="resultContainer" aria-live="polite">
+          <pre id="resultOutput"></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="showModal('about')">About</a>
+          <a href="#" class="footer-link" onclick="showModal('skills')"
+            >Skills</a
+          >
+          <a href="#" class="footer-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="/en/privacy-policy.html" class="footer-link"
+            >Privacy Policy</a
+          >
+          <a href="/en/terms-policy.html" class="footer-link">Terms of Use</a>
+          <a href="#" class="footer-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <a href="/en/support.html" class="footer-link">Support Us</a>
+          <a
+            href="https://github.com/swizra/soyth.ch"
+            class="footer-link"
+            target="_blank"
+            >GitHub</a
+          >
+        </div>
+        <div class="footer-bottom">
+          <div class="custom-language-selector">
+            <button
+              class="btn language-toggle"
+              onclick="toggleLanguageMenu()"
+              aria-label="Toggle language menu"
+            >
+              <span id="selectedLanguage">English</span>
+            </button>
+            <ul class="language-menu" id="languageMenu">
+              <li>
+                <a href="/en/" onclick="selectLanguage('en', 'English')"
+                  >English</a
+                >
+              </li>
+              <li>
+                <a href="/de/" onclick="selectLanguage('de', 'Deutsch')"
+                  >Deutsch</a
+                >
+              </li>
+              <li>
+                <a href="/fr/" onclick="selectLanguage('fr', 'Français')"
+                  >Français</a
+                >
+              </li>
+              <li>
+                <a href="/it/" onclick="selectLanguage('it', 'Italiano')"
+                  >Italiano</a
+                >
+              </li>
+              <li>
+                <a href="/rm/" onclick="selectLanguage('rm', 'Rumantsch')"
+                  >Rumantsch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <p class="footer-copyright">
+            © <span id="currentYear"></span> Soyth.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <h2>About</h2>
+        <p>
+          Soyth provides a platform with enterprise IT tools built with HTML,
+          CSS, and JavaScript to enhance productivity and streamline processes
+          for businesses and developers.
+        </p>
+        <p>
+          Explore the source code and contribute to projects via the provided
+          links.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/about.html'"
+          >
+            Learn More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('aboutModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="skillsModal" class="modal">
+      <div class="modal-content">
+        <h2>Skills</h2>
+        <p>
+          Expertise in tools, frameworks, and methodologies to deliver efficient
+          enterprise IT solutions, with a focus on collaboration and
+          productivity.
+        </p>
+        <p>
+          Check out the skills section or contact us for collaboration
+          opportunities.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/skills.html'"
+          >
+            Learn More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('skillsModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cookiesModal" class="modal">
+      <div class="modal-content">
+        <h2>Cookie Policy</h2>
+        <p>
+          We use cookies to enhance your experience on our website. Essential
+          cookies are necessary for the site’s operation and cannot be disabled.
+          We may also use Google Analytics to collect anonymous usage data to
+          improve our services, but this is only enabled with your consent.
+        </p>
+        <p>
+          You can manage your cookie preferences at any time by clicking “Manage
+          Cookies” in the cookie banner or footer. For more details, see our
+          <a href="/en/cookie-policy.html" class="cookie-link" target="_blank"
+            >Cookie Policy</a
+          >.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="showModal('cookiePreferences')"
+          >
+            Manage
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('cookiesModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cookiePreferencesModal" class="modal">
+      <div class="modal-content">
+        <h2>Manage Cookie Preferences</h2>
+        <p>Adjust which cookies we can use.</p>
+        <div class="cookie-options">
+          <div class="cookie-option">
+            <input type="checkbox" id="essentialCookies" checked disabled />
+            <label for="essentialCookies"
+              >Essential Cookies (required for site operation)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="analyticsCookies" />
+            <label for="analyticsCookies"
+              >Analytics Cookies (help us understand site performance via Google
+              Analytics)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="marketingCookies" />
+            <label for="marketingCookies"
+              >Marketing Cookies (support our marketing initiatives)</label
+            >
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="closeModal('cookiePreferencesModal')"
+          >
+            Cancel
+          </button>
+          <button class="btn btn-primary" onclick="saveCookiePreferences()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <h2>Contact</h2>
+        <p>
+          Interested in collaboration or have questions? Reach out to us via
+          email for direct communication.
+        </p>
+        <p>
+          No personal data is collected, ensuring your privacy and security.
+        </p>
+        <div class="modal-buttons">
+          <a href="mailto:hello@soyth.ch" class="btn btn-primary">Send Email</a>
+          <button
+            class="btn btn-secondary"
+            onclick="closeModal('contactModal')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function loadGoogleAnalytics() {
+        const consent = JSON.parse(
+          localStorage.getItem("cookieConsent") || "{}"
+        );
+        if (consent.analytics) {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src =
+            "https://www.googletagmanager.com/gtag/js?id=G-T9JP67T6DX";
+          document.head.appendChild(script);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+          gtag("config", "G-T9JP67T6DX", { anonymize_ip: true });
+        }
+      }
+
+      function showCookieBanner() {
+        const cookieConsent = localStorage.getItem("cookieConsent");
+        if (!cookieConsent) {
+          document.getElementById("cookieBanner").style.display = "block";
+        }
+      }
+
+      function acceptAllCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: true,
+            marketing: true,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+        loadGoogleAnalytics();
+      }
+
+      function rejectNonEssentialCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: false,
+            marketing: false,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+      }
+
+      function showModal(type) {
+        if (event) event.preventDefault();
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          modal.style.display = "none";
+        });
+        document.body.classList.remove("no-scroll");
+        const modal = document.getElementById(type + "Modal");
+        if (modal) {
+          if (type === "cookiePreferences") {
+            const consent = JSON.parse(
+              localStorage.getItem("cookieConsent") || "{}"
+            );
+            document.getElementById("analyticsCookies").checked =
+              consent.analytics || false;
+            document.getElementById("marketingCookies").checked =
+              consent.marketing || false;
+          }
+          modal.style.display = "block";
+          document.body.classList.add("no-scroll");
+          document.querySelector(".logo").classList.remove("logo-hidden");
+        }
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = "none";
+          document.body.classList.remove("no-scroll");
+        }
+      }
+
+      function saveCookiePreferences() {
+        const preferences = {
+          essential: true,
+          analytics: document.getElementById("analyticsCookies").checked,
+          marketing: document.getElementById("marketingCookies").checked,
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(preferences));
+        document.getElementById("cookiePreferencesModal").style.display =
+          "none";
+        document.getElementById("cookieBanner").style.display = "none";
+        document.body.classList.remove("no-scroll");
+        if (preferences.analytics) {
+          loadGoogleAnalytics();
+        }
+      }
+
+      function detectAndRedirectLanguage() {
+        const userLang = (
+          navigator.language || navigator.userLanguage
+        ).toLowerCase();
+        const supportedLangs = {
+          en: "/en/TimestampConverter.html",
+          de: "/de/TimestampConverter.html",
+          fr: "/fr/TimestampConverter.html",
+          it: "/it/TimestampConverter.html",
+          rm: "/rm/TimestampConverter.html",
+        };
+        let selectedLang = "en";
+        for (const lang in supportedLangs) {
+          if (userLang.startsWith(lang)) {
+            selectedLang = lang;
+            break;
+          }
+        }
+        const currentPath = window.location.pathname;
+        if (
+          !Object.values(supportedLangs).some((path) =>
+            currentPath.startsWith(path)
+          )
+        ) {
+          window.location.href = supportedLangs[selectedLang];
+        } else {
+          const langCode = currentPath.split("/")[1] || "en";
+          const langText = {
+            en: "English",
+            de: "Deutsch",
+            fr: "Français",
+            it: "Italiano",
+            rm: "Rumantsch",
+          }[langCode];
+          document.getElementById("selectedLanguage").textContent = langText;
+        }
+      }
+
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById("themeIcon");
+        const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+        const isDark = body.classList.toggle("dark");
+        themeIcon.textContent = isDark ? "Light" : "Dark";
+        mobileThemeIcon.textContent = isDark ? "Light" : "Dark";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      }
+
+      function initTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        if (shouldUseDark) {
+          document.body.classList.add("dark");
+          document.getElementById("themeIcon").textContent = "Light";
+          document.getElementById("mobileThemeIcon").textContent = "Light";
+        }
+      }
+
+      function toggleMobileMenu() {
+        const mobileNav = document.getElementById("mobileNav");
+        const burgerMenu = document.querySelector(".burger-menu");
+        const logo = document.querySelector(".logo");
+        const isActive = mobileNav.classList.contains("active");
+        if (isActive) {
+          mobileNav.classList.remove("active");
+          burgerMenu.classList.remove("active");
+          logo.classList.remove("logo-hidden");
+          document.body.classList.remove("no-scroll");
+        } else {
+          mobileNav.classList.add("active");
+          burgerMenu.classList.add("active");
+          logo.classList.add("logo-hidden");
+          document.body.classList.add("no-scroll");
+        }
+      }
+
+      function closeMobileMenu() {
+        const burger = document.querySelector(".burger-menu");
+        const mobileNav = document.getElementById("mobileNav");
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+        document.querySelector(".logo").classList.remove("logo-hidden");
+        document.body.classList.remove("no-scroll");
+      }
+
+      function shareTool(title, url) {
+        if (navigator.share) {
+          navigator
+            .share({
+              title: title,
+              text: `Check out this open-source enterprise IT tool: ${title}`,
+              url: url,
+            })
+            .catch((error) => console.log("Error sharing:", error));
+        } else {
+          navigator.clipboard
+            .writeText(url)
+            .then(() => {
+              alert("Link copied to clipboard!");
+            })
+            .catch((err) => {
+              console.log("Failed to copy link:", err);
+              alert("Failed to copy link to clipboard");
+            });
+        }
+      }
+
+      function toggleLanguageMenu() {
+        const menu = document.getElementById("languageMenu");
+        const isActive = menu.classList.toggle("active");
+        document.body.classList.toggle("no-scroll", isActive);
+        if (isActive) {
+          const toggleButton = document.querySelector(".language-toggle");
+          const menuWidth = toggleButton.offsetWidth;
+          menu.style.width = `${menuWidth}px`;
+        }
+      }
+
+      function selectLanguage(lang, text) {
+        document.getElementById("selectedLanguage").textContent = text;
+        document.getElementById("languageMenu").classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+
+      function showProjectsMenu() {
+        if (event) event.preventDefault();
+        const projectsNav = document.getElementById("projectsNav");
+        const mobileNav = document.getElementById("mobileNav");
+        projectsNav.classList.add("active");
+        mobileNav.classList.remove("active");
+        document.querySelector(".burger-menu").classList.remove("active");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeProjectsMenu() {
+        const projectsNav = document.getElementById("projectsNav");
+        projectsNav.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+        if (window.innerWidth <= 768) {
+          document.querySelector(".burger-menu").classList.add("active");
+          document.getElementById("mobileNav").classList.add("active");
+        }
+      }
+
+      window.addEventListener("click", function (event) {
+        const languageSelector = document.querySelector(
+          ".custom-language-selector"
+        );
+        if (!languageSelector.contains(event.target)) {
+          document.getElementById("languageMenu").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+        }
+      });
+
+      window.onclick = function (event) {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            document.body.classList.remove("no-scroll");
+          }
+        });
+      };
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modals = document.querySelectorAll(".modal");
+          modals.forEach((modal) => {
+            if (modal.style.display === "block") {
+              modal.style.display = "none";
+              document.body.classList.remove("no-scroll");
+            }
+          });
+          document.getElementById("languageMenu").classList.remove("active");
+          document.getElementById("projectsNav").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+          closeMobileMenu();
+        }
+      });
+
+      function updateInputFields() {
+        const format = document.getElementById("inputFormat").value;
+        const timestampInput = document.querySelector(".timestamp-input");
+        const dateInput = document.querySelector(".date-input");
+
+        timestampInput.style.display =
+          format === "timestamp" ? "block" : "none";
+        dateInput.style.display = format === "date" ? "block" : "none";
+
+        convertTimestamp();
+      }
+
+      function convertTimestamp() {
+        const format = document.getElementById("inputFormat").value;
+        const timestampInput = document.getElementById("timestampInput").value;
+        const dateInput = document.getElementById("dateInput").value;
+        const timezone = document.getElementById("timezone").value;
+        const outputFormat = document.getElementById("outputFormat").value;
+        const resultOutput = document.getElementById("resultOutput");
+
+        let dateObj;
+        let valid = false;
+
+        try {
+          if (format === "timestamp") {
+            const timestamp = parseInt(timestampInput);
+            if (isNaN(timestamp) || timestamp < 0) {
+              resultOutput.textContent =
+                "Please enter a valid Unix timestamp (non-negative number).";
+              return;
+            }
+            dateObj = new Date(timestamp * 1000);
+            valid = true;
+          } else if (format === "date") {
+            if (!dateInput || !/^\d{14}$/.test(dateInput)) {
+              resultOutput.textContent =
+                "Please enter a valid date in YYYYMMDDHHMMSS format (e.g., 20250101123045).";
+              return;
+            }
+            // Parse YYYYMMDDHHMMSS format
+            const year = parseInt(dateInput.substring(0, 4));
+            const month = parseInt(dateInput.substring(4, 6)) - 1; // Months are 0-based in JavaScript
+            const day = parseInt(dateInput.substring(6, 8));
+            const hour = parseInt(dateInput.substring(8, 10));
+            const minute = parseInt(dateInput.substring(10, 12));
+            const second = parseInt(dateInput.substring(12, 14));
+
+            dateObj = new Date(year, month, day, hour, minute, second);
+            if (isNaN(dateObj.getTime())) {
+              resultOutput.textContent =
+                "Please enter a valid date in YYYYMMDDHHMMSS format.";
+              return;
+            }
+            valid = true;
+          }
+
+          if (valid) {
+            const options = {
+              timeZone: timezone,
+              year: "numeric",
+              month: outputFormat === "short" ? "2-digit" : "numeric",
+              day: "2-digit",
+              hour: outputFormat === "short" ? "2-digit" : "numeric",
+              minute: outputFormat === "short" ? "2-digit" : "numeric",
+              second: outputFormat !== "short" ? "numeric" : undefined,
+              hour12: outputFormat === "short",
+            };
+
+            let formattedDate;
+            if (outputFormat === "iso") {
+              formattedDate = dateObj.toISOString();
+            } else if (outputFormat === "long") {
+              formattedDate = new Intl.DateTimeFormat("en-US", {
+                ...options,
+                month: "long",
+                hour12: false,
+              }).format(dateObj);
+            } else if (outputFormat === "short") {
+              formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+                dateObj
+              );
+            } else {
+              formattedDate = new Intl.DateTimeFormat("en-US", {
+                ...options,
+                month: "2-digit",
+                hour12: false,
+              })
+                .format(dateObj)
+                .replace(
+                  /(\d+)\/(\d+)\/(\d+), (\d+):(\d+):(\d+)/,
+                  "$3-$1-$2 $4:$5:$6"
+                );
+            }
+
+            const unixTimestamp = Math.floor(dateObj.getTime() / 1000);
+
+            resultOutput.textContent = `Unix Timestamp: ${unixTimestamp}\nFormatted Date (${timezone}): ${formattedDate}`;
+
+            if (format !== "timestamp") {
+              document.getElementById("timestampInput").value = unixTimestamp;
+            }
+            if (format !== "date") {
+              const pad = (n) => n.toString().padStart(2, "0");
+              const localDate = new Date(
+                dateObj.getTime() - dateObj.getTimezoneOffset() * 60000
+              );
+              document.getElementById(
+                "dateInput"
+              ).value = `${localDate.getFullYear()}${pad(
+                localDate.getMonth() + 1
+              )}${pad(localDate.getDate())}${pad(localDate.getHours())}${pad(
+                localDate.getMinutes()
+              )}${pad(localDate.getSeconds())}`;
+            }
+          }
+        } catch (error) {
+          resultOutput.textContent = `Error: ${error.message}`;
+        }
+      }
+
+      function copyResult() {
+        const format = document.getElementById("inputFormat").value;
+        const resultOutput =
+          document.getElementById("resultOutput").textContent;
+        const copyButton = document.getElementById("copyButton");
+
+        if (
+          !resultOutput ||
+          resultOutput.startsWith("Error:") ||
+          resultOutput.startsWith("Please")
+        ) {
+          copyButton.textContent = "Nothing to copy";
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+          return;
+        }
+
+        let text;
+        if (format === "timestamp") {
+          const match = resultOutput.match(/Unix Timestamp: (\d+)/);
+          text = match ? match[1] : "";
+        } else {
+          const match = resultOutput.match(/Formatted Date \(.+\): (.+)/);
+          text = match ? match[1] : "";
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              copyButton.textContent = "Copied!";
+              setTimeout(() => {
+                copyButton.textContent = "Copy";
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy text:", err);
+              fallbackCopyToClipboard(text);
+            });
+        } else {
+          fallbackCopyToClipboard(text);
+        }
+      }
+
+      function fallbackCopyToClipboard(text) {
+        const copyButton = document.getElementById("copyButton");
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+          copyButton.textContent = "Copied!";
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy text using fallback:", err);
+          copyButton.textContent = "Failed to copy";
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+        }
+
+        document.body.removeChild(textArea);
+      }
+
+      function clearInputs() {
+        document.getElementById("timestampInput").value = "";
+        document.getElementById("dateInput").value = "";
+        document.getElementById("inputFormat").value = "timestamp";
+        document.getElementById("outputFormat").value = "default";
+        document.getElementById("timezone").value = "UTC";
+        document.getElementById("resultOutput").textContent = "";
+        updateInputFields();
+      }
+
+      let lastScrollTop = 0;
+      let isButtonVisible = false;
+      let lastDirectionChangePosition = 0;
+
+      function updateScrollButton() {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollButton = document.getElementById("scrollButton");
+        const scrollDistance = Math.abs(
+          scrollTop - lastDirectionChangePosition
+        );
+
+        if (
+          scrollTop > 100 &&
+          scrollTop < documentHeight - windowHeight - 100
+        ) {
+          if (!isButtonVisible) {
+            scrollButton.style.opacity = "1";
+            scrollButton.style.pointerEvents = "auto";
+            isButtonVisible = true;
+          }
+        } else {
+          scrollButton.style.opacity = "0";
+          scrollButton.style.pointerEvents = "none";
+          isButtonVisible = false;
+        }
+
+        if (scrollDistance >= 100) {
+          if (scrollTop > lastScrollTop) {
+            scrollButton.classList.add("rotate-down");
+            scrollButton.setAttribute("data-direction", "bottom");
+          } else if (scrollTop < lastScrollTop) {
+            scrollButton.classList.remove("rotate-down");
+            scrollButton.setAttribute("data-direction", "top");
+          }
+          lastDirectionChangePosition = scrollTop;
+        }
+
+        lastScrollTop = Math.max(scrollTop, 0);
+      }
+
+      function scrollToDirection() {
+        const scrollButton = document.getElementById("scrollButton");
+        const direction = scrollButton.getAttribute("data-direction");
+        if (direction === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initTheme();
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+        detectAndRedirectLanguage();
+        showCookieBanner();
+        loadGoogleAnalytics();
+        updateInputFields();
+        document
+          .getElementById("inputFormat")
+          .addEventListener("change", updateInputFields);
+        document
+          .getElementById("timestampInput")
+          .addEventListener("input", convertTimestamp);
+        document
+          .getElementById("dateInput")
+          .addEventListener("input", convertTimestamp);
+        document
+          .getElementById("timezone")
+          .addEventListener("change", convertTimestamp);
+        document
+          .getElementById("outputFormat")
+          .addEventListener("change", convertTimestamp);
+        document
+          .getElementById("timestampInput")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertTimestamp();
+            }
+          });
+        document
+          .getElementById("dateInput")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertTimestamp();
+            }
+          });
+      });
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", function (e) {
+          if (!localStorage.getItem("theme")) {
+            if (e.matches) {
+              document.body.classList.add("dark");
+              document.getElementById("themeIcon").textContent = "Light";
+              document.getElementById("mobileThemeIcon").textContent = "Light";
+            } else {
+              document.body.classList.remove("dark");
+              document.getElementById("themeIcon").textContent = "Dark";
+              document.getElementById("mobileThemeIcon").textContent = "Dark";
+            }
+          }
+        });
+    </script>
+  </body>
+</html>
