@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="https://soyth.ch/en/ColorConverter.html" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Convert between HEX, RGB, RGBA, HSL, CMYK, HSV, and keyword color formats with Soyth's free, open-source Color Converter. Enjoy real-time previews and accurate color space calculations."
+    />
+    <meta
+      name="keywords"
+      content="Color Converter, Soyth, HEX to RGB, RGB to HSL, RGBA, CMYK, HSV, color picker, JavaScript, CSS, Business IT tools"
+    />
+    <meta name="author" content="Soyth" />
+    <title>Soyth - Color Converter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/tools/ColorConverter.css" />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://soyth.ch/en/ColorConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://soyth.ch/de/ColorConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://soyth.ch/fr/ColorConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="it"
+      href="https://soyth.ch/it/ColorConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="rm"
+      href="https://soyth.ch/rm/ColorConverter.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://soyth.ch/en/ColorConverter.html"
+    />
+  </head>
+  <body>
+    <div class="cookie-banner" id="cookieBanner">
+      <div class="cookie-content">
+        <p>
+          We use cookies. Some cookies are essential for this site to function
+          and cannot be turned off. Others are set to help us understand how our
+          service performs and is used, and to support our marketing efforts.
+          Learn more in our
+          <a href="/en/cookie-policy.html" target="_blank">Cookie Policy</a>.
+        </p>
+        <div class="cookie-buttons">
+          <button class="cookie-btn" onclick="showModal('cookiePreferences')">
+            Manage Cookies
+          </button>
+          <button class="cookie-btn" onclick="rejectNonEssentialCookies()">
+            Reject Non-Essential
+          </button>
+          <button
+            class="cookie-btn cookie-btn-primary"
+            onclick="acceptAllCookies()"
+          >
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--text-primary)"
+            stroke-width="1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M6,4 L18,4 L22,12 L18,20 L6,20 L2,12 Z M12,8 A4,4 0 0,1 16,12 A4,4 0 0,1 12,16"
+            />
+          </svg>
+          <a
+            href="https://soyth.ch/en/"
+            style="text-decoration: none; color: inherit"
+            >Soyth</a
+          >
+        </div>
+        <div class="burger-menu" onclick="toggleMobileMenu()">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+        <nav class="nav-desktop">
+          <a href="#" class="nav-link" onclick="showProjectsMenu()">Projects</a>
+          <a href="#" class="nav-link" onclick="showModal('about')">About</a>
+          <a href="#" class="nav-link" onclick="showModal('skills')">Skills</a>
+          <a href="#" class="nav-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="#" class="nav-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+            <span id="themeIcon">Dark</span>
+          </button>
+        </nav>
+        <nav class="nav-mobile" id="mobileNav">
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showProjectsMenu(); closeMobileMenu()"
+            >Projects</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('about'); closeMobileMenu()"
+            >About</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('skills'); closeMobileMenu()"
+            >Skills</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('cookies'); closeMobileMenu()"
+            >Cookies</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            onclick="showModal('contact'); closeMobileMenu()"
+            >Contact</a
+          >
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            style="margin: 0; align-self: center"
+          >
+            <span id="mobileThemeIcon">Dark</span>
+          </button>
+        </nav>
+        <nav class="nav-projects" id="projectsNav">
+          <div class="back-arrow" onclick="closeProjectsMenu()">
+            <div class="back-line"></div>
+            <div class="back-line"></div>
+          </div>
+          <a href="https://soyth.ch/en/HTMLCompiler.html" class="nav-link"
+            >HTML Compiler</a
+          >
+          <a href="https://soyth.ch/en/PasswordGenerator.html" class="nav-link"
+            >Password Generator</a
+          >
+          <a href="https://soyth.ch/en/TextFormatter.html" class="nav-link"
+            >Text Formatter</a
+          >
+          <a href="https://soyth.ch/en/UnitConverter.html" class="nav-link"
+            >Unit Converter</a
+          >
+          <a href="https://soyth.ch/en/QRCodeGenerator.html" class="nav-link"
+            >QR Code Generator</a
+          >
+          <a href="https://soyth.ch/en/ColorConverter.html" class="nav-link"
+            >Color Converter</a
+          >
+          <a href="https://soyth.ch/en/Translator.html" class="nav-link"
+            >Soyth Translator</a
+          >
+          <a href="https://soyth.ch/en/ImageCompressor.html" class="nav-link"
+            >Image Compressor</a
+          >
+          <a href="https://soyth.ch/en/JSONFormatter.html" class="nav-link"
+            >JSON Formatter</a
+          >
+          <a href="https://soyth.ch/en/UUIDGenerator.html" class="nav-link"
+            >UUID Generator</a
+          >
+          <a
+            href="https://soyth.ch/en/LoremIpsumGenerator.html"
+            class="nav-link"
+            >Lorem Ipsum Generator</a
+          >
+          <a href="https://soyth.ch/en/PomodoroTimer.html" class="nav-link"
+            >Pomodoro Timer</a
+          >
+          <a href="https://soyth.ch/en/TimestampConverter.html" class="nav-link"
+            >Timestamp Converter</a
+          >
+        </nav>
+      </div>
+    </header>
+    <button id="scrollButton" class="scroll-btn" onclick="scrollToDirection()">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <main>
+      <section class="color-converter">
+        <h1>Color Converter</h1>
+        <div class="color-options">
+          <div class="color-option">
+            <label for="colorFormat">Color Format:</label>
+            <div class="custom-select-wrapper">
+              <select id="colorFormat" class="custom-select">
+                <option value="hex" selected>HEX</option>
+                <option value="rgb">RGB</option>
+                <option value="rgba">RGBA</option>
+                <option value="hsl">HSL</option>
+                <option value="cmyk">CMYK</option>
+                <option value="hsv">HSV</option>
+                <option value="keyword">Keyword</option>
+              </select>
+              <span class="custom-select-arrow"></span>
+            </div>
+          </div>
+          <div class="color-option hex-inputs">
+            <label for="hexInput">HEX Color:</label>
+            <input
+              type="text"
+              id="hexInput"
+              placeholder="e.g., #FF0000"
+              maxlength="7"
+            />
+          </div>
+          <div class="color-option rgb-inputs" style="display: none">
+            <label>RGB Color:</label>
+            <div class="rgb-fields">
+              <input
+                type="number"
+                id="rgbR"
+                placeholder="R (0-255)"
+                min="0"
+                max="255"
+              />
+              <input
+                type="number"
+                id="rgbG"
+                placeholder="G (0-255)"
+                min="0"
+                max="255"
+              />
+              <input
+                type="number"
+                id="rgbB"
+                placeholder="B (0-255)"
+                min="0"
+                max="255"
+              />
+            </div>
+          </div>
+          <div class="color-option rgba-inputs" style="display: none">
+            <label>RGBA Color:</label>
+            <div class="rgba-fields">
+              <input
+                type="number"
+                id="rgbaR"
+                placeholder="R (0-255)"
+                min="0"
+                max="255"
+              />
+              <input
+                type="number"
+                id="rgbaG"
+                placeholder="G (0-255)"
+                min="0"
+                max="255"
+              />
+              <input
+                type="number"
+                id="rgbaB"
+                placeholder="B (0-255)"
+                min="0"
+                max="255"
+              />
+              <input
+                type="number"
+                id="rgbaA"
+                placeholder="A (0-1)"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <div class="color-option hsl-inputs" style="display: none">
+            <label>HSL Color:</label>
+            <div class="hsl-fields">
+              <input
+                type="number"
+                id="hslH"
+                placeholder="H (0-360)"
+                min="0"
+                max="360"
+              />
+              <input
+                type="number"
+                id="hslS"
+                placeholder="S (0-100)"
+                min="0"
+                max="100"
+              />
+              <input
+                type="number"
+                id="hslL"
+                placeholder="L (0-100)"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+          <div class="color-option cmyk-inputs" style="display: none">
+            <label>CMYK Color:</label>
+            <div class="cmyk-fields">
+              <input
+                type="number"
+                id="cmykC"
+                placeholder="C (0-100)"
+                min="0"
+                max="100"
+              />
+              <input
+                type="number"
+                id="cmykM"
+                placeholder="M (0-100)"
+                min="0"
+                max="100"
+              />
+              <input
+                type="number"
+                id="cmykY"
+                placeholder="Y (0-100)"
+                min="0"
+                max="100"
+              />
+              <input
+                type="number"
+                id="cmykK"
+                placeholder="K (0-100)"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+          <div class="color-option hsv-inputs" style="display: none">
+            <label>HSV Color:</label>
+            <div class="hsv-fields">
+              <input
+                type="number"
+                id="hsvH"
+                placeholder="H (0-360)"
+                min="0"
+                max="360"
+              />
+              <input
+                type="number"
+                id="hsvS"
+                placeholder="S (0-100)"
+                min="0"
+                max="100"
+              />
+              <input
+                type="number"
+                id="hsvV"
+                placeholder="V (0-100)"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+          <div class="color-option keyword-inputs" style="display: none">
+            <label for="keywordInput">Keyword Color:</label>
+            <input type="text" id="keywordInput" placeholder="e.g., red" />
+          </div>
+          <div class="color-option">
+            <label>Color Preview:</label>
+            <div id="colorPreview" class="color-preview"></div>
+          </div>
+        </div>
+        <div class="color-buttons">
+          <button class="btn btn-secondary" onclick="convertColor()">
+            Convert
+          </button>
+          <button
+            class="btn btn-secondary"
+            id="copyButton"
+            onclick="copyColor()"
+          >
+            Copy
+          </button>
+          <button class="btn btn-secondary" onclick="clearInputs()">
+            Clear
+          </button>
+        </div>
+        <div id="resultContainer">
+          <pre id="resultOutput"></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="showModal('about')">About</a>
+          <a href="#" class="footer-link" onclick="showModal('skills')"
+            >Skills</a
+          >
+          <a href="#" class="footer-link" onclick="showModal('cookies')"
+            >Cookies</a
+          >
+          <a href="/en/privacy-policy.html" class="footer-link"
+            >Privacy Policy</a
+          >
+          <a href="/en/terms-policy.html" class="footer-link">Terms of Use</a>
+          <a href="#" class="footer-link" onclick="showModal('contact')"
+            >Contact</a
+          >
+          <a href="/en/support.html" class="footer-link">Support Us</a>
+          <a
+            href="https://github.com/swizra/soyth.ch"
+            class="footer-link"
+            target="_blank"
+            >GitHub</a
+          >
+        </div>
+        <div class="footer-bottom">
+          <div class="custom-language-selector">
+            <button class="btn language-toggle" onclick="toggleLanguageMenu()">
+              <span id="selectedLanguage">English</span>
+            </button>
+            <ul class="language-menu" id="languageMenu">
+              <li>
+                <a href="/en/" onclick="selectLanguage('en', 'English')"
+                  >English</a
+                >
+              </li>
+              <li>
+                <a href="/de/" onclick="selectLanguage('de', 'Deutsch')"
+                  >Deutsch</a
+                >
+              </li>
+              <li>
+                <a href="/fr/" onclick="selectLanguage('fr', 'Français')"
+                  >Français</a
+                >
+              </li>
+              <li>
+                <a href="/it/" onclick="selectLanguage('it', 'Italiano')"
+                  >Italiano</a
+                >
+              </li>
+              <li>
+                <a href="/rm/" onclick="selectLanguage('rm', 'Rumantsch')"
+                  >Rumantsch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <p class="footer-copyright">
+            © <span id="currentYear"></span> Soyth.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <h2>About</h2>
+        <p>
+          Soyth provides a platform with enterprise IT tools built with HTML,
+          CSS, and JavaScript to enhance productivity and streamline processes
+          for businesses and developers.
+        </p>
+        <p>
+          Explore the source code and contribute to projects via the provided
+          links.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/about.html'"
+          >
+            Learn More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('aboutModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="skillsModal" class="modal">
+      <div class="modal-content">
+        <h2>Skills</h2>
+        <p>
+          Expertise in tools, frameworks, and methodologies to deliver efficient
+          enterprise IT solutions, with a focus on collaboration and
+          productivity.
+        </p>
+        <p>
+          Check out the skills section or contact us for collaboration
+          opportunities.
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="btn btn-secondary"
+            onclick="window.location.href='/en/skills.html'"
+          >
+            Learn More
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('skillsModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cookiesModal" class="modal">
+      <div class="modal-content">
+        <h2>Cookie Policy</h2>
+        <p>
+          We use cookies to enhance your experience on our website. Essential
+          cookies are necessary for the site’s operation and cannot be disabled.
+          We may also use Google Analytics to collect anonymous usage data to
+          improve our services, but this is only enabled with your consent.
+        </p>
+        <p>
+          You can manage your cookie preferences at any time by clicking “Manage
+          Cookies” in the cookie banner or footer. For more details, see our
+          <a href="/en/cookie-policy.html" class="cookie-link" target="_blank"
+            >Cookie Policy</a
+          >.
+        </p>
+        <div class="modal-buttons">
+          <button class="btn" onclick="showModal('cookiePreferences')">
+            Manage
+          </button>
+          <button class="btn btn-primary" onclick="closeModal('cookiesModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cookiePreferencesModal" class="modal">
+      <div class="modal-content">
+        <h2>Manage Cookie Preferences</h2>
+        <p>Adjust which cookies we can use.</p>
+        <div class="cookie-options">
+          <div class="cookie-option">
+            <input type="checkbox" id="essentialCookies" checked disabled />
+            <label for="essentialCookies"
+              >Essential Cookies (required for site operation)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="analyticsCookies" />
+            <label for="analyticsCookies"
+              >Analytics Cookies (help us understand site performance via Google
+              Analytics)</label
+            >
+          </div>
+          <div class="cookie-option">
+            <input type="checkbox" id="marketingCookies" />
+            <label for="marketingCookies"
+              >Marketing Cookies (support our marketing initiatives)</label
+            >
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn" onclick="closeModal('cookiePreferencesModal')">
+            Cancel
+          </button>
+          <button class="btn btn-primary" onclick="saveCookiePreferences()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <h2>Contact</h2>
+        <p>
+          Interested in collaboration or have questions? Reach out to us via
+          email for direct communication.
+        </p>
+        <p>
+          No personal data is collected, ensuring your privacy and security.
+        </p>
+        <div class="modal-buttons">
+          <a href="mailto:hello@soyth.ch" class="btn btn-primary">Send Email</a>
+          <button class="btn" onclick="closeModal('contactModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function loadGoogleAnalytics() {
+        const consent = JSON.parse(
+          localStorage.getItem("cookieConsent") || "{}"
+        );
+        if (consent.analytics) {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src =
+            "https://www.googletagmanager.com/gtag/js?id=G-T9JP67T6DX";
+          document.head.appendChild(script);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+          gtag("config", "G-T9JP67T6DX", { anonymize_ip: true });
+        }
+      }
+      function showCookieBanner() {
+        const cookieConsent = localStorage.getItem("cookieConsent");
+        if (!cookieConsent) {
+          document.getElementById("cookieBanner").style.display = "block";
+        }
+      }
+      function acceptAllCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: true,
+            marketing: true,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+        loadGoogleAnalytics();
+      }
+      function rejectNonEssentialCookies() {
+        localStorage.setItem(
+          "cookieConsent",
+          JSON.stringify({
+            essential: true,
+            analytics: false,
+            marketing: false,
+          })
+        );
+        document.getElementById("cookieBanner").style.display = "none";
+      }
+      function showModal(type) {
+        event.preventDefault();
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          modal.style.display = "none";
+        });
+        document.body.classList.remove("no-scroll");
+        const modal = document.getElementById(type + "Modal");
+        if (modal) {
+          if (type === "cookiePreferences") {
+            const consent = JSON.parse(
+              localStorage.getItem("cookieConsent") || "{}"
+            );
+            document.getElementById("analyticsCookies").checked =
+              consent.analytics || false;
+            document.getElementById("marketingCookies").checked =
+              consent.marketing || false;
+          }
+          modal.style.display = "block";
+          document.body.classList.add("no-scroll");
+          document.querySelector(".logo").classList.remove("logo-hidden");
+        }
+      }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = "none";
+          document.body.classList.remove("no-scroll");
+        }
+      }
+      function saveCookiePreferences() {
+        const preferences = {
+          essential: true,
+          analytics: document.getElementById("analyticsCookies").checked,
+          marketing: document.getElementById("marketingCookies").checked,
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(preferences));
+        document.getElementById("cookiePreferencesModal").style.display =
+          "none";
+        document.getElementById("cookieBanner").style.display = "none";
+        document.body.classList.remove("no-scroll");
+        if (preferences.analytics) {
+          loadGoogleAnalytics();
+        }
+      }
+      function detectAndRedirectLanguage() {
+        const userLang = (
+          navigator.language || navigator.userLanguage
+        ).toLowerCase();
+        const supportedLangs = {
+          en: "/en/ColorConverter.html",
+          de: "/de/ColorConverter.html",
+          fr: "/fr/ColorConverter.html",
+          it: "/it/ColorConverter.html",
+          rm: "/rm/ColorConverter.html",
+        };
+        let selectedLang = "en";
+        for (const lang in supportedLangs) {
+          if (userLang.startsWith(lang)) {
+            selectedLang = lang;
+            break;
+          }
+        }
+        const currentPath = window.location.pathname;
+        if (
+          !Object.values(supportedLangs).some((path) =>
+            currentPath.startsWith(path)
+          )
+        ) {
+          window.location.href = supportedLangs[selectedLang];
+        } else {
+          const langCode = currentPath.split("/")[1] || "en";
+          const langText = {
+            en: "English",
+            de: "Deutsch",
+            fr: "Français",
+            it: "Italiano",
+            rm: "Rumantsch",
+          }[langCode];
+          document.getElementById("selectedLanguage").textContent = langText;
+        }
+      }
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById("themeIcon");
+        const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+        const isDark = body.classList.toggle("dark");
+        themeIcon.textContent = isDark ? "Light" : "Dark";
+        mobileThemeIcon.textContent = isDark ? "Light" : "Dark";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      }
+      function initTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        if (shouldUseDark) {
+          document.body.classList.add("dark");
+          document.getElementById("themeIcon").textContent = "Light";
+          document.getElementById("mobileThemeIcon").textContent = "Light";
+        }
+      }
+      function toggleMobileMenu() {
+        const mobileNav = document.getElementById("mobileNav");
+        const burgerMenu = document.querySelector(".burger-menu");
+        const logo = document.querySelector(".logo");
+        const isActive = mobileNav.classList.contains("active");
+        if (isActive) {
+          mobileNav.classList.remove("active");
+          burgerMenu.classList.remove("active");
+          logo.classList.remove("logo-hidden");
+          document.body.classList.remove("no-scroll");
+        } else {
+          mobileNav.classList.add("active");
+          burgerMenu.classList.add("active");
+          logo.classList.add("logo-hidden");
+          document.body.classList.add("no-scroll");
+        }
+      }
+      function closeMobileMenu() {
+        const burger = document.querySelector(".burger-menu");
+        const mobileNav = document.getElementById("mobileNav");
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+      }
+      function shareTool(title, url) {
+        if (navigator.share) {
+          navigator
+            .share({
+              title: title,
+              text: `Check out this open-source enterprise IT tool: ${title}`,
+              url: url,
+            })
+            .catch((error) => console.log("Error sharing:", error));
+        } else {
+          navigator.clipboard
+            .writeText(url)
+            .then(() => {
+              alert("Link copied to clipboard!");
+            })
+            .catch((err) => {
+              console.log("Failed to copy link:", err);
+              alert("Failed to copy link to clipboard");
+            });
+        }
+      }
+      function filterProjects() {
+        const searchInput = document
+          .getElementById("projectSearch")
+          .value.toLowerCase();
+        const toolCards = document.querySelectorAll(".tool-card");
+        toolCards.forEach((card) => {
+          const title = card.querySelector("h3").textContent.toLowerCase();
+          const tech = card
+            .querySelector(".tool-tech")
+            .textContent.toLowerCase();
+          if (title.includes(searchInput) || tech.includes(searchInput)) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+      function toggleLanguageMenu() {
+        const menu = document.getElementById("languageMenu");
+        const isActive = menu.classList.toggle("active");
+        document.body.classList.toggle("no-scroll", isActive);
+        if (isActive) {
+          const toggleButton = document.querySelector(".language-toggle");
+          const menuWidth = toggleButton.offsetWidth;
+          menu.style.width = `${menuWidth}px`;
+        }
+      }
+      function selectLanguage(lang, text) {
+        document.getElementById("selectedLanguage").textContent = text;
+        document.getElementById("languageMenu").classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+      window.addEventListener("click", function (event) {
+        const languageSelector = document.querySelector(
+          ".custom-language-selector"
+        );
+        if (!languageSelector.contains(event.target)) {
+          document.getElementById("languageMenu").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+        }
+      });
+      window.onclick = function (event) {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            document.body.classList.remove("no-scroll");
+          }
+        });
+      };
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modals = document.querySelectorAll(".modal");
+          modals.forEach((modal) => {
+            if (modal.style.display === "block") {
+              modal.style.display = "none";
+              document.body.classList.remove("no-scroll");
+            }
+          });
+          document.getElementById("languageMenu").classList.remove("active");
+          document.getElementById("projectsNav").classList.remove("active");
+          document.body.classList.remove("no-scroll");
+          closeMobileMenu();
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        initTheme();
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+        detectAndRedirectLanguage();
+        showCookieBanner();
+        loadGoogleAnalytics();
+        updateInputFields();
+        document
+          .getElementById("colorFormat")
+          .addEventListener("change", updateInputFields);
+        document
+          .getElementById("hexInput")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("hexInput")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document.getElementById("rgbR").addEventListener("input", convertColor);
+        document.getElementById("rgbG").addEventListener("input", convertColor);
+        document.getElementById("rgbB").addEventListener("input", convertColor);
+        document
+          .getElementById("rgbR")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbG")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbB")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbaR")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("rgbaG")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("rgbaB")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("rgbaA")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("rgbaR")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbaG")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbaB")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("rgbaA")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document.getElementById("hslH").addEventListener("input", convertColor);
+        document.getElementById("hslS").addEventListener("input", convertColor);
+        document.getElementById("hslL").addEventListener("input", convertColor);
+        document
+          .getElementById("hslH")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("hslS")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("hslL")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("cmykC")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("cmykM")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("cmykY")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("cmykK")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("cmykC")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("cmykM")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("cmykY")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("cmykK")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document.getElementById("hsvH").addEventListener("input", convertColor);
+        document.getElementById("hsvS").addEventListener("input", convertColor);
+        document.getElementById("hsvV").addEventListener("input", convertColor);
+        document
+          .getElementById("hsvH")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("hsvS")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("hsvV")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+        document
+          .getElementById("keywordInput")
+          .addEventListener("input", convertColor);
+        document
+          .getElementById("keywordInput")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              convertColor();
+            }
+          });
+      });
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", function (e) {
+          if (!localStorage.getItem("theme")) {
+            if (e.matches) {
+              document.body.classList.add("dark");
+              document.getElementById("themeIcon").textContent = "Light";
+              document.getElementById("mobileThemeIcon").textContent = "Light";
+            } else {
+              document.body.classList.remove("dark");
+              document.getElementById("themeIcon").textContent = "Dark";
+              document.getElementById("mobileThemeIcon").textContent = "Dark";
+            }
+          }
+        });
+    </script>
+    <script>
+      // Named color keywords (CSS Level 4)
+      const namedColors = {
+        aliceblue: "#F0F8FF",
+        antiquewhite: "#FAEBD7",
+        aqua: "#00FFFF",
+        aquamarine: "#7FFFD4",
+        azure: "#F0FFFF",
+        beige: "#F5F5DC",
+        bisque: "#FFE4C4",
+        black: "#000000",
+        blanchedalmond: "#FFEBCD",
+        blue: "#0000FF",
+        blueviolet: "#8A2BE2",
+        brown: "#A52A2A",
+        burlywood: "#DEB887",
+        cadetblue: "#5F9EA0",
+        chartreuse: "#7FFF00",
+        chocolate: "#D2691E",
+        coral: "#FF7F50",
+        cornflowerblue: "#6495ED",
+        cornsilk: "#FFF8DC",
+        crimson: "#DC143C",
+        cyan: "#00FFFF",
+        darkblue: "#00008B",
+        darkcyan: "#008B8B",
+        darkgoldenrod: "#B8860B",
+        darkgray: "#A9A9A9",
+        darkgreen: "#006400",
+        darkgrey: "#A9A9A9",
+        darkkhaki: "#BDB76B",
+        darkmagenta: "#8B008B",
+        darkolivegreen: "#556B2F",
+        darkorange: "#FF8C00",
+        darkorchid: "#9932CC",
+        darkred: "#8B0000",
+        darksalmon: "#E9967A",
+        darkseagreen: "#8FBC8F",
+        darkslateblue: "#483D8B",
+        darkslategray: "#2F4F4F",
+        darkslategrey: "#2F4F4F",
+        darkturquoise: "#00CED1",
+        darkviolet: "#9400D3",
+        deeppink: "#FF1493",
+        deepskyblue: "#00BFFF",
+        dimgray: "#696969",
+        dimgrey: "#696969",
+        dodgerblue: "#1E90FF",
+        firebrick: "#B22222",
+        floralwhite: "#FFFAF0",
+        forestgreen: "#228B22",
+        fuchsia: "#FF00FF",
+        gainsboro: "#DCDCDC",
+        ghostwhite: "#F8F8FF",
+        gold: "#FFD700",
+        goldenrod: "#DAA520",
+        gray: "#808080",
+        green: "#008000",
+        greenyellow: "#ADFF2F",
+        grey: "#808080",
+        honeydew: "#F0FFF0",
+        hotpink: "#FF69B4",
+        indianred: "#CD5C5C",
+        indigo: "#4B0082",
+        ivory: "#FFFFF0",
+        khaki: "#F0E68C",
+        lavender: "#E6E6FA",
+        lavenderblush: "#FFF0F5",
+        lawngreen: "#7CFC00",
+        lemonchiffon: "#FFFACD",
+        lightblue: "#ADD8E6",
+        lightcoral: "#F08080",
+        lightcyan: "#E0FFFF",
+        lightgoldenrodyellow: "#FAFAD2",
+        lightgray: "#D3D3D3",
+        lightgreen: "#90EE90",
+        lightgrey: "#D3D3D3",
+        lightpink: "#FFB6C1",
+        lightsalmon: "#FFA07A",
+        lightseagreen: "#20B2AA",
+        lightskyblue: "#87CEFA",
+        lightslategray: "#778899",
+        lightslategrey: "#778899",
+        lightsteelblue: "#B0C4DE",
+        lightyellow: "#FFFFE0",
+        lime: "#00FF00",
+        limegreen: "#32CD32",
+        linen: "#FAF0E6",
+        magenta: "#FF00FF",
+        maroon: "#800000",
+        mediumaquamarine: "#66CDAA",
+        mediumblue: "#0000CD",
+        mediumorchid: "#BA55D3",
+        mediumpurple: "#9370DB",
+        mediumseagreen: "#3CB371",
+        mediumslateblue: "#7B68EE",
+        mediumspringgreen: "#00FA9A",
+        mediumturquoise: "#48D1CC",
+        mediumvioletred: "#C71585",
+        midnightblue: "#191970",
+        mintcream: "#F5FFFA",
+        mistyrose: "#FFE4E1",
+        moccasin: "#FFE4B5",
+        navajowhite: "#FFDEAD",
+        navy: "#000080",
+        oldlace: "#FDF5E6",
+        olive: "#808000",
+        olivedrab: "#6B8E23",
+        orange: "#FFA500",
+        orangered: "#FF4500",
+        orchid: "#DA70D6",
+        palegoldenrod: "#EEE8AA",
+        palegreen: "#98FB98",
+        paleturquoise: "#AFEEEE",
+        palevioletred: "#DB7093",
+        papayawhip: "#FFEFD5",
+        peachpuff: "#FFDAB9",
+        peru: "#CD853F",
+        pink: "#FFC0CB",
+        plum: "#DDA0DD",
+        powderblue: "#B0E0E6",
+        purple: "#800080",
+        rebeccapurple: "#663399",
+        red: "#FF0000",
+        rosybrown: "#BC8F8F",
+        royalblue: "#4169E1",
+        saddlebrown: "#8B4513",
+        salmon: "#FA8072",
+        sandybrown: "#F4A460",
+        seagreen: "#2E8B57",
+        seashell: "#FFF5EE",
+        sienna: "#A0522D",
+        silver: "#C0C0C0",
+        skyblue: "#87CEEB",
+        slateblue: "#6A5ACD",
+        slategray: "#708090",
+        slategrey: "#708090",
+        snow: "#FFFAFA",
+        springgreen: "#00FF7F",
+        steelblue: "#4682B4",
+        tan: "#D2B48C",
+        teal: "#008080",
+        thistle: "#D8BFD8",
+        tomato: "#FF6347",
+        turquoise: "#40E0D0",
+        violet: "#EE82EE",
+        wheat: "#F5DEB3",
+        white: "#FFFFFF",
+        whitesmoke: "#F5F5F5",
+        yellow: "#FFFF00",
+        yellowgreen: "#9ACD32",
+      };
+
+      function updateInputFields() {
+        const format = document.getElementById("colorFormat").value;
+        const hexInputs = document.querySelector(".hex-inputs");
+        const rgbInputs = document.querySelector(".rgb-inputs");
+        const rgbaInputs = document.querySelector(".rgba-inputs");
+        const hslInputs = document.querySelector(".hsl-inputs");
+        const cmykInputs = document.querySelector(".cmyk-inputs");
+        const hsvInputs = document.querySelector(".hsv-inputs");
+        const keywordInputs = document.querySelector(".keyword-inputs");
+
+        hexInputs.style.display = format === "hex" ? "block" : "none";
+        rgbInputs.style.display = format === "rgb" ? "block" : "none";
+        rgbaInputs.style.display = format === "rgba" ? "block" : "none";
+        hslInputs.style.display = format === "hsl" ? "block" : "none";
+        cmykInputs.style.display = format === "cmyk" ? "block" : "none";
+        hsvInputs.style.display = format === "hsv" ? "block" : "none";
+        keywordInputs.style.display = format === "keyword" ? "block" : "none";
+
+        convertColor();
+      }
+
+      function convertColor() {
+        const format = document.getElementById("colorFormat").value;
+        const hexInput = document.getElementById("hexInput").value;
+        const rgbR = parseInt(document.getElementById("rgbR").value);
+        const rgbG = parseInt(document.getElementById("rgbG").value);
+        const rgbB = parseInt(document.getElementById("rgbB").value);
+        const rgbaR = parseInt(document.getElementById("rgbaR").value);
+        const rgbaG = parseInt(document.getElementById("rgbaG").value);
+        const rgbaB = parseInt(document.getElementById("rgbaB").value);
+        const rgbaA = parseFloat(document.getElementById("rgbaA").value);
+        const hslH = parseInt(document.getElementById("hslH").value);
+        const hslS = parseInt(document.getElementById("hslS").value);
+        const hslL = parseInt(document.getElementById("hslL").value);
+        const cmykC = parseInt(document.getElementById("cmykC").value);
+        const cmykM = parseInt(document.getElementById("cmykM").value);
+        const cmykY = parseInt(document.getElementById("cmykY").value);
+        const cmykK = parseInt(document.getElementById("cmykK").value);
+        const hsvH = parseInt(document.getElementById("hsvH").value);
+        const hsvS = parseInt(document.getElementById("hsvS").value);
+        const hsvV = parseInt(document.getElementById("hsvV").value);
+        const keywordInput = document
+          .getElementById("keywordInput")
+          .value.toLowerCase();
+        const resultOutput = document.getElementById("resultOutput");
+        const colorPreview = document.getElementById("colorPreview");
+
+        let rgb = { r: 0, g: 0, b: 0 };
+        let alpha = 1;
+        let valid = false;
+
+        try {
+          if (format === "hex") {
+            if (!/^#[0-9A-Fa-f]{6}$/.test(hexInput)) {
+              resultOutput.textContent =
+                "Please enter a valid HEX color (e.g., #FF0000).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = hexToRgb(hexInput);
+            valid = true;
+          } else if (format === "rgb") {
+            if (
+              isNaN(rgbR) ||
+              isNaN(rgbG) ||
+              isNaN(rgbB) ||
+              rgbR < 0 ||
+              rgbR > 255 ||
+              rgbG < 0 ||
+              rgbG > 255 ||
+              rgbB < 0 ||
+              rgbB > 255
+            ) {
+              resultOutput.textContent =
+                "Please enter valid RGB values (0-255).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = { r: rgbR, g: rgbG, b: rgbB };
+            valid = true;
+          } else if (format === "rgba") {
+            if (
+              isNaN(rgbaR) ||
+              isNaN(rgbaG) ||
+              isNaN(rgbaB) ||
+              isNaN(rgbaA) ||
+              rgbaR < 0 ||
+              rgbaR > 255 ||
+              rgbaG < 0 ||
+              rgbaG > 255 ||
+              rgbaB < 0 ||
+              rgbaB > 255 ||
+              rgbaA < 0 ||
+              rgbaA > 1
+            ) {
+              resultOutput.textContent =
+                "Please enter valid RGBA values (R,G,B: 0-255, A: 0-1).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = { r: rgbaR, g: rgbaG, b: rgbaB };
+            alpha = rgbaA;
+            valid = true;
+          } else if (format === "hsl") {
+            if (
+              isNaN(hslH) ||
+              isNaN(hslS) ||
+              isNaN(hslL) ||
+              hslH < 0 ||
+              hslH > 360 ||
+              hslS < 0 ||
+              hslS > 100 ||
+              hslL < 0 ||
+              hslL > 100
+            ) {
+              resultOutput.textContent =
+                "Please enter valid HSL values (H: 0-360, S: 0-100, L: 0-100).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = hslToRgb(hslH / 360, hslS / 100, hslL / 100);
+            valid = true;
+          } else if (format === "cmyk") {
+            if (
+              isNaN(cmykC) ||
+              isNaN(cmykM) ||
+              isNaN(cmykY) ||
+              isNaN(cmykK) ||
+              cmykC < 0 ||
+              cmykC > 100 ||
+              cmykM < 0 ||
+              cmykM > 100 ||
+              cmykY < 0 ||
+              cmykY > 100 ||
+              cmykK < 0 ||
+              cmykK > 100
+            ) {
+              resultOutput.textContent =
+                "Please enter valid CMYK values (0-100).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = cmykToRgb(cmykC / 100, cmykM / 100, cmykY / 100, cmykK / 100);
+            valid = true;
+          } else if (format === "hsv") {
+            if (
+              isNaN(hsvH) ||
+              isNaN(hsvS) ||
+              isNaN(hsvV) ||
+              hsvH < 0 ||
+              hsvH > 360 ||
+              hsvS < 0 ||
+              hsvS > 100 ||
+              hsvV < 0 ||
+              hsvV > 100
+            ) {
+              resultOutput.textContent =
+                "Please enter valid HSV values (H: 0-360, S: 0-100, V: 0-100).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = hsvToRgb(hsvH / 360, hsvS / 100, hsvV / 100);
+            valid = true;
+          } else if (format === "keyword") {
+            if (!namedColors[keywordInput]) {
+              resultOutput.textContent =
+                "Please enter a valid CSS color keyword (e.g., red).";
+              colorPreview.style.backgroundColor = "";
+              return;
+            }
+            rgb = hexToRgb(namedColors[keywordInput]);
+            valid = true;
+          }
+
+          if (valid) {
+            const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+            const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+            const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+            const keyword = findClosestNamedColor(rgb.r, rgb.g, rgb.b);
+            resultOutput.textContent = `HEX: ${hex}\nRGB: rgb(${rgb.r}, ${
+              rgb.g
+            }, ${rgb.b})\nRGBA: rgba(${rgb.r}, ${rgb.g}, ${
+              rgb.b
+            }, ${alpha.toFixed(2)})\nHSL: hsl(${Math.round(
+              hsl.h * 360
+            )}, ${Math.round(hsl.s * 100)}%, ${Math.round(
+              hsl.l * 100
+            )}%)\nCMYK: cmyk(${Math.round(cmyk.c * 100)}%, ${Math.round(
+              cmyk.m * 100
+            )}%, ${Math.round(cmyk.y * 100)}%, ${Math.round(
+              cmyk.k * 100
+            )}%)\nHSV: hsv(${Math.round(hsv.h * 360)}, ${Math.round(
+              hsv.s * 100
+            )}%, ${Math.round(hsv.v * 100)}%)\nKeyword: ${keyword}`;
+            colorPreview.style.backgroundColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+
+            // Update other input fields
+            if (format !== "hex") {
+              document.getElementById("hexInput").value = hex;
+            }
+            if (format !== "rgb") {
+              document.getElementById("rgbR").value = rgb.r;
+              document.getElementById("rgbG").value = rgb.g;
+              document.getElementById("rgbB").value = rgb.b;
+            }
+            if (format !== "rgba") {
+              document.getElementById("rgbaR").value = rgb.r;
+              document.getElementById("rgbaG").value = rgb.g;
+              document.getElementById("rgbaB").value = rgb.b;
+              document.getElementById("rgbaA").value = alpha.toFixed(2);
+            }
+            if (format !== "hsl") {
+              document.getElementById("hslH").value = Math.round(hsl.h * 360);
+              document.getElementById("hslS").value = Math.round(hsl.s * 100);
+              document.getElementById("hslL").value = Math.round(hsl.l * 100);
+            }
+            if (format !== "cmyk") {
+              document.getElementById("cmykC").value = Math.round(cmyk.c * 100);
+              document.getElementById("cmykM").value = Math.round(cmyk.m * 100);
+              document.getElementById("cmykY").value = Math.round(cmyk.y * 100);
+              document.getElementById("cmykK").value = Math.round(cmyk.k * 100);
+            }
+            if (format !== "hsv") {
+              document.getElementById("hsvH").value = Math.round(hsv.h * 360);
+              document.getElementById("hsvS").value = Math.round(hsv.s * 100);
+              document.getElementById("hsvV").value = Math.round(hsv.v * 100);
+            }
+            if (format !== "keyword") {
+              document.getElementById("keywordInput").value = keyword;
+            }
+          }
+        } catch (error) {
+          resultOutput.textContent = `Error: ${error.message}`;
+          colorPreview.style.backgroundColor = "";
+        }
+      }
+
+      function hexToRgb(hex) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return { r, g, b };
+      }
+
+      function rgbToHex(r, g, b) {
+        return (
+          "#" +
+          [r, g, b]
+            .map((x) => {
+              const hex = x.toString(16);
+              return hex.length === 1 ? "0" + hex : hex;
+            })
+            .join("")
+            .toUpperCase()
+        );
+      }
+
+      function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h,
+          s,
+          l = (max + min) / 2;
+
+        if (max === min) {
+          h = s = 0;
+        } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+            case r:
+              h = (g - b) / d + (g < b ? 6 : 0);
+              break;
+            case g:
+              h = (b - r) / d + 2;
+              break;
+            case b:
+              h = (r - g) / d + 4;
+              break;
+          }
+          h /= 6;
+        }
+        return { h, s, l };
+      }
+
+      function hslToRgb(h, s, l) {
+        let r, g, b;
+        if (s === 0) {
+          r = g = b = l;
+        } else {
+          const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+          };
+          const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+          const p = 2 * l - q;
+          r = hue2rgb(p, q, h + 1 / 3);
+          g = hue2rgb(p, q, h);
+          b = hue2rgb(p, q, h - 1 / 3);
+        }
+        return {
+          r: Math.round(r * 255),
+          g: Math.round(g * 255),
+          b: Math.round(b * 255),
+        };
+      }
+
+      function rgbToCmyk(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const k = 1 - Math.max(r, g, b);
+        if (k === 1) {
+          return { c: 0, m: 0, y: 0, k: 1 };
+        }
+        const c = (1 - r - k) / (1 - k);
+        const m = (1 - g - k) / (1 - k);
+        const y = (1 - b - k) / (1 - k);
+        return { c, m, y, k };
+      }
+
+      function cmykToRgb(c, m, y, k) {
+        const r = 255 * (1 - c) * (1 - k);
+        const g = 255 * (1 - m) * (1 - k);
+        const b = 255 * (1 - y) * (1 - k);
+        return {
+          r: Math.round(r),
+          g: Math.round(g),
+          b: Math.round(b),
+        };
+      }
+
+      function rgbToHsv(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h,
+          s,
+          v = max;
+        const d = max - min;
+        s = max === 0 ? 0 : d / max;
+
+        if (max === min) {
+          h = 0;
+        } else {
+          switch (max) {
+            case r:
+              h = (g - b) / d + (g < b ? 6 : 0);
+              break;
+            case g:
+              h = (b - r) / d + 2;
+              break;
+            case b:
+              h = (r - g) / d + 4;
+              break;
+          }
+          h /= 6;
+        }
+        return { h, s, v };
+      }
+
+      function hsvToRgb(h, s, v) {
+        let r, g, b;
+        const i = Math.floor(h * 6);
+        const f = h * 6 - i;
+        const p = v * (1 - s);
+        const q = v * (1 - f * s);
+        const t = v * (1 - (1 - f) * s);
+
+        switch (i % 6) {
+          case 0:
+            r = v;
+            g = t;
+            b = p;
+            break;
+          case 1:
+            r = q;
+            g = v;
+            b = p;
+            break;
+          case 2:
+            r = p;
+            g = v;
+            b = t;
+            break;
+          case 3:
+            r = p;
+            g = q;
+            b = v;
+            break;
+          case 4:
+            r = t;
+            g = p;
+            b = v;
+            break;
+          case 5:
+            r = v;
+            g = p;
+            b = q;
+            break;
+        }
+        return {
+          r: Math.round(r * 255),
+          g: Math.round(g * 255),
+          b: Math.round(b * 255),
+        };
+      }
+
+      function findClosestNamedColor(r, g, b) {
+        let closestName = "unknown";
+        let minDistance = Infinity;
+
+        for (const [name, hex] of Object.entries(namedColors)) {
+          const rgb = hexToRgb(hex);
+          const distance = Math.sqrt(
+            (r - rgb.r) ** 2 + (g - rgb.g) ** 2 + (b - rgb.b) ** 2
+          );
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestName = name;
+          }
+        }
+        return closestName;
+      }
+
+      function copyColor() {
+        const format = document.getElementById("colorFormat").value;
+        let text;
+        if (format === "hex") {
+          text = document.getElementById("hexInput").value;
+        } else if (format === "rgb") {
+          const r = document.getElementById("rgbR").value;
+          const g = document.getElementById("rgbG").value;
+          const b = document.getElementById("rgbB").value;
+          text = `rgb(${r}, ${g}, ${b})`;
+        } else if (format === "rgba") {
+          const r = document.getElementById("rgbaR").value;
+          const g = document.getElementById("rgbaG").value;
+          const b = document.getElementById("rgbaB").value;
+          const a = document.getElementById("rgbaA").value;
+          text = `rgba(${r}, ${g}, ${b}, ${a})`;
+        } else if (format === "hsl") {
+          const h = document.getElementById("hslH").value;
+          const s = document.getElementById("hslS").value;
+          const l = document.getElementById("hslL").value;
+          text = `hsl(${h}, ${s}%, ${l}%)`;
+        } else if (format === "cmyk") {
+          const c = document.getElementById("cmykC").value;
+          const m = document.getElementById("cmykM").value;
+          const y = document.getElementById("cmykY").value;
+          const k = document.getElementById("cmykK").value;
+          text = `cmyk(${c}%, ${m}%, ${y}%, ${k}%)`;
+        } else if (format === "hsv") {
+          const h = document.getElementById("hsvH").value;
+          const s = document.getElementById("hsvS").value;
+          const v = document.getElementById("hsvV").value;
+          text = `hsv(${h}, ${s}%, ${v}%)`;
+        } else if (format === "keyword") {
+          text = document.getElementById("keywordInput").value;
+        }
+        const copyButton = document.getElementById("copyButton");
+
+        if (
+          !text ||
+          document
+            .getElementById("resultOutput")
+            .textContent.startsWith("Error:") ||
+          document
+            .getElementById("resultOutput")
+            .textContent.startsWith("Please")
+        ) {
+          return;
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              copyButton.textContent = "Copied!";
+              setTimeout(() => {
+                copyButton.textContent = "Copy";
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy text:", err);
+              fallbackCopyToClipboard(text);
+            });
+        } else {
+          fallbackCopyToClipboard(text);
+        }
+      }
+
+      function fallbackCopyToClipboard(text) {
+        const copyButton = document.getElementById("copyButton");
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+          copyButton.textContent = "Copied!";
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy text using fallback:", err);
+          copyButton.textContent = "Failed to copy";
+          setTimeout(() => {
+            copyButton.textContent = "Copy";
+          }, 2000);
+        }
+
+        document.body.removeChild(textArea);
+      }
+
+      function clearInputs() {
+        document.getElementById("hexInput").value = "";
+        document.getElementById("rgbR").value = "";
+        document.getElementById("rgbG").value = "";
+        document.getElementById("rgbB").value = "";
+        document.getElementById("rgbaR").value = "";
+        document.getElementById("rgbaG").value = "";
+        document.getElementById("rgbaB").value = "";
+        document.getElementById("rgbaA").value = "";
+        document.getElementById("hslH").value = "";
+        document.getElementById("hslS").value = "";
+        document.getElementById("hslL").value = "";
+        document.getElementById("cmykC").value = "";
+        document.getElementById("cmykM").value = "";
+        document.getElementById("cmykY").value = "";
+        document.getElementById("cmykK").value = "";
+        document.getElementById("hsvH").value = "";
+        document.getElementById("hsvS").value = "";
+        document.getElementById("hsvV").value = "";
+        document.getElementById("keywordInput").value = "";
+        document.getElementById("resultOutput").textContent =
+          "Please enter a valid HEX color (e.g., #FF0000).";
+        document.getElementById("colorPreview").style.backgroundColor = "";
+      }
+    </script>
+    <script>
+      let lastScrollTop = 0;
+      let isButtonVisible = false;
+      let lastDirectionChangePosition = 0;
+
+      function updateScrollButton() {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollButton = document.getElementById("scrollButton");
+        const scrollDistance = Math.abs(
+          scrollTop - lastDirectionChangePosition
+        );
+
+        if (
+          scrollTop > 100 &&
+          scrollTop < documentHeight - windowHeight - 100
+        ) {
+          if (!isButtonVisible) {
+            scrollButton.style.opacity = "1";
+            scrollButton.style.pointerEvents = "auto";
+            isButtonVisible = true;
+          }
+        } else {
+          scrollButton.style.opacity = "0";
+          scrollButton.style.pointerEvents = "none";
+          isButtonVisible = false;
+        }
+
+        if (scrollDistance >= 100) {
+          if (scrollTop > lastScrollTop) {
+            scrollButton.classList.add("rotate-down");
+            scrollButton.setAttribute("data-direction", "bottom");
+          } else if (scrollTop < lastScrollTop) {
+            scrollButton.classList.remove("rotate-down");
+            scrollButton.setAttribute("data-direction", "top");
+          }
+          lastDirectionChangePosition = scrollTop;
+        }
+
+        lastScrollTop = Math.max(scrollTop, 0);
+      }
+
+      function scrollToDirection() {
+        const scrollButton = document.getElementById("scrollButton");
+        const direction = scrollButton.getAttribute("data-direction");
+        if (direction === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      window.addEventListener("scroll", updateScrollButton);
+    </script>
+    <script>
+      function showProjectsMenu() {
+        event.preventDefault();
+        const projectsNav = document.getElementById("projectsNav");
+        const mobileNav = document.getElementById("mobileNav");
+        projectsNav.classList.add("active");
+        mobileNav.classList.remove("active");
+        document.querySelector(".burger-menu").classList.remove("active");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeProjectsMenu() {
+        const projectsNav = document.getElementById("projectsNav");
+        projectsNav.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+        if (window.innerWidth <= 768) {
+          document.querySelector(".burger-menu").classList.add("active");
+          document.getElementById("mobileNav").classList.add("active");
+        }
+      }
+    </script>
+  </body>
+</html>
