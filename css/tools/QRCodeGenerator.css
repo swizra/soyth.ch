@@ -1,0 +1,148 @@
+.qr-generator {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 2rem;
+  margin-top: -1rem;
+  border-radius: 0px;
+  background-color: var(--bg-secondary);
+}
+
+body.dark .qr-generator {
+  background-color: var(--bg-secondary-dark);
+}
+
+.qr-generator h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .qr-generator h1 {
+  color: var(--accent-dark);
+}
+
+.qr-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.qr-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.qr-option label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .qr-option label {
+  color: var(--text-primary-dark);
+}
+
+.qr-generator input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  background: none;
+}
+
+body.dark .qr-generator input[type="text"] {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.qr-generator input[type="text"]::placeholder {
+  color: var(--text-secondary);
+}
+
+body.dark .qr-generator input[type="text"]::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.qr-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.qr-buttons .btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  border-radius: 20px;
+  cursor: pointer;
+  min-width: 120px;
+  text-align: center;
+}
+
+.qr-buttons .btn-secondary {
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.dark .qr-buttons .btn-secondary {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+  background: none;
+}
+
+#qrcode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 256px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#qrcode svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .qr-generator {
+    padding: 1.5rem;
+  }
+
+  .qr-generator h1 {
+    font-size: 1.5rem;
+  }
+
+  .qr-option label {
+    font-size: 0.85rem;
+  }
+
+  .qr-generator input[type="text"] {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .qr-buttons .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+
+  #qrcode {
+    min-height: 200px;
+  }
+}

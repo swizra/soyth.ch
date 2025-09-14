@@ -1,0 +1,168 @@
+.pomodoro-timer {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 2rem;
+  margin-top: -1rem;
+  border-radius: 0px;
+  background-color: var(--bg-secondary);
+}
+
+body.dark .pomodoro-timer {
+  background-color: var(--bg-secondary-dark);
+}
+
+.pomodoro-timer h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .pomodoro-timer h1 {
+  color: var(--accent-dark);
+}
+
+.pomodoro-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.pomodoro-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.pomodoro-option label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .pomodoro-option label {
+  color: var(--text-primary-dark);
+}
+
+.pomodoro-option input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  background: none;
+}
+
+body.dark .pomodoro-option input[type="number"] {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.pomodoro-option input[type="number"]::-webkit-inner-spin-button,
+.pomodoro-option input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pomodoro-option input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.pomodoro-option input[type="number"]::placeholder {
+  color: var(--text-secondary);
+}
+
+body.dark .pomodoro-option input[type="number"]::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: transparent;
+  text-align: center;
+}
+
+body.dark .timer-display {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+  background: transparent;
+}
+
+.pomodoro-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.pomodoro-buttons .btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  border-radius: 20px;
+  cursor: pointer;
+  min-width: 120px;
+  text-align: center;
+}
+
+.pomodoro-buttons .btn-secondary {
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.dark .pomodoro-buttons .btn-secondary {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+  background: none;
+}
+
+@media (max-width: 768px) {
+  .pomodoro-timer {
+    padding: 1.5rem;
+  }
+
+  .pomodoro-timer h1 {
+    font-size: 1.5rem;
+  }
+
+  .pomodoro-option label {
+    font-size: 0.85rem;
+    min-width: 80px;
+  }
+
+  .pomodoro-option input[type="number"] {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .timer-display {
+    padding: 0.6rem 0.8rem;
+    min-height: 40px;
+    font-size: 1rem;
+  }
+
+  .pomodoro-buttons .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+}

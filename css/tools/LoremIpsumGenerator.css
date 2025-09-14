@@ -1,0 +1,240 @@
+.lorem-ipsum-generator {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 2rem;
+  margin-top: -1rem;
+  border-radius: 0px;
+  background-color: var(--bg-secondary);
+}
+
+body.dark .lorem-ipsum-generator {
+  background-color: var(--bg-secondary-dark);
+}
+
+.lorem-ipsum-generator h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .lorem-ipsum-generator h1 {
+  color: var(--accent-dark);
+}
+
+.lorem-ipsum-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.lorem-ipsum-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.lorem-ipsum-option label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.dark .lorem-ipsum-option label {
+  color: var(--text-primary-dark);
+}
+
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.75rem 2rem 0.75rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+body.dark .custom-select {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.custom-select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+body.dark .custom-select-arrow {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ccc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.custom-select option {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  padding: 0.5rem;
+}
+
+body.dark .custom-select option {
+  background: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
+}
+
+.lorem-ipsum-option input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  background: none;
+}
+
+body.dark .lorem-ipsum-option input[type="number"] {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.lorem-ipsum-option input[type="number"]::-webkit-inner-spin-button,
+.lorem-ipsum-option input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lorem-ipsum-option input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.lorem-ipsum-option input[type="number"]::placeholder {
+  color: var(--text-secondary);
+}
+
+body.dark .lorem-ipsum-option input[type="number"]::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.lorem-ipsum-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.lorem-ipsum-buttons .btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  border-radius: 20px;
+  cursor: pointer;
+  min-width: 120px;
+  text-align: center;
+}
+
+.lorem-ipsum-buttons .btn-secondary {
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background: none;
+}
+
+body.dark .lorem-ipsum-buttons .btn-secondary {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-dark);
+  background: none;
+}
+
+#loremIpsumOutputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+}
+
+body.dark #loremIpsumOutputContainer {
+  border: 1px solid var(--border-dark);
+  background: transparent;
+}
+
+#loremIpsumOutput {
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  word-break: break-word;
+  text-align: left;
+  flex-grow: 1;
+  white-space: pre-wrap;
+}
+
+body.dark #loremIpsumOutput {
+  color: var(--text-primary-dark);
+}
+
+@media (max-width: 768px) {
+  .lorem-ipsum-generator {
+    padding: 1.5rem;
+  }
+
+  .lorem-ipsum-generator h1 {
+    font-size: 1.5rem;
+  }
+
+  .lorem-ipsum-option label {
+    font-size: 0.85rem;
+    min-width: 80px;
+  }
+
+  .custom-select,
+  .lorem-ipsum-option input[type="number"] {
+    padding: 0.6rem 1.5rem 0.6rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .custom-select-arrow {
+    right: 0.6rem;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .lorem-ipsum-buttons .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+
+  #loremIpsumOutputContainer {
+    padding: 0.6rem 0.8rem;
+    min-height: 40px;
+  }
+
+  #loremIpsumOutput {
+    font-size: 0.9rem;
+  }
+}
