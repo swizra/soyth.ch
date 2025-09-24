@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FHNW Student Case Study</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono",
+          monospace;
+        margin: 0;
+        background: #ffffff;
+        color: #000000;
+        line-height: 1.6;
+      }
+
+      header {
+        width: 100%;
+        background: #f5f5f5;
+        border-bottom: 1px solid #cccccc;
+        padding: 16px 0;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #007bff;
+        letter-spacing: -0.5px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 16px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .controls {
+        background: #f5f5f5;
+        border: 1px solid #cccccc;
+        padding: 16px;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .controls h2 {
+        margin: 0 0 16px 0;
+        color: #007bff;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .input-group {
+        margin-bottom: 12px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 4px;
+        color: #333333;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px 12px;
+        font-family: "SF Mono", monospace;
+        font-size: 0.9rem;
+        background: #ffffff;
+        border: 1px solid #cccccc;
+        color: #000000;
+        transition: border-color 0.2s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      button {
+        flex: 1;
+        padding: 10px 12px;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary {
+        background: #007bff;
+        color: #ffffff;
+      }
+
+      .btn-primary:hover {
+        background: #0056b3;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #333333;
+        border: 1px solid #cccccc;
+      }
+
+      .btn-secondary:hover {
+        background: #e5e5e5;
+        border-color: #999999;
+      }
+
+      .network {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        background: #f5f5f5;
+        border: 1px solid #cccccc;
+      }
+
+      .neuron {
+        width: 40px;
+        height: 40px;
+        background: #ffffff;
+        border: 2px solid #cccccc;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.7rem;
+        color: #000000;
+        text-align: center;
+        line-height: 1.2;
+        transition: all 0.2s ease;
+      }
+
+      .neuron.input {
+        border-color: #007bff;
+        background: #e6f0ff;
+      }
+
+      .neuron.hidden {
+        border-color: #ff8800;
+        background: #fff5e6;
+      }
+
+      .neuron.output {
+        border-color: #28a745;
+        background: #e6ffe6;
+      }
+
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .formulas {
+        margin: 16px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #f5f5f5;
+        border: 1px solid #cccccc;
+        padding: 16px;
+      }
+
+      .formulas h3 {
+        margin: 0 0 12px 0;
+        color: #007bff;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .formulas pre {
+        background: #ffffff;
+        padding: 12px;
+        border: 1px solid #cccccc;
+        color: #333333;
+        font-size: 0.8rem;
+        overflow-x: auto;
+      }
+
+      .status {
+        margin-top: 12px;
+        padding: 10px;
+        background: #ffffff;
+        border: 1px solid #cccccc;
+        border-left: 3px solid #007bff;
+        color: #333333;
+        font-size: 0.8rem;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .metric {
+        background: #ffffff;
+        border: 1px solid #cccccc;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .metric-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #007bff;
+      }
+
+      .metric-label {
+        font-size: 0.7rem;
+        color: #666666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          flex-direction: row;
+        }
+
+        .controls {
+          width: 340px;
+          min-width: 340px;
+        }
+
+        .network {
+          flex: 1;
+          height: 500px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .controls h2,
+        .formulas h3 {
+          font-size: 1.1rem;
+        }
+
+        .neuron {
+          width: 48px;
+          height: 48px;
+          font-size: 0.75rem;
+        }
+
+        button {
+          font-size: 0.9rem;
+          padding: 12px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FHNW Student Case Study</h1>
+    </header>
+
+    <div class="container">
+      <div class="controls">
+        <h2>Network Configuration</h2>
+
+        <div class="input-group">
+          <label>Input Nodes</label>
+          <input type="number" id="numInputs" value="6" min="1" />
+        </div>
+
+        <div class="input-group">
+          <label>Hidden Nodes</label>
+          <input type="number" id="numHidden" value="5" min="1" />
+        </div>
+
+        <div class="input-group">
+          <label>Output Nodes</label>
+          <input type="number" id="numOutputs" value="3" min="1" />
+        </div>
+
+        <div class="input-group">
+          <label>Input Vector X</label>
+          <textarea id="inputX">7,2,30,3,4,60</textarea>
+        </div>
+
+        <div class="input-group">
+          <label>Weights W1</label>
+          <textarea id="weightsW1">
+0.2,0.1,0.3,0.2,0.1,0.1
+0.3,0.2,0.1,0.3,0.2,0.1
+0.1,0.3,0.2,0.1,0.3,0.2
+0.2,0.1,0.2,0.3,0.1,0.3
+0.1,0.2,0.3,0.1,0.2,0.2</textarea
+          >
+        </div>
+
+        <div class="input-group">
+          <label>Bias b1</label>
+          <textarea id="biasB1">0.1,0.2,0.1,0.2,0.1</textarea>
+        </div>
+
+        <div class="input-group">
+          <label>Weights W2</label>
+          <textarea id="weightsW2">
+0.3,0.2,0.1,0.2,0.1
+0.2,0.3,0.2,0.1,0.3
+0.1,0.1,0.3,0.3,0.2</textarea
+          >
+        </div>
+
+        <div class="input-group">
+          <label>Bias b2</label>
+          <textarea id="biasB2">0.1,0.2,0.1</textarea>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary" onclick="computeNetwork()">
+            Compute
+          </button>
+          <button class="btn-secondary" onclick="clearAll()">Reset</button>
+        </div>
+
+        <div id="status" class="status" style="display: none">
+          <div>Status: <span id="statusText">Ready</span></div>
+        </div>
+
+        <div class="metrics" id="metrics" style="display: none">
+          <div class="metric">
+            <div class="metric-value" id="totalNodes">0</div>
+            <div class="metric-label">Total Nodes</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="totalParams">0</div>
+            <div class="metric-label">Parameters</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="network" id="networkCanvas">
+        <svg id="connections"></svg>
+      </div>
+    </div>
+
+    <div class="formulas">
+      <h3>Mathematical Model</h3>
+      <pre>
+Hidden Layer:    H = σ(W1 × X + b1)
+Output Layer:    Y = σ(W2 × H + b2)
+Activation:      σ(z) = 1 / (1 + e^(-z))
+
+Where:
+  X  = input vector
+  W1 = input-to-hidden weights
+  W2 = hidden-to-output weights
+  b1, b2 = bias vectors
+  σ  = sigmoid activation function</pre
+      >
+    </div>
+
+    <script>
+      function sigmoid(z) {
+        return 1 / (1 + Math.exp(-z));
+      }
+      function parseMatrix(text) {
+        return text
+          .trim()
+          .split("\n")
+          .map((r) => r.split(",").map(Number));
+      }
+      function parseVector(text) {
+        return text.trim().split(",").map(Number);
+      }
+      function multiplyMatrixVector(matrix, vector) {
+        return matrix.map((row) =>
+          row.reduce((sum, val, i) => sum + val * vector[i], 0)
+        );
+      }
+      function addVectors(v1, v2) {
+        return v1.map((v, i) => v + v2[i]);
+      }
+      function applySigmoid(vector) {
+        return vector.map(sigmoid);
+      }
+
+      function clearAll() {
+        document.getElementById("inputX").value = "";
+        document.getElementById("weightsW1").value = "";
+        document.getElementById("weightsW2").value = "";
+        document.getElementById("biasB1").value = "";
+        document.getElementById("biasB2").value = "";
+        document.getElementById("networkCanvas").innerHTML =
+          '<svg id="connections"></svg>';
+        document.getElementById("status").style.display = "none";
+        document.getElementById("metrics").style.display = "none";
+      }
+
+      function computeNetwork() {
+        try {
+          const numInputs = Number(document.getElementById("numInputs").value);
+          const numHidden = Number(document.getElementById("numHidden").value);
+          const numOutputs = Number(
+            document.getElementById("numOutputs").value
+          );
+
+          const X = parseVector(document.getElementById("inputX").value);
+          const W1 = parseMatrix(document.getElementById("weightsW1").value);
+          const b1 = parseVector(document.getElementById("biasB1").value);
+          const W2 = parseMatrix(document.getElementById("weightsW2").value);
+          const b2 = parseVector(document.getElementById("biasB2").value);
+
+          if (X.length !== numInputs)
+            throw new Error("Input vector size mismatch");
+          if (W1.length !== numHidden || W1[0].length !== numInputs)
+            throw new Error("W1 dimensions mismatch");
+          if (b1.length !== numHidden) throw new Error("b1 size mismatch");
+          if (W2.length !== numOutputs || W2[0].length !== numHidden)
+            throw new Error("W2 dimensions mismatch");
+          if (b2.length !== numOutputs) throw new Error("b2 size mismatch");
+
+          let Z1 = addVectors(multiplyMatrixVector(W1, X), b1);
+          let H = applySigmoid(Z1);
+          let Z2 = addVectors(multiplyMatrixVector(W2, H), b2);
+          let Y = applySigmoid(Z2);
+
+          drawNetwork(numInputs, numHidden, numOutputs, X, H, Y);
+
+          document.getElementById("status").style.display = "block";
+          document.getElementById("statusText").textContent = `Output: [${Y.map(
+            (v) => v.toFixed(4)
+          ).join(", ")}]`;
+
+          document.getElementById("metrics").style.display = "grid";
+          document.getElementById("totalNodes").textContent =
+            numInputs + numHidden + numOutputs;
+          document.getElementById("totalParams").textContent =
+            numInputs * numHidden +
+            numHidden +
+            numHidden * numOutputs +
+            numOutputs;
+        } catch (error) {
+          document.getElementById("status").style.display = "block";
+          document.getElementById(
+            "statusText"
+          ).textContent = `Error: ${error.message}`;
+        }
+      }
+
+      function drawNetwork(inputs, hidden, outputs, X, H, Y) {
+        const canvas = document.getElementById("networkCanvas");
+        canvas.innerHTML = '<svg id="connections"></svg>';
+        const svg = document.getElementById("connections");
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
+        let positions = { inputs: [], hidden: [], outputs: [] };
+
+        for (let i = 0; i < inputs; i++) {
+          let y = (i + 1) * (height / (inputs + 1));
+          let x = width * 0.1;
+          positions.inputs.push({ x, y });
+          let div = document.createElement("div");
+          div.className = "neuron input";
+          div.style.left = x - 20 + "px";
+          div.style.top = y - 20 + "px";
+          div.innerHTML = `x${i + 1}<br>${X[i].toFixed(1)}`;
+          canvas.appendChild(div);
+        }
+
+        for (let i = 0; i < hidden; i++) {
+          let y = (i + 1) * (height / (hidden + 1));
+          let x = width * 0.5;
+          positions.hidden.push({ x, y });
+          let div = document.createElement("div");
+          div.className = "neuron hidden";
+          div.style.left = x - 20 + "px";
+          div.style.top = y - 20 + "px";
+          div.innerHTML = `h${i + 1}<br>${H[i].toFixed(3)}`;
+          canvas.appendChild(div);
+        }
+
+        for (let i = 0; i < outputs; i++) {
+          let y = (i + 1) * (height / (outputs + 1));
+          let x = width * 0.9;
+          positions.outputs.push({ x, y });
+          let div = document.createElement("div");
+          div.className = "neuron output";
+          div.style.left = x - 20 + "px";
+          div.style.top = y - 20 + "px";
+          div.innerHTML = `y${i + 1}<br>${Y[i].toFixed(3)}`;
+          canvas.appendChild(div);
+        }
+
+        function drawLine(x1, y1, x2, y2, color = "#cccccc", opacity = 0.6) {
+          let line = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+          );
+          line.setAttribute("x1", x1);
+          line.setAttribute("y1", y1);
+          line.setAttribute("x2", x2);
+          line.setAttribute("y2", y2);
+          line.setAttribute("stroke", color);
+          line.setAttribute("stroke-width", "1");
+          line.setAttribute("opacity", opacity);
+          svg.appendChild(line);
+        }
+
+        for (let i = 0; i < inputs; i++) {
+          for (let j = 0; j < hidden; j++) {
+            drawLine(
+              positions.inputs[i].x,
+              positions.inputs[i].y,
+              positions.hidden[j].x,
+              positions.hidden[j].y,
+              "#007bff",
+              0.4
+            );
+          }
+        }
+
+        for (let i = 0; i < hidden; i++) {
+          for (let j = 0; j < outputs; j++) {
+            drawLine(
+              positions.hidden[i].x,
+              positions.hidden[i].y,
+              positions.outputs[j].x,
+              positions.outputs[j].y,
+              "#28a745",
+              0.4
+            );
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        computeNetwork();
+      });
+    </script>
+  </body>
+</html>
