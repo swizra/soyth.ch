@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyth - Digital Curiosities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent-1: #FF6B9D;
+            --accent-2: #C06CFF;
+            --accent-3: #6C63FF;
+            --accent-4: #00F5FF;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f5f5f5;
+                --text-primary: #0a0a0a;
+                --text-secondary: #666666;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            nav {
+                background: rgba(255, 255, 255, 0.8);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px 40px;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .floating-shape {
+            position: absolute;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, -100px) rotate(90deg); }
+            50% { transform: translate(-50px, -200px) rotate(180deg); }
+            75% { transform: translate(-150px, -50px) rotate(270deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 10vw, 100px);
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-4));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 8s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(14px, 3vw, 18px);
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.5);
+        }
+
+        .cta-btn:active {
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image svg {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(108, 99, 255, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .add-to-cart {
+            padding: 15px 30px;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            background: var(--bg-primary);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            padding: 30px 20px;
+        }
+
+        @media (prefers-color-scheme: light) {
+            .cart-modal {
+                border-left: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .cart-header h2 {
+            font-size: 24px;
+            letter-spacing: 3px;
+        }
+
+        .close-cart {
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 32px;
+            height: 32px;
+        }
+
+        .close-cart:hover {
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            .cart-item {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .remove-item:hover {
+            opacity: 1;
+        }
+
+        .cart-empty {
+            text-align: center;
+            opacity: 0.5;
+            padding: 60px 20px;
+        }
+
+        .cart-total {
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            footer {
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            font-size: 11px;
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: #fff;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">SOYTH</div>
+        <div class="nav-icons">
+            <div class="icon-btn" onclick="toggleCart()" style="position: relative;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-badge" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="animated-bg" id="animatedBg"></div>
+        <div class="hero-content">
+            <h1>DIGITAL CURIOSITIES</h1>
+            <p>RARE COLLECTIBLES FOR THE CURIOUS MIND</p>
+            <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">EXPLORE NOW</button>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2 class="section-title">COLLECTION</h2>
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">ABOUT</a>
+                <a href="#">CONTACT</a>
+                <a href="#">TERMS</a>
+                <a href="#">PRIVACY</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2025 SOYTH. ALL RIGHTS RESERVED.</div>
+    </footer>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <svg class="close-cart" onclick="toggleCart()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-total" id="cartTotalSection" style="display: none;">
+            TOTAL: $<span id="cartTotal">0</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn" style="display: none;" onclick="checkout()">CHECKOUT</button>
+    </div>
+
+    <script>
+        const products = [
+            { 
+                id: 1, 
+                name: "QUANTUM CRYSTAL", 
+                price: 299,
+                color1: "#FF6B9D",
+                color2: "#C06CFF",
+                shape: "crystal"
+            },
+            { 
+                id: 2, 
+                name: "VOID SPHERE", 
+                price: 449,
+                color1: "#6C63FF",
+                color2: "#00F5FF",
+                shape: "sphere"
+            },
+            { 
+                id: 3, 
+                name: "COSMIC EGG", 
+                price: 599,
+                color1: "#FF3CAC",
+                color2: "#784BA0",
+                shape: "egg"
+            },
+            { 
+                id: 4, 
+                name: "STELLAR CUBE", 
+                price: 399,
+                color1: "#00F5FF",
+                color2: "#FFD700",
+                shape: "cube"
+            },
+            { 
+                id: 5, 
+                name: "NEBULA RING", 
+                price: 699,
+                color1: "#FF6B9D",
+                color2: "#6C63FF",
+                shape: "ring"
+            },
+            { 
+                id: 6, 
+                name: "ASTRAL PRISM", 
+                price: 799,
+                color1: "#784BA0",
+                color2: "#00F5FF",
+                shape: "prism"
+            }
+        ];
+
+        let cart = [];
+
+        function createProductSVG(product) {
+            const shapes = {
+                crystal: `<polygon points="200,50 300,150 250,300 150,300 100,150" fill="url(#grad${product.id})" filter="url(#glow)"/>
+                         <polygon points="200,50 300,150 250,300 150,300 100,150" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>`,
+                sphere: `<circle cx="200" cy="175" r="120" fill="url(#grad${product.id})" filter="url(#glow)"/>
+                        <ellipse cx="200" cy="175" rx="120" ry="40" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>`,
+                egg: `<ellipse cx="200" cy="175" rx="100" ry="140" fill="url(#grad${product.id})" filter="url(#glow)"/>
+                     <path d="M 100 175 Q 200 50 300 175" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>`,
+                cube: `<path d="M 150 100 L 250 100 L 300 150 L 300 250 L 200 300 L 100 250 L 100 150 Z" fill="url(#grad${product.id})" filter="url(#glow)"/>
+                      <path d="M 150 100 L 250 100 L 250 200 L 150 200 Z" fill="rgba(255,255,255,0.1)"/>`,
+                ring: `<circle cx="200" cy="175" r="100" fill="none" stroke="url(#grad${product.id})" stroke-width="40" filter="url(#glow)"/>
+                      <circle cx="200" cy="175" r="80" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>`,
+                prism: `<path d="M 200 50 L 320 280 L 80 280 Z" fill="url(#grad${product.id})" filter="url(#glow)"/>
+                       <path d="M 200 50 L 320 280 L 80 280 Z" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>`
+            };
+
+            return `
+                <svg viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad${product.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:${product.color1};stop-opacity:1">
+                                <animate attributeName="stop-color" values="${product.color1};${product.color2};${product.color1}" dur="4s" repeatCount="indefinite"/>
+                            </stop>
+                            <stop offset="100%" style="stop-color:${product.color2};stop-opacity:1">
+                                <animate attributeName="stop-color" values="${product.color2};${product.color1};${product.color2}" dur="4s" repeatCount="indefinite"/>
+                            </stop>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate" from="0 200 175" to="360 200 175" dur="20s" repeatCount="indefinite"/>
+                        ${shapes[product.shape]}
+                    </g>
+                </svg>
+            `;
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card" data-product-id="${product.id}">
+                    <div class="product-image">
+                        ${createProductSVG(product)}
+                        <div class="product-overlay">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">ADD TO CART</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">$${product.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push({...product});
+            updateCart();
+            
+            const icon = document.querySelector('.icon-btn');
+            icon.style.transform = 'scale(1.3)';
+            setTimeout(() => icon.style.transform = 'scale(1)', 300);
+        }
+
+        function updateCart() {
+            const count = document.getElementById('cartCount');
+            const items = document.getElementById('cartItems');
+            const totalSection = document.getElementById('cartTotalSection');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            count.textContent = cart.length;
+            
+            if (cart.length === 0) {
+                items.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+                totalSection.style.display = 'none';
+                checkoutBtn.style.display = 'none';
+            } else {
+                items.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            ${createProductSVG(item)}
+                        </div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price}</div>
+                            <div class="remove-item" onclick="removeFromCart(${index})">REMOVE</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('cartTotal').textContent = total;
+                totalSection.style.display = 'block';
+                checkoutBtn.style.display = 'block';
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            alert('Thank you for your order! Total: $' + cart.reduce((sum, item) => sum + item.price, 0));
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        function createFloatingShapes() {
+            const bg = document.getElementById('animatedBg');
+            const shapes = ['circle', 'rect', 'polygon'];
+            const colors = ['#FF6B9D', '#C06CFF', '#6C63FF', '#00F5FF'];
+            
+            for (let i = 0; i < 5; i++) {
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = 50 + Math.random() * 100;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                let svgShape = '';
+                if (shape === 'circle') {
+                    svgShape = `<circle cx="${size/2}" cy="${size/2}" r="${size/2}" fill="${color}"/>`;
+                } else if (shape === 'rect') {
+                    svgShape = `<rect width="${size}" height="${size}" fill="${color}"/>`;
+                } else {
+                    svgShape = `<polygon points="${size/2},0 ${size},${size} 0,${size}" fill="${color}"/>`;
+                }
+                
+                const shapeDiv = document.createElement('div');
+                shapeDiv.className = 'floating-shape';
+                shapeDiv.style.left = left + '%';
+                shapeDiv.style.top = top + '%';
+                shapeDiv.style.animationDelay = delay + 's';
+                shapeDiv.innerHTML = `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">${svgShape}</svg>`;
+                bg.appendChild(shapeDiv);
+            }
+        }
+
+        renderProducts();
+        createFloatingShapes();
+    </script>
+</body>
+</html>
