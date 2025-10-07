@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Company Preferences Visualization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      table {
+        margin-top: 20px;
+      }
+      .best-place td {
+        background-color: cyan !important;
+      }
+      #controls {
+        margin-bottom: 20px;
+      }
+      #uniSelect {
+        margin-top: 10px;
+      }
+      canvas {
+        max-width: 600px;
+        margin-top: 20px;
+      }
+      img.logo {
+        width: 50px;
+        height: auto;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Student Company Preferences Dashboard</h1>
+      <div id="controls" class="row">
+        <div class="col-md-3">
+          <label for="category" class="form-label">Category:</label>
+          <select id="category" class="form-select">
+            <option value="All">All</option>
+            <option value="No Roche">No Roche</option>
+            <option value="Banks">Banks</option>
+            <option value="Insurance">Insurance</option>
+            <option value="Consulting">Consulting</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="filter" class="form-label">Filter Companies:</label>
+          <input
+            type="text"
+            id="filter"
+            class="form-control"
+            placeholder="Enter company name..."
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="sortUni" class="form-label">Sort By:</label>
+          <select id="sortUni" class="form-select"></select>
+        </div>
+        <div class="col-md-3">
+          <label for="sortDir" class="form-label">Direction:</label>
+          <select id="sortDir" class="form-select">
+            <option value="desc">Descending</option>
+            <option value="asc">Ascending</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="uniSelect" class="mb-3">
+        <strong>Universities to Show:</strong>
+      </div>
+
+      <table id="dataTable" class="table table-striped table-bordered">
+        <thead class="table-light"></thead>
+        <tbody></tbody>
+      </table>
+
+      <canvas id="ratioChart" width="600" height="300"></canvas>
+    </div>
+
+    <script>
+      const unis = ["UB", "HSG", "ZHAW (M&L)", "FHNW", "UG"];
+      const est = [1260, 3190, 810, 820, 1370];
+
+      const logos = {
+        UBS: "https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/UBS_Logo.svg/280px-UBS_Logo.svg.png",
+        McKinsey:
+          "https://cdn.cookielaw.org/logos/353d36fb-3a1c-4021-b831-ee6d50361d6a/07a8989e-cba1-4f60-a67a-0ffe9efc1b3a/5705935c-c99f-48d8-8aef-b78127f4aed3/mckinsey---company_owler_20190728_090718_original.png",
+        GS: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Goldman_Sachs.svg/2048px-Goldman_Sachs.svg.png",
+        JP: "https://media.designrush.com/inspiration_images/757008/conversions/JPMorgan-Chase-Logo-SVG-mobile.jpg",
+        "JP Private Bank":
+          "https://media.licdn.com/dms/image/v2/C4D0BAQE7S7hzBXDAnQ/company-logo_200_200/company-logo_200_200/0/1633033021268?e=2147483647&v=beta&t=d7LYQvPFV002PXY2CK5d81qmoDuIjyt2-BPUMxRUyrQ",
+        Roche:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/F._Hoffmann-La_Roche_2021_logo.svg/1200px-F._Hoffmann-La_Roche_2021_logo.svg.png",
+        Accenture:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
+        BlackRock:
+          "https://www.blackrock.com/blk-corp-assets/include/common/images/blackrock_logo.png",
+        "Julius Baer":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Julius_B%C3%A4r_Logo.svg/1200px-Julius_B%C3%A4r_Logo.svg.png",
+        "Swiss Re":
+          "https://www.swissre.com/dam/jcr:677cb3f5-a53d-4bf3-bf91-8018afbaa59b/SR_Logo_CMYK_Lake.jpg",
+        Zurich:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Zurich_Insurance_Group_logo.svg/1200px-Zurich_Insurance_Group_logo.svg.png",
+        BCG: "https://media-publications.bcg.com/BCG_MONOGRAM.png",
+        "Bain & Company":
+          "https://www.bain.com/globalassets/bain_logo_square_1200x1200.png",
+        "Swiss Life":
+          "https://www.swisslife.com/content/dam/com_rel/bilder/neu_uploads/Logo_Downloads/Downloads_jpg/SL_download.jpg",
+        "Swiss Life Asset Managers":
+          "https://www.swisslife.com/content/internet/com/en/home/medien/downloads/logos/_jcr_content/parsys/gridctrl_2012894388__1271087054/parsys_grid_ctrl/image/image.1560926091655.transform/no_ratio_3840w/SL_AsM_downloads.png",
+        "Baloise CH":
+          "https://upload.wikimedia.org/wikipedia/commons/8/88/Baloise_Logo_2022.svg",
+      };
+
+      const data = {
+        All: {
+          companies: [
+            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
+            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
+            { name: "GS", counts: [5, 150, 6, 0, 42] },
+            { name: "JP", counts: [5, 90, 2, 3, 55] },
+            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
+            { name: "Roche", counts: [837, 247, 46, 561, 148] },
+            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
+            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
+            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
+            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
+            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
+            { name: "BCG", counts: [14, 328, 8, 3, 10] },
+            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
+            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
+            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
+            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
+          ],
+        },
+        "No Roche": {
+          companies: [
+            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
+            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
+            { name: "GS", counts: [5, 150, 6, 0, 42] },
+            { name: "JP", counts: [5, 90, 2, 3, 55] },
+            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
+            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
+            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
+            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
+            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
+            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
+            { name: "BCG", counts: [14, 328, 8, 3, 10] },
+            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
+            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
+            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
+            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
+          ],
+        },
+        Banks: {
+          companies: [
+            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
+            { name: "GS", counts: [5, 150, 6, 0, 42] },
+            { name: "JP", counts: [5, 90, 2, 3, 55] },
+            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
+            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
+            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
+          ],
+        },
+        Insurance: {
+          companies: [
+            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
+            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
+            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
+            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
+            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
+          ],
+        },
+        Consulting: {
+          companies: [
+            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
+            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
+            { name: "BCG", counts: [14, 328, 8, 3, 10] },
+            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
+          ],
+        },
+      };
+
+      let uniChecks = "";
+      unis.forEach((u, i) => {
+        uniChecks += `<div class="form-check form-check-inline"><input type="checkbox" class="form-check-input uni-check" data-index="${i}" checked> <label class="form-check-label">${u}</label></div>`;
+      });
+      document.getElementById("uniSelect").innerHTML += uniChecks;
+
+      let sortUniOptions = '<option value="-1">Total</option>';
+      unis.forEach((u, i) => {
+        sortUniOptions += `<option value="${i}">${u}</option>`;
+      });
+      document.getElementById("sortUni").innerHTML = sortUniOptions;
+
+      document.getElementById("category").addEventListener("change", update);
+      document.getElementById("filter").addEventListener("input", update);
+      document.getElementById("sortUni").addEventListener("change", update);
+      document.getElementById("sortDir").addEventListener("change", update);
+      document
+        .querySelectorAll(".uni-check")
+        .forEach((ch) => ch.addEventListener("change", update));
+
+      function update() {
+        const cat = document.getElementById("category").value;
+        const d = data[cat];
+        const filterText = document
+          .getElementById("filter")
+          .value.toLowerCase();
+        let comps = d.companies.filter((c) =>
+          c.name.toLowerCase().includes(filterText)
+        );
+
+        const sortUniIdx = parseInt(document.getElementById("sortUni").value);
+        const dir =
+          document.getElementById("sortDir").value === "desc" ? -1 : 1;
+        comps.sort((a, b) => {
+          const valA =
+            sortUniIdx === -1
+              ? a.counts.reduce((x, y) => x + y, 0)
+              : a.counts[sortUniIdx];
+          const valB =
+            sortUniIdx === -1
+              ? b.counts.reduce((x, y) => x + y, 0)
+              : b.counts[sortUniIdx];
+          return dir * (valA - valB);
+        });
+
+        const selectedIndices = Array.from(
+          document.querySelectorAll(".uni-check:checked")
+        ).map((ch) => parseInt(ch.dataset.index));
+
+        if (selectedIndices.length === 0) {
+          document
+            .getElementById("dataTable")
+            .querySelector("tbody").innerHTML = "";
+          if (window.myChart) window.myChart.destroy();
+          return;
+        }
+
+        const computedTotals = new Array(unis.length).fill(0);
+        comps.forEach((c) => {
+          c.counts.forEach((val, i) => {
+            computedTotals[i] += val;
+          });
+        });
+
+        const ratios = computedTotals.map((total, i) => total / est[i]);
+
+        const ranks = new Array(unis.length).fill(0);
+        const sortedSelected = [...selectedIndices].sort(
+          (a, b) => ratios[b] - ratios[a]
+        );
+        sortedSelected.forEach((i, idx) => (ranks[i] = idx + 1));
+
+        let thead = "<tr><th>Company</th>";
+        selectedIndices.forEach((i) => (thead += `<th>${unis[i]}</th>`));
+        thead += "<th>Total</th></tr>";
+        document.getElementById("dataTable").querySelector("thead").innerHTML =
+          thead;
+
+        let tbody = "";
+        comps.forEach((c) => {
+          tbody += `<tr><td><img src="${logos[c.name] || ""}" alt="${
+            c.name
+          } logo" class="logo">${c.name}</td>`;
+          selectedIndices.forEach((i) => (tbody += `<td>${c.counts[i]}</td>`));
+          const companyTotal = selectedIndices.reduce(
+            (sum, i) => sum + c.counts[i],
+            0
+          );
+          tbody += `<td>${companyTotal}</td></tr>`;
+        });
+
+        // Students EST row
+        tbody += "<tr><td>Students (EST)</td>";
+        selectedIndices.forEach((i) => (tbody += `<td>${est[i]}</td>`));
+        tbody += "<td></td></tr>";
+
+        tbody += '<tr class="table-secondary"><td>Total</td>';
+        selectedIndices.forEach(
+          (i) => (tbody += `<td>${computedTotals[i]}</td>`)
+        );
+        const grandTotal = selectedIndices.reduce(
+          (sum, i) => sum + computedTotals[i],
+          0
+        );
+        tbody += `<td>${grandTotal}</td></tr>`;
+
+        tbody += "<tr><td>Ratio (EST)</td>";
+        selectedIndices.forEach(
+          (i) => (tbody += `<td>${ratios[i].toFixed(3)}</td>`)
+        );
+        tbody += "<td></td></tr>";
+
+        tbody += '<tr class="best-place"><td>Best Place</td>';
+        selectedIndices.forEach((i) => (tbody += `<td>${ranks[i]}</td>`));
+        tbody += "<td></td></tr>";
+
+        document.getElementById("dataTable").querySelector("tbody").innerHTML =
+          tbody;
+
+        const ctx = document.getElementById("ratioChart").getContext("2d");
+        if (window.myChart) window.myChart.destroy();
+        window.myChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: selectedIndices.map((i) => unis[i]),
+            datasets: [
+              {
+                label: "Ratio (EST)",
+                data: selectedIndices.map((i) => ratios[i]),
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: { beginAtZero: true },
+            },
+          },
+        });
+      }
+
+      update();
+    </script>
+  </body>
+</html>
