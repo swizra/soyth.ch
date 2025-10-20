@@ -395,13 +395,13 @@ main {
   overflow: hidden;
   margin-bottom: 1rem;
   margin-top: -1rem;
-  background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+  background: linear-gradient(180deg, var(--bg-secondary), var(--bg-secondary));
 }
 
 body.dark .hero {
   background: linear-gradient(
     180deg,
-    var(--bg-primary-dark),
+    var(--bg-secondary-dark),
     var(--bg-secondary-dark)
   );
 }
@@ -743,7 +743,7 @@ body.dark .cookie-option label {
   accent-color: var(--accent);
 }
 body.dark .cookie-option input[type="checkbox"] {
-  border: var(--border-1-dark);
+  border: var(--border-1);
 }
 .cookie-option input[type="checkbox"]:checked {
   background-color: var(--accent);
@@ -1819,7 +1819,7 @@ body.dark .language-menu li:hover {
   background: rgba(245, 245, 245, 1);
   border: var(--border-0);
   padding: 2rem;
-  border-radius: var(--border-radius-8);
+  border-radius: var(--border-radius-20);
   max-width: 500px;
   width: 90%;
   backdrop-filter: blur(10px);
@@ -2171,19 +2171,6 @@ body.dark .search-result-item {
   .modal-content {
     padding: 1.5rem;
     width: 95%;
-    background: var(--bg-modal);
-    background-image: linear-gradient(var(--bg-modal), var(--bg-modal));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  body.dark .modal-content {
-    background: var(--bg-modal-dark);
-    background-image: linear-gradient(
-      var(--bg-modal-dark),
-      var(--bg-modal-dark)
-    );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
   }
   main {
     padding: 1rem 0rem 0rem 0rem;
@@ -2406,7 +2393,6 @@ body.dark .cookie-option label {
 .cookie-option * {
   font-size: revert !important;
 }
-
 .carousel-cell {
   transition: background-color 0.3s, color 0.3s;
 }
