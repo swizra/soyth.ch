@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIS Affine Transformation Visualizer</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: white;
+  color: black;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.theorem {
+  background: black;
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  font-weight: bold;
+}
+
+.controls {
+  background: white;
+  padding: 15px;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+
+.control-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+input[type="number"] {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  padding: 5px;
+}
+
+.canvas-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+canvas {
+  border: 2px solid black;
+  background: white;
+  width: 100%;
+  height: auto;
+}
+
+.metrics {
+  background: white;
+  padding: 15px;
+  border: 2px solid black;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.metric-card {
+  background: white;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.metric-label {
+  font-size: 12px;
+}
+
+.matrix-display {
+  background: white;
+  padding: 15px;
+  border: 1px solid black;
+  font-family: 'Courier New', monospace;
+  margin-top: 10px;
+}
+
+.warning {
+  background: black;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: none;
+  font-weight: bold;
+}
+
+.warning.active {
+  display: block;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>GIS Affine Transformation Visualizer with Determinant Analysis</h1>
+  <h2>Further Case Study by Volodymyr Shalavylo</h2>
+  
+  <div class="theorem">
+    THEOREM: A 3×3 matrix is invertible if and only if its determinant is non-zero
+  </div>
+
+  <div class="warning" id="singularWarning">
+    WARNING: Determinant is zero! Transformation is singular and non-invertible. Information loss detected.
+  </div>
+
+  <div class="controls">
+    <h3>Transformation Parameters</h3>
+    <div class="control-group">
+      <div class="control-item">
+        <label>Scale X (a): <span id="scaleXVal">1.0</span></label>
+        <input type="range" id="scaleX" min="-2" max="2" step="0.1" value="1">
+      </div>
+      <div class="control-item">
+        <label>Shear X (b): <span id="shearXVal">0.0</span></label>
+        <input type="range" id="shearX" min="-2" max="2" step="0.1" value="0">
+      </div>
+      <div class="control-item">
+        <label>Shear Y (c): <span id="shearYVal">0.0</span></label>
+        <input type="range" id="shearY" min="-2" max="2" step="0.1" value="0">
+      </div>
+      <div class="control-item">
+        <label>Scale Y (d): <span id="scaleYVal">1.0</span></label>
+        <input type="range" id="scaleY" min="-2" max="2" step="0.1" value="1">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="control-item">
+        <label>Translate X (tx): <span id="transXVal">0</span></label>
+        <input type="range" id="transX" min="-100" max="100" step="10" value="0">
+      </div>
+      <div class="control-item">
+        <label>Translate Y (ty): <span id="transYVal">0</span></label>
+        <input type="range" id="transY" min="-100" max="100" step="10" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="canvas-container">
+    <div>
+      <h3>Original Space</h3>
+      <canvas id="originalCanvas" width="500" height="500"></canvas>
+    </div>
+    <div>
+      <h3>Transformed Space</h3>
+      <canvas id="transformedCanvas" width="500" height="500"></canvas>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <h3>Transformation Metrics</h3>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Jacobian Determinant</div>
+        <div class="metric-value" id="determinant">1.000</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Area Distortion Factor</div>
+        <div class="metric-value" id="areaDistortion">1.000x</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Orientation</div>
+        <div class="metric-value" id="orientation">Preserved</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Invertibility</div>
+        <div class="metric-value" id="invertibility">Invertible</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Original Grid Area</div>
+        <div class="metric-value" id="originalArea">10000</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Transformed Grid Area</div>
+        <div class="metric-value" id="transformedArea">10000</div>
+      </div>
+    </div>
+
+    <div class="matrix-display">
+      <h4>Transformation Matrix</h4>
+      <pre id="matrixDisplay"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+const originalCanvas = document.getElementById('originalCanvas');
+const transformedCanvas = document.getElementById('transformedCanvas');
+const origCtx = originalCanvas.getContext('2d');
+const transCtx = transformedCanvas.getContext('2d');
+
+const inputs = {
+  scaleX: document.getElementById('scaleX'),
+  shearX: document.getElementById('shearX'),
+  shearY: document.getElementById('shearY'),
+  scaleY: document.getElementById('scaleY'),
+  transX: document.getElementById('transX'),
+  transY: document.getElementById('transY')
+};
+
+const displays = {
+  scaleXVal: document.getElementById('scaleXVal'),
+  shearXVal: document.getElementById('shearXVal'),
+  shearYVal: document.getElementById('shearYVal'),
+  scaleYVal: document.getElementById('scaleYVal'),
+  transXVal: document.getElementById('transXVal'),
+  transYVal: document.getElementById('transYVal'),
+  determinant: document.getElementById('determinant'),
+  areaDistortion: document.getElementById('areaDistortion'),
+  orientation: document.getElementById('orientation'),
+  invertibility: document.getElementById('invertibility'),
+  originalArea: document.getElementById('originalArea'),
+  transformedArea: document.getElementById('transformedArea'),
+  matrixDisplay: document.getElementById('matrixDisplay'),
+  singularWarning: document.getElementById('singularWarning')
+};
+
+class AffineTransform {
+  constructor(a, b, c, d, tx, ty) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+    this.d = d;
+    this.tx = tx;
+    this.ty = ty;
+  }
+
+  transform(x, y) {
+    return {
+      x: this.a * x + this.b * y + this.tx,
+      y: this.c * x + this.d * y + this.ty
+    };
+  }
+
+  determinant() {
+    return this.a * this.d - this.b * this.c;
+  }
+
+  inverse() {
+    const det = this.determinant();
+    if (Math.abs(det) < 0.0001) return null;
+    
+    return new AffineTransform(
+      this.d / det,
+      -this.b / det,
+      -this.c / det,
+      this.a / det,
+      (this.b * this.ty - this.d * this.tx) / det,
+      (this.c * this.tx - this.a * this.ty) / det
+    );
+  }
+
+  toMatrix() {
+    return [
+      [this.a, this.b, this.tx],
+      [this.c, this.d, this.ty],
+      [0, 0, 1]
+    ];
+  }
+}
+
+function drawGrid(ctx, transform = null) {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  
+  ctx.save();
+  ctx.translate(250, 250);
+  ctx.scale(1, -1);
+  
+  ctx.strokeStyle = '#cccccc';
+  ctx.lineWidth = 1;
+  
+  for (let i = -200; i <= 200; i += 50) {
+    ctx.beginPath();
+    if (transform) {
+      const p1 = transform.transform(i, -200);
+      const p2 = transform.transform(i, 200);
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+    } else {
+      ctx.moveTo(i, -200);
+      ctx.lineTo(i, 200);
+    }
+    ctx.stroke();
+    
+    ctx.beginPath();
+    if (transform) {
+      const p1 = transform.transform(-200, i);
+      const p2 = transform.transform(200, i);
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+    } else {
+      ctx.moveTo(-200, i);
+      ctx.lineTo(200, i);
+    }
+    ctx.stroke();
+  }
+  
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  if (transform) {
+    const p1 = transform.transform(0, -200);
+    const p2 = transform.transform(0, 200);
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+  } else {
+    ctx.moveTo(0, -200);
+    ctx.lineTo(0, 200);
+  }
+  ctx.stroke();
+  
+  ctx.beginPath();
+  if (transform) {
+    const p1 = transform.transform(-200, 0);
+    const p2 = transform.transform(200, 0);
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+  } else {
+    ctx.moveTo(-200, 0);
+    ctx.lineTo(200, 0);
+  }
+  ctx.stroke();
+  
+  const shapes = [
+    {points: [[-80, -80], [80, -80], [80, 80], [-80, 80]], color: 'black'},
+    {points: [[-40, -40], [40, -40], [0, 40]], color: 'black'},
+    {points: [[0, 0]], radius: 25, color: 'black'}
+  ];
+  
+  shapes.forEach(shape => {
+    if (shape.radius) {
+      ctx.beginPath();
+      if (transform) {
+        const center = transform.transform(shape.points[0][0], shape.points[0][1]);
+        const radiusX = transform.transform(shape.radius, 0);
+        const radiusY = transform.transform(0, shape.radius);
+        const rx = Math.sqrt(radiusX.x * radiusX.x + radiusX.y * radiusX.y);
+        const ry = Math.sqrt(radiusY.x * radiusY.x + radiusY.y * radiusY.y);
+        ctx.ellipse(center.x, center.y, rx, ry, 0, 0, 2 * Math.PI);
+      } else {
+        ctx.arc(shape.points[0][0], shape.points[0][1], shape.radius, 0, 2 * Math.PI);
+      }
+      ctx.strokeStyle = shape.color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    } else {
+      ctx.beginPath();
+      shape.points.forEach((point, i) => {
+        const p = transform ? transform.transform(point[0], point[1]) : {x: point[0], y: point[1]};
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.strokeStyle = shape.color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  });
+  
+  ctx.restore();
+}
+
+function calculatePolygonArea(points) {
+  let area = 0;
+  for (let i = 0; i < points.length; i++) {
+    const j = (i + 1) % points.length;
+    area += points[i][0] * points[j][1];
+    area -= points[j][0] * points[i][1];
+  }
+  return Math.abs(area / 2);
+}
+
+function update() {
+  const a = parseFloat(inputs.scaleX.value);
+  const b = parseFloat(inputs.shearX.value);
+  const c = parseFloat(inputs.shearY.value);
+  const d = parseFloat(inputs.scaleY.value);
+  const tx = parseFloat(inputs.transX.value);
+  const ty = parseFloat(inputs.transY.value);
+  
+  displays.scaleXVal.textContent = a.toFixed(1);
+  displays.shearXVal.textContent = b.toFixed(1);
+  displays.shearYVal.textContent = c.toFixed(1);
+  displays.scaleYVal.textContent = d.toFixed(1);
+  displays.transXVal.textContent = tx;
+  displays.transYVal.textContent = ty;
+  
+  const transform = new AffineTransform(a, b, c, d, tx, ty);
+  const det = transform.determinant();
+  
+  displays.determinant.textContent = det.toFixed(3);
+  displays.areaDistortion.textContent = Math.abs(det).toFixed(3) + 'x';
+  displays.orientation.textContent = det > 0 ? 'Preserved' : (det < 0 ? 'Reflected' : 'Collapsed');
+  displays.invertibility.textContent = Math.abs(det) > 0.001 ? 'Invertible' : 'Singular';
+  
+  if (Math.abs(det) < 0.001) {
+    displays.singularWarning.classList.add('active');
+  } else {
+    displays.singularWarning.classList.remove('active');
+  }
+  
+  const matrix = transform.toMatrix();
+  displays.matrixDisplay.textContent = 
+    `[ ${matrix[0][0].toFixed(2)}  ${matrix[0][1].toFixed(2)}  ${matrix[0][2].toFixed(0)} ]\n` +
+    `[ ${matrix[1][0].toFixed(2)}  ${matrix[1][1].toFixed(2)}  ${matrix[1][2].toFixed(0)} ]\n` +
+    `[ ${matrix[2][0].toFixed(0)}     ${matrix[2][1].toFixed(0)}     ${matrix[2][2].toFixed(0)}    ]`;
+  
+  const originalPoly = [[-80, -80], [80, -80], [80, 80], [-80, 80]];
+  const transformedPoly = originalPoly.map(p => {
+    const t = transform.transform(p[0], p[1]);
+    return [t.x, t.y];
+  });
+  
+  const origArea = calculatePolygonArea(originalPoly);
+  const transArea = calculatePolygonArea(transformedPoly);
+  
+  displays.originalArea.textContent = Math.round(origArea);
+  displays.transformedArea.textContent = Math.round(transArea);
+  
+  drawGrid(origCtx);
+  drawGrid(transCtx, transform);
+}
+
+Object.values(inputs).forEach(input => {
+  input.addEventListener('input', update);
+});
+
+update();
+</script>
+</body>
+</html>
