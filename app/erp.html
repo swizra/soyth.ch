@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { font-family: Arial; }
+    </style>
+  </head>
+  <body>
+    <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NonStopGym ERP — Implementation Plan (Gantt)</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#111823; --text:#e8eef6; --muted:#a7b3c2;
+      --grid:rgba(255,255,255,.08); --border:rgba(255,255,255,.12);
+      --b1:#3b82f6; --b2:#22c55e; --b3:#f59e0b; --b4:#a855f7; --b5:#ef4444;
+    }
+    body{margin:0;padding:24px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);}
+    .wrap{max-width:1100px;margin:0 auto;}
+    h1{margin:0 0 6px 0;font-size:18px;letter-spacing:.2px;}
+    .sub{margin:0 0 16px 0;color:var(--muted);font-size:13px;line-height:1.35;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);}
+    .chart{overflow-x:auto;}
+    .gantt{display:grid;grid-template-columns:360px 1fr;gap:12px;min-width:980px;}
+    .tasks{display:grid;grid-auto-rows:60px;}
+    .task{padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;gap:5px;}
+    .task .name{font-weight:700;font-size:13px;line-height:1.2;}
+    .task .meta{font-size:12px;color:var(--muted);line-height:1.2;}
+    .time{position:relative;border-left:1px solid var(--grid);}
+    .axis{position:sticky;top:0;z-index:2;background:linear-gradient(to bottom, rgba(17,24,35,.98), rgba(17,24,35,.86));
+          border-bottom:1px solid rgba(255,255,255,.08);display:grid;height:34px;align-items:center;
+          font-size:11px;color:var(--muted);}
+    .axis div{text-align:center;border-right:1px solid rgba(255,255,255,.04);padding:6px 0;}
+    .grid{position:absolute;inset:0;pointer-events:none;}
+    .vline{position:absolute;top:0;bottom:0;width:1px;background:var(--grid);}
+    .rows{display:grid;grid-auto-rows:60px;position:relative;}
+    .row{position:relative;border-bottom:1px dashed rgba(255,255,255,.06);}
+    .bar{position:absolute;top:21px;height:18px;border-radius:999px;display:flex;align-items:center;
+         padding:0 10px;font-size:12px;font-weight:800;color:#0b0f14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+         box-shadow:0 8px 18px rgba(0,0,0,.35);}
+    .b1{background:var(--b1);} .b2{background:var(--b2);} .b3{background:var(--b3);} .b4{background:var(--b4);} .b5{background:var(--b5);}
+    .footer{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.35;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>NonStopGym ERP — Implementation Plan & Timeline (Gantt)</h1>
+    <p class="sub">
+      Phased delivery aligned with the project deck: Implementation Plan, Change Management & Training, Post-Go-Live Process.
+      Timeline shown in weeks (total ~24 weeks ≈ 4–5 months).
+    </p>
+
+    <div class="card">
+      <div class="chart" id="chart"></div>
+      <div class="footer">
+        Key idea for investors: sequential phases reduce delivery risk; hypercare stabilizes operations before optimization and analytics rollout.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Correct project plan (weeks) — sequential, 0..24
+    // Derived from your implementation narrative (prep → integrate → test/train → go-live+hypercare → optimize/analytics).
+    const TOTAL_WEEKS = 24;
+
+    const tasks = [
+      {
+        name: "Phase 1: Preparation & Design",
+        start: 0, dur: 4, cls: "b1",
+        deliverables: [
+          "Requirements validation",
+          "Solution blueprint & scope sign-off",
+          "Data audit + cleansing plan"
+        ]
+      },
+      {
+        name: "Phase 2: Configuration & Integration",
+        start: 4, dur: 6, cls: "b2",
+        deliverables: [
+          "Odoo configuration",
+          "Integrations: Abacus + SALTO KS",
+          "Test migration runs & API validation"
+        ]
+      },
+      {
+        name: "Phase 3: Testing & Training",
+        start: 10, dur: 4, cls: "b3",
+        deliverables: [
+          "End-to-end testing",
+          "User Acceptance Testing (UAT) sign-off",
+          "Role-based training + sandbox practice"
+        ]
+      },
+      {
+        name: "Phase 4: Go-Live & Hypercare",
+        start: 14, dur: 4, cls: "b4",
+        deliverables: [
+          "Phased go-live (off-peak where possible)",
+          "Parallel run if required",
+          "Hypercare support window"
+        ]
+      },
+      {
+        name: "Phase 5: Optimization & Analytics",
+        start: 18, dur: 6, cls: "b5",
+        deliverables: [
+          "KPI monitoring + process improvements",
+          "Quarterly updates & targeted follow-up training",
+          "Preparation + rollout of Zoho Analytics dashboards"
+        ]
+      }
+    ];
+
+    function makeAxisLabels(totalWeeks){
+      const labels = [];
+      for(let w=1; w<=totalWeeks; w++) labels.push("W" + w);
+      return labels;
+    }
+
+    function render(){
+      const chartEl = document.getElementById("chart");
+      chartEl.innerHTML = "";
+
+      const gantt = document.createElement("div");
+      gantt.className = "gantt";
+
+      // Left column (tasks)
+      const left = document.createElement("div");
+      left.className = "tasks";
+
+      // Right column (timeline)
+      const right = document.createElement("div");
+      right.className = "time";
+
+      // Axis
+      const axis = document.createElement("div");
+      axis.className = "axis";
+      axis.style.gridTemplateColumns = `repeat(${TOTAL_WEEKS}, 1fr)`;
+
+      makeAxisLabels(TOTAL_WEEKS).forEach(lbl=>{
+        const d=document.createElement("div");
+        d.textContent=lbl;
+        axis.appendChild(d);
+      });
+
+      // Grid lines
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      for(let i=0;i<=TOTAL_WEEKS;i++){
+        const v=document.createElement("div");
+        v.className="vline";
+        v.style.left = `${(i/TOTAL_WEEKS)*100}%`;
+        grid.appendChild(v);
+      }
+
+      // Rows
+      const rows = document.createElement("div");
+      rows.className = "rows";
+
+      tasks.forEach(t=>{
+        // left task cell
+        const cell = document.createElement("div");
+        cell.className = "task";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = t.name;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = `Weeks ${t.start + 1}–${t.start + t.dur} • ${t.dur} weeks`;
+
+        cell.appendChild(name);
+        cell.appendChild(meta);
+        left.appendChild(cell);
+
+        // right row
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const bar = document.createElement("div");
+        bar.className = "bar " + t.cls;
+
+        const leftPct = (t.start / TOTAL_WEEKS) * 100;
+        const widthPct = (t.dur / TOTAL_WEEKS) * 100;
+        bar.style.left = `${leftPct}%`;
+        bar.style.width = `${widthPct}%`;
+
+        bar.textContent = `${t.dur}w`;
+
+        const tip = `${t.name}\nStart: Week ${t.start + 1}\nDuration: ${t.dur} weeks\nDeliverables:\n- ${t.deliverables.join("\n- ")}`;
+        bar.title = tip;
+
+        row.appendChild(bar);
+        rows.appendChild(row);
+      });
+
+      right.appendChild(axis);
+      right.appendChild(grid);
+      right.appendChild(rows);
+
+      gantt.appendChild(left);
+      gantt.appendChild(right);
+
+      chartEl.appendChild(gantt);
+    }
+
+    render();
+  </script>
+</body>
+</html>
+
+    <script>
+      
+    </script>
+  </body>
+</html>
