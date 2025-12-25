@@ -890,7 +890,7 @@ body.dark .terms-policy-section a {
 }
 .privacy-policy-section a:hover,
 .terms-policy-section a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .collaboration-section {
   margin-top: 3rem;
@@ -1014,7 +1014,7 @@ body.dark .about-section a {
   color: var(--accent-dark);
 }
 .about-section a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .about-buttons {
   display: flex;
