@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>KEFE | BSL_SYSTEM_V2</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <style>
+      :root {
+        --bg: #000;
+        --txt: #fff;
+        --line: #fff;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #fff;
+          --txt: #000;
+          --line: #000;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 0 !important;
+        transition: none !important;
+      }
+      body {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--bg);
+        color: var(--txt);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .huge {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 25vw;
+        line-height: 0.75;
+        letter-spacing: -0.05em;
+        padding: 20px;
+        border-bottom: 2px solid var(--line);
+        text-transform: uppercase;
+        width: 100%;
+      }
+
+      .controls {
+        display: flex;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .controls span {
+        padding: 15px 20px;
+        border-right: 1px solid var(--line);
+        font-size: 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      @media (min-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .cell {
+        padding: 30px 20px;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+      }
+      .label {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+        opacity: 0.8;
+      }
+
+      input[type="password"],
+      textarea {
+        width: 100%;
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--txt);
+        padding: 15px;
+        margin-bottom: 15px;
+        font-family: inherit;
+        outline: none;
+        resize: none;
+        font-size: 14px;
+      }
+      input[type="password"]::placeholder,
+      textarea::placeholder {
+        color: var(--txt);
+        opacity: 0.3;
+      }
+
+      .action-btns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      button {
+        padding: 15px;
+        background: var(--txt);
+        color: var(--bg);
+        border: none;
+        font-family: inherit;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 11px;
+      }
+      .btn-alt {
+        background: transparent;
+        color: var(--txt);
+        border: 1px solid var(--line);
+      }
+
+      .out-box {
+        margin-top: 15px;
+        padding: 20px;
+        border: 1px dashed var(--line);
+        font-size: 11px;
+        word-break: break-all;
+        background: rgba(128, 128, 128, 0.05);
+        display: none;
+      }
+      .copy-btn {
+        margin-top: 10px;
+        background: var(--txt);
+        color: var(--bg);
+        padding: 5px 10px;
+        font-size: 9px;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      #qr-display {
+        margin-top: 20px;
+        background: white;
+        padding: 15px;
+        display: none;
+        text-align: center;
+      }
+      #qr-display svg {
+        width: 100%;
+        height: auto;
+        max-width: 250px;
+        fill: #000;
+      }
+
+      .info-matrix {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      @media (min-width: 768px) {
+        .info-matrix {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .info-block {
+        padding: 25px 20px;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+      .info-block h4 {
+        font-size: 10px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .info-block p {
+        font-size: 11px;
+        line-height: 1.5;
+        opacity: 0.6;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 20px;
+        font-size: 10px;
+        border-top: 2px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="huge">KEFE</div>
+
+    <div class="controls">
+      <span onclick="openModal('legalModal')">Legal_Notice</span>
+      <span onclick="wipeAll()">Wipe_System</span>
+    </div>
+
+    <section class="grid">
+      <div class="cell">
+        <span class="label">01 // Input_Plaintext</span>
+        <textarea id="in-c" placeholder="DATA_STRING"></textarea>
+        <span class="label">Passphrase (Optional)</span>
+        <input type="password" id="pass-c" placeholder="KEY_AES_256" />
+        <div class="action-btns">
+          <button onclick="runEncrypt()">Encrypt</button>
+          <button class="btn-alt" onclick="paste('in-c')">Paste</button>
+        </div>
+        <div id="box-c" class="out-box">
+          <div id="out-c"></div>
+          <div style="margin-top: 10px">
+            <div class="copy-btn" onclick="copy('out-c')">COPY_TEXT</div>
+            <div class="copy-btn" onclick="genQR()">GEN_SVG_QR</div>
+            <div
+              class="copy-btn"
+              onclick="downloadSVG()"
+              id="dl-btn"
+              style="display: none"
+            >
+              DL_SVG
+            </div>
+          </div>
+          <div id="qr-display"></div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <span class="label">02 // Input_Cipher</span>
+        <textarea id="in-d" placeholder="KEFE_PKT:: or KEFE_SEC::"></textarea>
+        <span class="label">Passphrase</span>
+        <input type="password" id="pass-d" placeholder="KEY_AES_256" />
+        <div class="action-btns">
+          <button onclick="runDecrypt()">Decrypt</button>
+          <button class="btn-alt" onclick="paste('in-d')">Paste</button>
+        </div>
+        <div id="box-d" class="out-box">
+          <div id="out-d" style="white-space: pre-wrap"></div>
+          <div class="copy-btn" onclick="copy('out-d')">COPY_RESULT</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="info-matrix">
+      <div class="info-block">
+        <h4>01 // SVG_VECTOR_OUTPUT</h4>
+        <p>
+          QR codes are generated as high-precision SVG paths, ensuring 100% scan
+          accuracy even at extreme zoom levels.
+        </p>
+      </div>
+      <div class="info-block">
+        <h4>02 // AES_AUTHENTICATION</h4>
+        <p>
+          Using AES-GCM 256-bit encryption. Secure packets (SEC) include a
+          unique 16-byte salt and IV per session.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <span>KEFE // BASEL // 2025</span>
+      <span id="clock">00:00:00 UTC</span>
+    </footer>
+
+    <div
+      id="legalModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+      "
+    >
+      <div
+        style="
+          max-width: 600px;
+          width: 90%;
+          border: 1px solid var(--line);
+          margin: 10vh auto;
+        "
+      >
+        <div
+          style="
+            padding: 15px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--txt);
+            color: var(--bg);
+          "
+        >
+          <span style="font-size: 10px; font-weight: bold"
+            >LEGAL_DISCLAIMER</span
+          >
+          <span style="cursor: pointer" onclick="closeModal('legalModal')"
+            >[X] CLOSE</span
+          >
+        </div>
+        <div style="padding: 25px; font-size: 11px; line-height: 1.6">
+          <p>
+            KEFE is a private cryptographic interface. Logic is executed locally
+            via Web Crypto API. No data leaves the client browser.
+          </p>
+          <br />
+          <p>Jurisdiction: Basel, Switzerland.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- CRYPTO ENGINE ---
+      async function deriveKey(password, salt) {
+        const enc = new TextEncoder();
+        const baseKey = await crypto.subtle.importKey(
+          "raw",
+          enc.encode(password),
+          "PBKDF2",
+          false,
+          ["deriveKey"]
+        );
+        return crypto.subtle.deriveKey(
+          { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+          baseKey,
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["encrypt", "decrypt"]
+        );
+      }
+
+      async function runEncrypt() {
+        const val = document.getElementById("in-c").value;
+        const pass = document.getElementById("pass-c").value;
+        if (!val) return;
+
+        let final;
+        if (pass) {
+          const salt = crypto.getRandomValues(new Uint8Array(16));
+          const iv = crypto.getRandomValues(new Uint8Array(12));
+          const key = await deriveKey(pass, salt);
+          const encoded = new TextEncoder().encode(val);
+          const encrypted = await crypto.subtle.encrypt(
+            { name: "AES-GCM", iv },
+            key,
+            encoded
+          );
+
+          const combined = new Uint8Array(
+            salt.length + iv.length + encrypted.byteLength
+          );
+          combined.set(salt, 0);
+          combined.set(iv, 16);
+          combined.set(new Uint8Array(encrypted), 28);
+          final = "KEFE_SEC::" + btoa(String.fromCharCode(...combined));
+        } else {
+          final = "KEFE_PKT::" + btoa(unescape(encodeURIComponent(val)));
+        }
+
+        document.getElementById("box-c").style.display = "block";
+        document.getElementById("out-c").innerText = final;
+        document.getElementById("qr-display").style.display = "none";
+        document.getElementById("dl-btn").style.display = "none";
+      }
+
+      async function runDecrypt() {
+        const val = document.getElementById("in-d").value.trim();
+        const pass = document.getElementById("pass-d").value;
+        const out = document.getElementById("out-d");
+        document.getElementById("box-d").style.display = "block";
+
+        try {
+          if (val.startsWith("KEFE_SEC::")) {
+            const data = Uint8Array.from(
+              atob(val.replace("KEFE_SEC::", "")),
+              (c) => c.charCodeAt(0)
+            );
+            const salt = data.slice(0, 16);
+            const iv = data.slice(16, 28);
+            const cipher = data.slice(28);
+            const key = await deriveKey(pass, salt);
+            const decrypted = await crypto.subtle.decrypt(
+              { name: "AES-GCM", iv },
+              key,
+              cipher
+            );
+            out.innerText = new TextDecoder().decode(decrypted);
+          } else {
+            const raw = val.replace("KEFE_PKT::", "");
+            out.innerText = decodeURIComponent(escape(atob(raw)));
+          }
+        } catch (e) {
+          out.innerText = "ERROR::INVALID_KEY_OR_PAYLOAD";
+        }
+      }
+
+      // --- SVG QR ENGINE ---
+      function genQR() {
+        const text = document.getElementById("out-c").innerText;
+        const display = document.getElementById("qr-display");
+        display.innerHTML = "";
+        display.style.display = "block";
+
+        try {
+          const typeNumber = 0; // auto detect
+          const errorCorrectionLevel = "L";
+          const qr = qrcode(typeNumber, errorCorrectionLevel);
+          qr.addData(text);
+          qr.make();
+
+          // Generate SVG with module size 8
+          const svgTag = qr.createSvgTag(8, 0);
+          display.innerHTML = svgTag;
+          document.getElementById("dl-btn").style.display = "inline-block";
+        } catch (err) {
+          alert("DATA_TOO_LARGE_FOR_QR");
+        }
+      }
+
+      function downloadSVG() {
+        const svg = document.getElementById("qr-display").innerHTML;
+        const blob = new Blob([svg], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `KEFE_PKT_${Date.now()}.svg`;
+        a.click();
+      }
+
+      // --- UTILS ---
+      function openModal(id) {
+        document.getElementById(id).style.display = "block";
+      }
+      function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+      }
+      function copy(id) {
+        navigator.clipboard.writeText(document.getElementById(id).innerText);
+      }
+      async function paste(id) {
+        document.getElementById(id).value =
+          await navigator.clipboard.readText();
+      }
+      function wipeAll() {
+        location.reload();
+      }
+      setInterval(() => {
+        document.getElementById("clock").innerText =
+          new Date().toLocaleTimeString("en-GB") + " UTC";
+      }, 1000);
+    </script>
+  </body>
+</html>
