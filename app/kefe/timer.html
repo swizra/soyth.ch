@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>KEFE | POMODORO_V4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fff;
+        --txt: #000;
+        --line: #000;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #000;
+          --txt: #fff;
+          --line: #fff;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 0 !important;
+      }
+
+      body {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--bg);
+        color: var(--txt);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .huge {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 25vw;
+        line-height: 0.75;
+        letter-spacing: -0.05em;
+        padding: 20px;
+        border-bottom: 2px solid var(--line);
+        text-transform: uppercase;
+      }
+
+      .timer-container {
+        width: 100%;
+        border-bottom: 2px solid var(--line);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #timer-display {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 30vw; 
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .controls {
+        display: flex;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .controls span {
+        padding: 15px 20px;
+        border-right: 1px solid var(--line);
+        font-size: 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .controls span:hover { background: var(--txt); color: var(--bg); }
+
+      .grid { display: grid; grid-template-columns: 1fr; width: 100%; }
+      @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+      .cell {
+        padding: 25px 20px;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+      }
+      .label { font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; opacity: 0.6; }
+      
+      /* Disable arrows on number input */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type=number] {
+        -moz-appearance: textfield;
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--txt);
+        padding: 12px;
+        font-family: inherit;
+        font-size: 18px;
+        width: 100%;
+        outline: none;
+      }
+
+      button {
+        padding: 20px;
+        background: var(--txt);
+        color: var(--bg);
+        border: none;
+        font-family: inherit;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 14px;
+        width: 100%;
+        height: 100%;
+      }
+
+      .disclaimer-section {
+        padding: 40px 20px;
+        font-size: 10px;
+        line-height: 1.6;
+        border-bottom: 1px solid var(--line);
+        column-count: 1;
+      }
+      @media (min-width: 768px) { .disclaimer-section { column-count: 2; column-gap: 40px; } }
+
+      .disclaimer-section h4 { text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
+
+      footer {
+        padding: 20px;
+        font-size: 10px;
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+      }
+
+      .active-mode { background: var(--txt) !important; color: var(--bg) !important; }
+    </style>
+  </head>
+  <body>
+    <div class="huge">KEFE</div>
+
+    <div class="controls">
+      <span id="m-work" class="active-mode" onclick="setMode('work')">WORK</span>
+      <span id="m-break" onclick="setMode('break')">BREAK</span>
+      <span onclick="resetTimer()">[RST] RESET_SYSTEM</span>
+    </div>
+
+    <div class="timer-container">
+        <div id="timer-display">25:00</div>
+    </div>
+
+    <section class="grid">
+      <div class="cell">
+        <span class="label">SET_DURATION_MINUTES</span>
+        <input type="number" id="custom-min" value="25" onchange="updateCustomTime()">
+      </div>
+      <div class="cell" style="padding: 0;">
+        <button id="main-btn" onclick="toggleTimer()">EXECUTE_TIMER_SEQUENCE</button>
+      </div>
+    </section>
+
+    <div class="disclaimer-section">
+      <h4>01 // PROCEDURAL_DISCLAIMER</h4>
+      <p>
+        The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen timer Cirillo used as a university student.
+      </p>
+      <br>
+      <p>
+        LEGAL_NOTICE: KEFE is a tool provided "as is" without warranty of any kind. Users are responsible for their own ergonomics and health. Frequent breaks are medically recommended to prevent repetitive strain injury (RSI) and cognitive fatigue. This software does not track user data; all timing logic is processed locally via the client's browser hardware.
+      </p>
+      <br>
+      <h4>02 // PHYSIOLOGICAL_IMPACT</h4>
+      <p>
+        Prolonged periods of deep focus can lead to decision fatigue. The 17:5 or 25:5 ratio is designed to optimize the prefrontal cortex by allowing "diffuse mode" thinking during breaks. Failure to adhere to break protocols may result in diminished marginal returns on productivity. Ensure your workstation is optimized according to Swiss occupational health standards.
+      </p>
+    </div>
+
+    <footer>
+      <span>KEFE_CORE_V4 // BASEL // SWITZERLAND</span>
+      <span id="clock">00:00:00 UTC</span>
+    </footer>
+
+    <script>
+      let timeLeft = 25 * 60;
+      let timerId = null;
+      let currentMode = 'work';
+
+      function updateDisplay() {
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        document.getElementById('timer-display').innerText = timeStr;
+        document.title = `${timeStr} | KEFE`;
+      }
+
+      function updateCustomTime() {
+        let val = parseInt(document.getElementById('custom-min').value);
+        if (isNaN(val) || val < 1) val = 1;
+        timeLeft = val * 60;
+        updateDisplay();
+      }
+
+      function setMode(mode) {
+        currentMode = mode;
+        document.getElementById('m-work').classList.toggle('active-mode', mode === 'work');
+        document.getElementById('m-break').classList.toggle('active-mode', mode === 'break');
+        const defaultTime = (mode === 'work') ? 25 : 5;
+        document.getElementById('custom-min').value = defaultTime;
+        updateCustomTime();
+      }
+
+      function toggleTimer() {
+        const btn = document.getElementById('main-btn');
+        if (timerId) {
+          clearInterval(timerId);
+          timerId = null;
+          btn.innerText = "RESUME_SEQUENCE";
+        } else {
+          btn.innerText = "HALT_SEQUENCE";
+          timerId = setInterval(() => {
+            timeLeft--;
+            if (timeLeft < 0) {
+              clearInterval(timerId);
+              timerId = null;
+              timeLeft = 0;
+              btn.innerText = "SEQUENCE_COMPLETE";
+            }
+            updateDisplay();
+          }, 1000);
+        }
+      }
+
+      function resetTimer() {
+        clearInterval(timerId);
+        timerId = null;
+        updateCustomTime();
+        document.getElementById('main-btn').innerText = "EXECUTE_TIMER_SEQUENCE";
+      }
+
+      setInterval(() => {
+        document.getElementById("clock").innerText = new Date().toLocaleTimeString("en-GB") + " UTC";
+      }, 1000);
+
+      updateDisplay();
+    </script>
+  </body>
+</html>
