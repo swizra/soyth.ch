@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <link rel="canonical" href="https://soyth.ch/en/" />
@@ -9,16 +9,18 @@
     />
     <meta
       name="description"
-      content="Soyth offers free, open-source Business IT tools built with HTML, CSS, and JavaScript to enhance productivity and streamline workflows for businesses and developers."
+      content="Soyth - Professional web design studio in Switzerland. Custom websites, logo design, branding, and digital solutions for businesses. Expert web development, UI/UX design, and IT consulting services."
     />
     <meta
       name="keywords"
-      content="Soyth, Business IT, open-source tools, HTML, CSS, JavaScript, productivity"
+      content="web design Switzerland, logo design, branding agency, web development, UI/UX design, custom websites, digital agency, IT consulting, web studio"
     />
     <meta name="author" content="Soyth" />
-    <title>Soyth - Business IT Tools</title>
+    <title>
+      Soyth - Web Design & Development Studio | Logo Design & Branding
+    </title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
@@ -113,9 +115,11 @@
           </div>
         </div>
         <nav class="nav-desktop">
-          <a href="#" class="nav-link" onclick="showProjectsMenu()">Projects</a>
-          <a href="#" class="nav-link" onclick="showModal('about')">About</a>
-          <a href="#" class="nav-link" onclick="showModal('skills')">Skills</a>
+          <a href="#" class="nav-link" onclick="showProjectsMenu()">Services</a>
+          <a href="#" class="nav-link" onclick="showModal('portfolio')"
+            >Portfolio</a
+          >
+          <a href="/en/about.html" class="nav-link">About</a>
           <a href="#" class="nav-link" onclick="showModal('cookies')"
             >Cookies</a
           >
@@ -134,33 +138,44 @@
           <a
             href="#"
             class="nav-link"
-            onclick="showProjectsMenu(); closeMobileMenu()"
-            >Projects</a
+            onclick="
+              showProjectsMenu();
+              closeMobileMenu();
+            "
+            >Services</a
           >
           <a
             href="#"
             class="nav-link"
-            onclick="showModal('about'); closeMobileMenu()"
+            onclick="
+              showModal('portfolio');
+              closeMobileMenu();
+            "
+            >Portfolio</a
+          >
+          <a href="/en/about.html" class="nav-link" onclick="closeMobileMenu()"
             >About</a
           >
+
           <a
             href="#"
             class="nav-link"
-            onclick="showModal('skills'); closeMobileMenu()"
-            >Skills</a
-          >
-          <a
-            href="#"
-            class="nav-link"
-            onclick="showModal('cookies'); closeMobileMenu()"
+            onclick="
+              showModal('cookies');
+              closeMobileMenu();
+            "
             >Cookies</a
           >
           <a
             href="#"
             class="nav-link"
-            onclick="showModal('contact'); closeMobileMenu()"
+            onclick="
+              showModal('contact');
+              closeMobileMenu();
+            "
             >Contact</a
           >
+
           <button
             class="theme-toggle"
             onclick="toggleTheme()"
@@ -174,47 +189,31 @@
             <div class="back-line"></div>
             <div class="back-line"></div>
           </div>
-          <a href="https://soyth.ch/en/HTMLCompiler.html" class="nav-link"
-            >HTML Compiler</a
+          <a href="/en/web-development.html" class="nav-link"
+            >Web Development</a
           >
-          <a href="https://soyth.ch/en/PasswordGenerator.html" class="nav-link"
-            >Password Generator</a
+          <a href="/en/logo-design.html" class="nav-link">Logo Design</a>
+          <a href="/en/brand-identity.html" class="nav-link">Brand Identity</a>
+          <a href="/en/ui-ux-design.html" class="nav-link">UI/UX Design</a>
+          <a href="/en/ecommerce.html" class="nav-link">E-commerce</a>
+          <a href="/en/digital-marketing.html" class="nav-link"
+            >Digital Marketing</a
           >
-          <a href="https://soyth.ch/en/TextFormatter.html" class="nav-link"
-            >Text Formatter</a
+          <a href="/en/content-creation.html" class="nav-link"
+            >Content Creation</a
           >
-          <a href="https://soyth.ch/en/UnitConverter.html" class="nav-link"
-            >Unit Converter</a
+          <a href="/en/seo-optimization.html" class="nav-link"
+            >SEO Optimization</a
           >
-          <a href="https://soyth.ch/en/QRCodeGenerator.html" class="nav-link"
-            >QR Code Generator</a
+          <a href="/en/it-consulting.html" class="nav-link">IT Consulting</a>
+          <a href="/en/cloud-solutions.html" class="nav-link"
+            >Cloud Solutions</a
           >
-          <a href="https://soyth.ch/en/ColorConverter.html" class="nav-link"
-            >Color Converter</a
+          <a href="/en/graphic-design.html" class="nav-link">Graphic Design</a>
+          <a href="/en/business-automation.html" class="nav-link"
+            >Business Automation</a
           >
-          <a href="https://soyth.ch/en/Translator.html" class="nav-link"
-            >Soyth Translate</a
-          >
-          <a href="https://soyth.ch/en/ImageCompressor.html" class="nav-link"
-            >Image Compressor</a
-          >
-          <a href="https://soyth.ch/en/JSONFormatter.html" class="nav-link"
-            >JSON Formatter</a
-          >
-          <a href="https://soyth.ch/en/UUIDGenerator.html" class="nav-link"
-            >UUID Generator</a
-          >
-          <a
-            href="https://soyth.ch/en/LoremIpsumGenerator.html"
-            class="nav-link"
-            >Lorem Ipsum Generator</a
-          >
-          <a href="https://soyth.ch/en/PomodoroTimer.html" class="nav-link"
-            >Pomodoro Timer</a
-          >
-          <a href="https://soyth.ch/en/TimestampConverter.html" class="nav-link"
-            >Timestamp Converter</a
-          >
+          <a href="/en/data-analytics.html" class="nav-link">Data Analytics</a>
         </nav>
       </div>
     </header>
@@ -224,22 +223,26 @@
     <main>
       <section class="hero">
         <div class="hero-content">
-          <h1>Tools that make things easy.</h1>
-          <h2>Fast. Free. Open source.</h2>
+          <h1>Your Vision. Our Expertise.</h1>
+          <h2>Premium design & solutions for you.</h2>
           <div class="hero-buttons">
             <button
               class="btn-hero btn-primary-hero"
-              onclick="window.location.href='/en/projects.html'"
+              onclick="window.location.href = '/en/services.html'"
             >
-              Discover Projects
+              Explore Services
             </button>
             <a
-              href="https://soyth.ch/en/about.html"
+              href="#"
               class="btn-hero btn-secondary-hero"
-              >Read More</a
+              onclick="
+                showModal('contact');
+                return false;
+              "
+              >Get Started</a
             >
           </div>
-          <p>No setup. No distractions.</p>
+          <p>Design that creates culture.</p>
         </div>
       </section>
 
@@ -247,176 +250,134 @@
         <div class="carousel-wrapper">
           <div class="carousel">
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/HTMLCompiler.html" target="_blank">
+              <a href="/en/web-development.html">
                 <div class="content">
-                  <i class="material-icons">code</i>
-                  <h1>HTML Compiler</h1>
+                  <i class="material-icons">web</i>
+                  <h1>Web Development</h1>
+                  <p>Custom websites built with cutting-edge technology.</p>
+                  <button class="btn btn-primary">Learn More</button>
+                </div>
+              </a>
+            </div>
+            <div class="carousel-cell">
+              <a href="/en/logo-design.html">
+                <div class="content">
+                  <i class="material-icons">palette</i>
+                  <h1>Logo Design</h1>
+                  <p>Memorable brand identities that capture your essence.</p>
+                  <button class="btn btn-primary">Learn More</button>
+                </div>
+              </a>
+            </div>
+            <div class="carousel-cell">
+              <a href="/en/brand-identity.html">
+                <div class="content">
+                  <i class="material-icons">style</i>
+                  <h1>Brand Identity</h1>
                   <p>
-                    Compile and test HTML code directly in your browser with
-                    real-time previews.
+                    Complete branding packages including logos and guidelines.
                   </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a
-                href="https://soyth.ch/en/PasswordGenerator.html"
-                target="_blank"
-              >
+              <a href="/en/ui-ux-design.html">
                 <div class="content">
-                  <i class="material-icons">lock</i>
-                  <h1>Password Generator</h1>
-                  <p>
-                    Create secure, customizable passwords for enhanced online
-                    security.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">brush</i>
+                  <h1>UI/UX Design</h1>
+                  <p>Intuitive interfaces designed with your users in mind.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/TextFormatter.html" target="_blank">
+              <a href="/en/ecommerce.html">
                 <div class="content">
-                  <i class="material-icons">text_fields</i>
-                  <h1>Text Formatter</h1>
-                  <p>
-                    Format and clean text for consistent styling and
-                    readability.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">shopping_cart</i>
+                  <h1>E-commerce Solutions</h1>
+                  <p>Complete online stores with payment integration.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/UnitConverter.html" target="_blank">
+              <a href="/en/digital-marketing.html">
                 <div class="content">
-                  <i class="material-icons">compare_arrows</i>
-                  <h1>Unit Converter</h1>
-                  <p>
-                    Convert between various units for measurements and
-                    calculations.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">campaign</i>
+                  <h1>Digital Marketing</h1>
+                  <p>Strategic campaigns that drive traffic and conversions.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a
-                href="https://soyth.ch/en/QRCodeGenerator.html"
-                target="_blank"
-              >
+              <a href="/en/content-creation.html">
                 <div class="content">
-                  <i class="material-icons">qr_code</i>
-                  <h1>QR Code Generator</h1>
-                  <p>
-                    Generate QR codes for URLs, text, or contact information
-                    instantly.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">edit_note</i>
+                  <h1>Content Creation</h1>
+                  <p>Compelling copy and visuals that tell your story.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/ColorConverter.html" target="_blank">
+              <a href="/en/seo-optimization.html">
                 <div class="content">
-                  <i class="material-icons">color_lens</i>
-                  <h1>Color Converter</h1>
-                  <p>
-                    Convert between color formats like HEX, RGB, and HSL
-                    effortlessly.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">search</i>
+                  <h1>SEO Optimization</h1>
+                  <p>Boost your visibility with technical SEO.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/Translator.html" target="_blank">
+              <a href="/en/it-consulting.html">
                 <div class="content">
-                  <i class="material-icons">translate</i>
-                  <h1>Soyth Translate</h1>
-                  <p>Translate text across multiple languages with ease.</p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">developer_board</i>
+                  <h1>IT Consulting</h1>
+                  <p>Expert guidance on technology decisions.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a
-                href="https://soyth.ch/en/ImageCompressor.html"
-                target="_blank"
-              >
+              <a href="/en/cloud-solutions.html">
                 <div class="content">
-                  <i class="material-icons">image</i>
-                  <h1>Image Compressor</h1>
-                  <p>
-                    Compress images to reduce file size while maintaining
-                    quality.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">cloud</i>
+                  <h1>Cloud Solutions</h1>
+                  <p>Scalable cloud infrastructure for modern businesses.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/JSONFormatter.html" target="_blank">
+              <a href="/en/graphic-design.html">
                 <div class="content">
-                  <i class="material-icons">code</i>
-                  <h1>JSON Formatter</h1>
-                  <p>
-                    Format and validate JSON data for better readability and
-                    debugging.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">photo_library</i>
+                  <h1>Graphic Design</h1>
+                  <p>Print and digital design services.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a href="https://soyth.ch/en/UUIDGenerator.html" target="_blank">
+              <a href="/en/business-automation.html">
                 <div class="content">
-                  <i class="material-icons">vpn_key</i>
-                  <h1>UUID Generator</h1>
-                  <p>Generate unique identifiers for your applications.</p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">sync</i>
+                  <h1>Business Automation</h1>
+                  <p>Streamline operations with custom automation.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
             <div class="carousel-cell">
-              <a
-                href="https://soyth.ch/en/LoremIpsumGenerator.html"
-                target="_blank"
-              >
+              <a href="/en/data-analytics.html">
                 <div class="content">
-                  <i class="material-icons">library_books</i>
-                  <h1>Lorem Ipsum Generator</h1>
-                  <p>
-                    Generate placeholder text for design and development
-                    purposes.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
-                </div>
-              </a>
-            </div>
-            <div class="carousel-cell">
-              <a href="https://soyth.ch/en/PomodoroTimer.html" target="_blank">
-                <div class="content">
-                  <i class="material-icons">timer</i>
-                  <h1>Pomodoro Timer</h1>
-                  <p>Boost productivity with a customizable Pomodoro timer.</p>
-                  <button class="btn btn-primary">Try Now</button>
-                </div>
-              </a>
-            </div>
-            <div class="carousel-cell">
-              <a
-                href="https://soyth.ch/en/TimestampConverter.html"
-                target="_blank"
-              >
-                <div class="content">
-                  <i class="material-icons">access_time</i>
-                  <h1>Timestamp Converter</h1>
-                  <p>
-                    Convert timestamps to human-readable dates and vice versa.
-                  </p>
-                  <button class="btn btn-primary">Try Now</button>
+                  <i class="material-icons">analytics</i>
+                  <h1>Data Analytics</h1>
+                  <p>Transform data into actionable insights.</p>
+                  <button class="btn btn-primary">Learn More</button>
                 </div>
               </a>
             </div>
@@ -429,641 +390,662 @@
         </div>
       </section>
 
-      <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-          <p>
-            We use cookies. Some cookies are essential for this site to function
-            and cannot be turned off. Others are set to help us understand how
-            our service performs and is used, and to support our marketing
-            efforts. Learn more in our
-            <a href="/en/cookie-policy.html" target="_blank">Cookie Policy</a>.
-          </p>
-          <div class="cookie-buttons">
-            <button class="cookie-btn" onclick="showModal('cookiePreferences')">
-              Manage Cookies
-            </button>
-            <button class="cookie-btn" onclick="rejectNonEssentialCookies()">
-              Reject Non-Essential
-            </button>
-            <button
-              class="cookie-btn cookie-btn-primary"
-              onclick="acceptAllCookies()"
-            >
-              Accept All
-            </button>
-          </div>
-        </div>
-      </div>
       <section class="about-mission-section">
         <div class="about-mission-grid">
           <div class="about-mission-card style-1">
-            <h3>Unleash Creativity</h3>
+            <h3>Strategic Design</h3>
             <p>
-              Dive into our free, open-source tools crafted with HTML, CSS, and
-              JavaScript—yours to tweak and transform!
+              Every pixel serves a purpose. We combine aesthetic excellence with
+              strategic thinking.
             </p>
             <div class="mission-buttons">
-              <a
-                href="https://soyth.ch/en/HTMLCompiler.html"
-                class="btn btn-primary"
-                >Try Compiler</a
-              >
-              <a href="/en/about.html" class="btn btn-secondary"
-                >Discover Our Story</a
-              >
+              <a href="/en/services.html" class="btn btn-primary">Learn More</a>
+              <a href="/en/team.html" class="btn btn-secondary">Our Team</a>
             </div>
             <img
               src="/assets/images/open-source.svg"
-              alt="Open Source Icon"
+              alt="Design Strategy Icon"
               class="about-mission-icon"
             />
           </div>
           <div class="about-mission-card style-1">
-            <h3>Join the Fun</h3>
-            <p>
-              Team up with developers worldwide to supercharge our awesome tool
-              collection!
-            </p>
+            <h3>Technical Excellence</h3>
+            <p>Cutting-edge technology meets timeless design principles.</p>
             <div class="mission-buttons">
-              <a
-                href="https://soyth.ch/en/PasswordGenerator.html"
-                class="btn btn-primary"
-                >Password Generator</a
+              <a href="/en/portfolio.html" class="btn btn-primary"
+                >Learn More</a
               >
-              <a href="/en/skills.html" class="btn btn-secondary"
-                >See Our Skills</a
-              >
+              <a href="/en/about.html" class="btn btn-secondary">About Us</a>
             </div>
             <img
               src="/assets/images/community.svg"
-              alt="Community Icon"
+              alt="Technology Icon"
               class="about-mission-icon"
             />
           </div>
           <div class="about-mission-card style-1">
-            <h3>Tools for Everyone</h3>
-            <p>
-              Simple, sleek, and ready for all—our tools make tech a breeze for
-              newbies and pros alike!
-            </p>
+            <h3>Client Partnership</h3>
+            <p>Your success is our success. We work closely with clients.</p>
             <div class="mission-buttons">
-              <a
-                href="https://soyth.ch/en/UnitConverter.html"
-                class="btn btn-primary"
-                >Unit Converter</a
+              <a href="/en/testimonials.html" class="btn btn-primary"
+                >Learn More</a
               >
-              <a href="/en/about.html" class="btn btn-secondary">Learn More</a>
+              <a href="/en/contact.html" class="btn btn-secondary"
+                >Get Started</a
+              >
             </div>
             <img
               src="/assets/images/accessibility.svg"
-              alt="Accessibility Icon"
+              alt="Partnership Icon"
               class="about-mission-icon"
             />
           </div>
           <div class="about-mission-card style-2">
             <img
               src="/assets/images/productivity.svg"
-              alt="Productivity Icon"
+              alt="Results Icon"
               class="about-mission-icon"
             />
-            <h3>Work Smarter</h3>
-            <p>
-              Zip through tasks with tools designed to boost your efficiency and
-              spark innovation!
-            </p>
+            <h3>Measurable Results</h3>
+            <p>Data-driven decisions lead to real growth.</p>
             <div class="mission-buttons">
-              <a
-                href="https://soyth.ch/en/PomodoroTimer.html"
-                class="btn btn-primary"
-                >Try Pomodoro Timer</a
+              <a href="/en/case-studies.html" class="btn btn-primary"
+                >Learn More</a
               >
-              <a href="/en/skills.html" class="btn btn-secondary"
-                >Our Expertise</a
+              <a href="/en/process.html" class="btn btn-secondary"
+                >Our Process</a
               >
             </div>
           </div>
           <div class="about-mission-card style-2">
             <img
               src="/assets/images/learning.svg"
-              alt="Learning Icon"
+              alt="Innovation Icon"
               class="about-mission-icon"
             />
-            <h3>Level Up</h3>
-            <p>
-              Crack open our code to master cutting-edge web dev tricks for your
-              own projects!
-            </p>
+            <h3>Continuous Innovation</h3>
+            <p>The digital landscape evolves rapidly. We stay ahead.</p>
             <div class="mission-buttons">
-              <a
-                href="https://soyth.ch/en/JSONFormatter.html"
-                class="btn btn-primary"
-                >JSON Formatter</a
-              >
-              <a href="/en/about.html" class="btn btn-secondary">About Us</a>
+              <a href="/en/blog.html" class="btn btn-primary">Learn More</a>
+              <a href="/en/services.html" class="btn btn-secondary">Explore</a>
             </div>
           </div>
           <div class="about-mission-card style-2">
             <img
               src="/assets/images/collaboration.svg"
-              alt="Collaboration Icon"
+              alt="Support Icon"
               class="about-mission-icon"
             />
-            <h3>Build Together</h3>
-            <p>
-              Join our vibrant community to swap ideas and craft solutions for
-              real-world challenges!
-            </p>
+            <h3>Ongoing Support</h3>
+            <p>Our relationship doesn't end at launch.</p>
             <div class="mission-buttons">
-              <a
-                href="https://github.com/swizra/soyth.ch"
-                class="btn btn-primary"
-                >Contribute</a
-              >
-              <a href="/en/privacy-policy.html" class="btn btn-secondary"
-                >Our Policy</a
-              >
+              <a href="/en/support.html" class="btn btn-primary">Learn More</a>
+              <a href="/en/contact.html" class="btn btn-secondary">Contact</a>
             </div>
           </div>
         </div>
       </section>
       <section class="cta-section">
-        <h2>Join Our Community</h2>
-        <p>
-          Explore our tools or support our mission to keep them free and
-          open-source.
-        </p>
+        <h2>Ready to Elevate Your Brand?</h2>
+        <p>Let's discuss how we can bring your vision to life.</p>
         <div class="cta-buttons">
-          <a href="/en/projects.html" class="btn btn-primary"
-            >Discover Projects</a
+          <a
+            href="#"
+            onclick="
+              showModal('contact');
+              return false;
+            "
+            class="btn btn-primary"
+            >Get Started</a
           >
-          <a href="/en/support.html" class="btn btn-secondary">Support Us</a>
+          <a href="/en/pricing.html" class="btn btn-secondary">View Pricing</a>
+        </div>
+      </section>
+
+      <section class="shop-services-section">
+        <div class="shop-services-intro">
+          <h2>Services</h2>
+          <p>
+            From concept to launch and beyond. Comprehensive digital solutions
+            tailored to your needs.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <i class="material-icons">web</i>
+            <h3>Website Design & Development</h3>
+            <p>Stunning websites that reflect your brand.</p>
+            <div class="service-features">
+              <span>• Custom Design</span>
+              <span>• Responsive Layout</span>
+              <span>• CMS Integration</span>
+              <span>• Performance Optimized</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 1,200</span>
+              <span class="timeline">Delivery: 3–5 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/web-development.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">palette</i>
+            <h3>Logo & Brand Identity</h3>
+            <p>Distinctive logos and comprehensive brand systems.</p>
+            <div class="service-features">
+              <span>• Logo Design</span>
+              <span>• Brand Guidelines</span>
+              <span>• Color Palette</span>
+              <span>• Typography System</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 400</span>
+              <span class="timeline">Delivery: 1–2 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/logo-design.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">shopping_cart</i>
+            <h3>E-commerce Solutions</h3>
+            <p>Complete online stores with secure payment processing.</p>
+            <div class="service-features">
+              <span>• Payment Integration</span>
+              <span>• Product Catalog</span>
+              <span>• Order Management</span>
+              <span>• Sales Analytics</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 1,500</span>
+              <span class="timeline">Delivery: 4–6 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/ecommerce.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">brush</i>
+            <h3>UI/UX Design</h3>
+            <p>User-centered design that delights your customers.</p>
+            <div class="service-features">
+              <span>• User Research</span>
+              <span>• Wireframing</span>
+              <span>• Prototyping</span>
+              <span>• Usability Testing</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 900</span>
+              <span class="timeline">Delivery: 2–4 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/ui-ux-design.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">search</i>
+            <h3>SEO & Digital Marketing</h3>
+            <p>Boost your online visibility and attract qualified leads.</p>
+            <div class="service-features">
+              <span>• Keyword Research</span>
+              <span>• On-Page SEO</span>
+              <span>• Content Strategy</span>
+              <span>• Analytics & Reporting</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 600</span>
+              <span class="timeline">Delivery: 2–3 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/digital-marketing.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">build</i>
+            <h3>Website Maintenance</h3>
+            <p>Keep your website secure, fast, and up-to-date.</p>
+            <div class="service-features">
+              <span>• Security Updates</span>
+              <span>• Performance Monitoring</span>
+              <span>• Content Updates</span>
+              <span>• Priority Support</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 150/month</span>
+              <span class="timeline">Ongoing</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/maintenance.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">developer_board</i>
+            <h3>IT Consulting</h3>
+            <p>Expert guidance on technology decisions.</p>
+            <div class="service-features">
+              <span>• Strategic Planning</span>
+              <span>• Technology Assessment</span>
+              <span>• Process Optimization</span>
+              <span>• Best Practices</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 250/hour</span>
+              <span class="timeline">Flexible</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/it-consulting.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">cloud</i>
+            <h3>Cloud Solutions</h3>
+            <p>Scalable cloud infrastructure and migration.</p>
+            <div class="service-features">
+              <span>• Cloud Migration</span>
+              <span>• Infrastructure Setup</span>
+              <span>• Security Configuration</span>
+              <span>• Ongoing Management</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 1,000</span>
+              <span class="timeline">Delivery: 3–5 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/cloud-solutions.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">photo_library</i>
+            <h3>Graphic Design</h3>
+            <p>Print and digital design services.</p>
+            <div class="service-features">
+              <span>• Marketing Materials</span>
+              <span>• Social Media Graphics</span>
+              <span>• Presentations</span>
+              <span>• Print Design</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 500</span>
+              <span class="timeline">Delivery: 1–3 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/graphic-design.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">edit_note</i>
+            <h3>Content Creation</h3>
+            <p>Compelling copy and visuals.</p>
+            <div class="service-features">
+              <span>• Copywriting</span>
+              <span>• Photography</span>
+              <span>• Video Production</span>
+              <span>• Content Strategy</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 450</span>
+              <span class="timeline">Delivery: 1–2 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/content-creation.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">sync</i>
+            <h3>Business Automation</h3>
+            <p>Streamline operations with automation.</p>
+            <div class="service-features">
+              <span>• Workflow Automation</span>
+              <span>• Integration Services</span>
+              <span>• Custom Tools</span>
+              <span>• Efficiency Analysis</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 700</span>
+              <span class="timeline">Delivery: 2–4 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/business-automation.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <i class="material-icons">analytics</i>
+            <h3>Data Analytics</h3>
+            <p>Transform data into insights.</p>
+            <div class="service-features">
+              <span>• Custom Dashboards</span>
+              <span>• Data Visualization</span>
+              <span>• Reporting Tools</span>
+              <span>• Business Intelligence</span>
+            </div>
+            <div class="service-pricing">
+              <span class="price">From CHF 1,000</span>
+              <span class="timeline">Delivery: 3–5 weeks</span>
+            </div>
+            <div class="service-buttons">
+              <a href="/en/data-analytics.html" class="btn btn-primary"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-choose-section">
+        <h2>Why Partner With Soyth?</h2>
+        <div class="why-choose-grid">
+          <div class="why-card">
+            <i class="material-icons">verified</i>
+            <h3>Quality Craftsmanship</h3>
+            <p>Meticulous attention to detail in every project.</p>
+          </div>
+          <div class="why-card">
+            <i class="material-icons">schedule</i>
+            <h3>Reliable Delivery</h3>
+            <p>We respect your timeline and deliver on schedule.</p>
+          </div>
+          <div class="why-card">
+            <i class="material-icons">support_agent</i>
+            <h3>Personalized Service</h3>
+            <p>Direct communication with our team.</p>
+          </div>
+          <div class="why-card">
+            <i class="material-icons">trending_up</i>
+            <h3>Growth-Focused</h3>
+            <p>Solutions that grow alongside your business.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <h2>Our Process</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3>Discovery</h3>
+            <p>Understanding your goals and audience.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3>Design</h3>
+            <p>Creating visual concepts that resonate.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3>Development</h3>
+            <p>Building with clean code and best practices.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3>Testing</h3>
+            <p>Ensuring flawless functionality.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">5</div>
+            <h3>Launch</h3>
+            <p>Smooth deployment with ongoing support.</p>
+          </div>
         </div>
       </section>
       <section class="mini-carousel-section">
         <div class="mini-carousel">
           <div class="group">
-            <!-- Card 1 -->
             <a
-              href="https://www.notion.so/"
+              href="https://soyth.ch/en/HTMLCompiler.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Notion</h3>
-                <p>All-in-one workspace for notes and projects</p>
+                <h3>HTML Compiler</h3>
+                <p>Code testing tool</p>
               </div>
             </a>
-            <!-- Card 2 -->
             <a
-              href="https://www.canva.com/"
+              href="https://soyth.ch/en/PasswordGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Canva</h3>
-                <p>Create stunning designs easily</p>
+                <h3>Password Generator</h3>
+                <p>Security utility</p>
               </div>
             </a>
-            <!-- Card 3 -->
             <a
-              href="https://codepen.io/"
+              href="https://soyth.ch/en/TextFormatter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>CodePen</h3>
-                <p>Build and share front-end projects</p>
+                <h3>Text Formatter</h3>
+                <p>Text processing tool</p>
               </div>
             </a>
-            <!-- Card 4 -->
             <a
-              href="https://www.khanacademy.org/"
+              href="https://soyth.ch/en/UnitConverter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Khan Academy</h3>
-                <p>Free online learning resources</p>
+                <h3>Unit Converter</h3>
+                <p>Measurement tool</p>
               </div>
             </a>
-            <!-- Card 5 -->
             <a
-              href="https://www.grammarly.com/"
+              href="https://soyth.ch/en/QRCodeGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Grammarly</h3>
-                <p>Improve your writing instantly</p>
+                <h3>QR Code Generator</h3>
+                <p>Quick response codes</p>
               </div>
             </a>
-            <!-- Card 6 -->
             <a
-              href="https://trello.com/"
+              href="https://soyth.ch/en/ColorConverter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Trello</h3>
-                <p>Organize tasks with boards</p>
+                <h3>Color Converter</h3>
+                <p>Design utility</p>
               </div>
             </a>
-            <!-- Card 7 -->
             <a
-              href="https://www.figma.com/"
+              href="https://soyth.ch/en/Translator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Figma</h3>
-                <p>Collaborative design tool</p>
+                <h3>Soyth Translate</h3>
+                <p>Language tool</p>
               </div>
             </a>
-            <!-- Card 8 -->
             <a
-              href="https://www.unsplash.com/"
+              href="https://soyth.ch/en/ImageCompressor.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Unsplash</h3>
-                <p>Free high-quality images</p>
+                <h3>Image Compressor</h3>
+                <p>Optimization tool</p>
               </div>
             </a>
-            <!-- Card 9 -->
             <a
-              href="https://www.coursera.org/"
+              href="https://soyth.ch/en/JSONFormatter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Coursera</h3>
-                <p>Online courses from top universities</p>
+                <h3>JSON Formatter</h3>
+                <p>Data formatting</p>
               </div>
             </a>
-            <!-- Card 10 -->
             <a
-              href="https://www.tinyurl.com/"
+              href="https://soyth.ch/en/UUIDGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>TinyURL</h3>
-                <p>Shorten long URLs easily</p>
+                <h3>UUID Generator</h3>
+                <p>Unique identifiers</p>
               </div>
             </a>
-            <!-- Card 11 -->
             <a
-              href="https://www.remove.bg/"
+              href="https://soyth.ch/en/LoremIpsumGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Remove.bg</h3>
-                <p>Remove image backgrounds</p>
+                <h3>Lorem Ipsum</h3>
+                <p>Placeholder text</p>
               </div>
             </a>
-            <!-- Card 12 -->
             <a
-              href="https://www.duolingo.com/"
+              href="https://soyth.ch/en/PomodoroTimer.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Duolingo</h3>
-                <p>Learn languages for free</p>
+                <h3>Pomodoro Timer</h3>
+                <p>Productivity tool</p>
               </div>
             </a>
-            <!-- Card 13 -->
             <a
-              href="https://www.webflow.com/"
+              href="https://soyth.ch/en/TimestampConverter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Webflow</h3>
-                <p>No-code website builder</p>
+                <h3>Timestamp Converter</h3>
+                <p>Time utility</p>
               </div>
             </a>
-            <!-- Card 14 -->
+            <!-- Duplicate -->
             <a
-              href="https://www.patreon.com/"
+              href="https://soyth.ch/en/HTMLCompiler.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Patreon</h3>
-                <p>Support creators monthly</p>
+                <h3>HTML Compiler</h3>
+                <p>Code testing tool</p>
               </div>
             </a>
-            <!-- Card 15 -->
             <a
-              href="https://www.convertio.co/"
+              href="https://soyth.ch/en/PasswordGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Convertio</h3>
-                <p>Convert files online</p>
+                <h3>Password Generator</h3>
+                <p>Security utility</p>
               </div>
             </a>
-            <!-- Card 16 -->
             <a
-              href="https://www.iconfinder.com/"
+              href="https://soyth.ch/en/TextFormatter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Iconfinder</h3>
-                <p>Find icons for projects</p>
+                <h3>Text Formatter</h3>
+                <p>Text processing tool</p>
               </div>
             </a>
-            <!-- Card 17 -->
             <a
-              href="https://www.zapier.com/"
+              href="https://soyth.ch/en/UnitConverter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Zapier</h3>
-                <p>Automate workflows</p>
+                <h3>Unit Converter</h3>
+                <p>Measurement tool</p>
               </div>
             </a>
-            <!-- Card 18 -->
             <a
-              href="https://www.pdf2go.com/"
+              href="https://soyth.ch/en/QRCodeGenerator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>PDF2Go</h3>
-                <p>Edit PDFs online</p>
+                <h3>QR Code Generator</h3>
+                <p>Quick response codes</p>
               </div>
             </a>
-            <!-- Card 19 -->
             <a
-              href="https://www.pexels.com/"
+              href="https://soyth.ch/en/ColorConverter.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>Pexels</h3>
-                <p>Free stock photos and videos</p>
+                <h3>Color Converter</h3>
+                <p>Design utility</p>
               </div>
             </a>
-            <!-- Card 20 -->
             <a
-              href="https://www.worldtimebuddy.com/"
+              href="https://soyth.ch/en/Translator.html"
               target="_blank"
               rel="noopener noreferrer"
               class="card"
             >
               <div class="content">
-                <h3>World Time Buddy</h3>
-                <p>Compare time zones</p>
+                <h3>Soyth Translate</h3>
+                <p>Language tool</p>
               </div>
             </a>
-            <!-- Duplicate the group for seamless looping -->
-            <a
-              href="https://www.notion.so/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Notion</h3>
-                <p>All-in-one workspace for notes and projects</p>
-              </div>
-            </a>
-            <a
-              href="https://www.canva.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Canva</h3>
-                <p>Create stunning designs easily</p>
-              </div>
-            </a>
-            <a
-              href="https://codepen.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>CodePen</h3>
-                <p>Build and share front-end projects</p>
-              </div>
-            </a>
-            <a
-              href="https://www.khanacademy.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Khan Academy</h3>
-                <p>Free online learning resources</p>
-              </div>
-            </a>
-            <a
-              href="https://www.grammarly.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Grammarly</h3>
-                <p>Improve your writing instantly</p>
-              </div>
-            </a>
-            <a
-              href="https://trello.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Trello</h3>
-                <p>Organize tasks with boards</p>
-              </div>
-            </a>
-            <a
-              href="https://www.figma.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Figma</h3>
-                <p>Collaborative design tool</p>
-              </div>
-            </a>
-            <a
-              href="https://www.unsplash.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Unsplash</h3>
-                <p>Free high-quality images</p>
-              </div>
-            </a>
-            <a
-              href="https://www.coursera.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Coursera</h3>
-                <p>Online courses from top universities</p>
-              </div>
-            </a>
-            <a
-              href="https://www.tinyurl.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>TinyURL</h3>
-                <p>Shorten long URLs easily</p>
-              </div>
-            </a>
-            <a
-              href="https://www.remove.bg/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Remove.bg</h3>
-                <p>Remove image backgrounds</p>
-              </div>
-            </a>
-            <a
-              href="https://www.duolingo.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Duolingo</h3>
-                <p>Learn languages for free</p>
-              </div>
-            </a>
-            <a
-              href="https://www.webflow.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Webflow</h3>
-                <p>No-code website builder</p>
-              </div>
-            </a>
-            <a
-              href="https://www.patreon.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Patreon</h3>
-                <p>Support creators monthly</p>
-              </div>
-            </a>
-            <a
-              href="https://www.convertio.co/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Convertio</h3>
-                <p>Convert files online</p>
-              </div>
-            </a>
-            <a
-              href="https://www.iconfinder.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Iconfinder</h3>
-                <p>Find icons for projects</p>
-              </div>
-            </a>
-            <a
-              href="https://www.zapier.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Zapier</h3>
-                <p>Automate workflows</p>
-              </div>
-            </a>
-            <a
-              href="https://www.pdf2go.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>PDF2Go</h3>
-                <p>Edit PDFs online</p>
-              </div>
-            </a>
-            <a
-              href="https://www.pexels.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>Pexels</h3>
-                <p>Free stock photos and videos</p>
-              </div>
-            </a>
-            <a
-              href="https://www.worldtimebuddy.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card"
-            >
-              <div class="content">
-                <h3>World Time Buddy</h3>
-                <p>Compare time zones</p>
-              </div>
-            </a>
-            <!-- Add more cards here up to 100 using the list below -->
           </div>
         </div>
       </section>
@@ -1083,21 +1065,14 @@
     <footer>
       <div class="footer-content">
         <div class="footer-links">
-          <a href="#" class="footer-link" onclick="showModal('about')">About</a>
-          <a href="#" class="footer-link" onclick="showModal('skills')"
-            >Skills</a
-          >
-          <a href="#" class="footer-link" onclick="showModal('cookies')"
-            >Cookies</a
-          >
-          <a href="/en/privacy-policy.html" class="footer-link"
-            >Privacy Policy</a
-          >
-          <a href="/en/terms-policy.html" class="footer-link">Terms Policy</a>
+          <a href="/en/about.html" class="footer-link">About</a>
+          <a href="/en/portfolio.html" class="footer-link">Portfolio</a>
+          <a href="/en/privacy-policy.html" class="footer-link">Privacy</a>
+          <a href="/en/terms-policy.html" class="footer-link">Terms</a>
           <a href="#" class="footer-link" onclick="showModal('contact')"
             >Contact</a
           >
-          <a href="/en/support.html" class="footer-link">Support Us</a>
+          <a href="/en/careers.html" class="footer-link">Careers</a>
           <a
             href="https://github.com/swizra/soyth.ch"
             class="footer-link"
@@ -1138,31 +1113,30 @@
               </li>
             </ul>
           </div>
-          <p class="footer-copyright">
-            © <span id="currentYear"></span> Soyth.
-          </p>
+          <p class="footer-copyright">© 2026 Soyth.</p>
         </div>
       </div>
     </footer>
 
     <div id="aboutModal" class="modal">
       <div class="modal-content">
-        <h2>About</h2>
+        <h2>About Soyth</h2>
         <p>
-          Soyth provides a showcase of Business IT tools built with HTML, CSS,
-          and JavaScript to enhance productivity and streamline processes for
-          businesses and developers.
+          Soyth is a Swiss-based digital design studio specializing in web
+          design, brand identity, and digital solutions for ambitious businesses
+          and startups.
         </p>
         <p>
-          Explore the source code and contribute to the projects via the
-          provided links.
+          Founded on the principles of exceptional design, technical excellence,
+          and client partnership, we transform ideas into engaging digital
+          experiences.
         </p>
         <div class="modal-buttons">
           <button
             class="btn btn-secondary"
-            onclick="window.location.href='/en/about.html'"
+            onclick="window.location.href = '/en/about.html'"
           >
-            Read More
+            Learn More
           </button>
           <button class="btn btn-primary" onclick="closeModal('aboutModal')">
             Close
@@ -1171,90 +1145,27 @@
       </div>
     </div>
 
-    <div id="skillsModal" class="modal">
+    <div id="portfolioModal" class="modal">
       <div class="modal-content">
-        <h2>Skills</h2>
+        <h2>Portfolio</h2>
         <p>
-          Expertise in tools, frameworks, and methodologies for delivering
-          efficient Business IT solutions, with a focus on collaboration and
-          productivity.
+          We're currently collecting and organizing our portfolio projects to
+          showcase our best work.
         </p>
         <p>
-          Review the skills section or contact for collaboration opportunities.
+          Our portfolio will feature case studies, client success stories, and
+          examples of our design and development expertise. Check back soon to
+          see our latest projects.
         </p>
         <div class="modal-buttons">
+          <button class="btn btn-secondary" onclick="showModal('contact')">
+            Get in Touch
+          </button>
           <button
-            class="btn btn-secondary"
-            onclick="window.location.href='/en/skills.html'"
+            class="btn btn-primary"
+            onclick="closeModal('portfolioModal')"
           >
-            Read More
-          </button>
-          <button class="btn btn-primary" onclick="closeModal('skillsModal')">
             Close
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div id="cookiesModal" class="modal">
-      <div class="modal-content">
-        <h2>Cookie Policy</h2>
-        <p>
-          We use cookies to enhance your experience on our website. Essential
-          cookies are necessary for the site to function and cannot be disabled.
-          We may also use Google Analytics to collect anonymous data on site
-          usage to improve our services, but this is only enabled with your
-          consent.
-        </p>
-        <p>
-          You can manage your cookie preferences at any time by clicking "Manage
-          Cookies" in the cookie banner or footer. For more details, view our
-          <a href="/en/cookie-policy.html" class="cookie-link" target="_blank"
-            >Cookie Policy</a
-          >.
-        </p>
-        <div class="modal-buttons">
-          <button class="btn" onclick="showModal('cookiePreferences')">
-            Manage
-          </button>
-          <button class="btn btn-primary" onclick="closeModal('cookiesModal')">
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div id="cookiePreferencesModal" class="modal">
-      <div class="modal-content">
-        <h2>Manage Cookie Preferences</h2>
-        <p>Customize which cookies you allow us to use.</p>
-        <div class="cookie-options">
-          <div class="cookie-option">
-            <input type="checkbox" id="essentialCookies" checked disabled />
-            <label for="essentialCookies"
-              >Essential Cookies (Required for site functionality)</label
-            >
-          </div>
-          <div class="cookie-option">
-            <input type="checkbox" id="analyticsCookies" />
-            <label for="analyticsCookies"
-              >Analytics Cookies (Help us understand site performance via Google
-              Analytics)</label
-            >
-          </div>
-          <div class="cookie-option">
-            <input type="checkbox" id="marketingCookies" />
-            <label for="marketingCookies"
-              >Marketing Cookies (Support our marketing efforts)</label
-            >
-          </div>
-        </div>
-        <div class="modal-buttons">
-          <button class="btn" onclick="closeModal('cookiePreferencesModal')">
-            Cancel
-          </button>
-          <button class="btn btn-primary" onclick="saveCookiePreferences()">
-            Save
           </button>
         </div>
       </div>
@@ -1262,16 +1173,16 @@
 
     <div id="contactModal" class="modal">
       <div class="modal-content">
-        <h2>Contact</h2>
+        <h2>Get in Touch</h2>
+        <p>Ready to start your project? Have questions about our services?</p>
         <p>
-          Interested in collaboration or have questions? Reach out via email for
-          direct communication.
-        </p>
-        <p>
-          No personal data is collected, ensuring your privacy and security.
+          Contact us at <strong>hello@soyth.ch</strong>. We typically respond
+          within 24 hours.
         </p>
         <div class="modal-buttons">
-          <a href="mailto:hello@soyth.ch" class="btn btn-primary">Send Email</a>
+          <a href="mailto:hello@soyth.ch" class="btn btn-primary"
+            >Send Message</a
+          >
           <button class="btn" onclick="closeModal('contactModal')">
             Close
           </button>
@@ -1298,60 +1209,13 @@
         </div>
         <div class="search-stats">
           <span id="searchSpeed">Search Speed: 0 ms</span>
-          <span id="searchResultsCount">Items Found: 0</span>
+          <span id="searchResultsCount">Results: 0</span>
         </div>
         <div id="searchResults" class="search-results"></div>
         <div class="modal-buttons"></div>
       </div>
     </div>
     <script>
-      function loadGoogleAnalytics() {
-        const consent = JSON.parse(
-          localStorage.getItem("cookieConsent") || "{}"
-        );
-        if (consent.analytics) {
-          const script = document.createElement("script");
-          script.async = true;
-          script.src =
-            "https://www.googletagmanager.com/gtag/js?id=G-DDYENDFYWF";
-          document.head.appendChild(script);
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "G-DDYENDFYWF", { anonymize_ip: true });
-        }
-      }
-      function showCookieBanner() {
-        const cookieConsent = localStorage.getItem("cookieConsent");
-        if (!cookieConsent) {
-          document.getElementById("cookieBanner").style.display = "block";
-        }
-      }
-      function acceptAllCookies() {
-        localStorage.setItem(
-          "cookieConsent",
-          JSON.stringify({
-            essential: true,
-            analytics: true,
-            marketing: true,
-          })
-        );
-        document.getElementById("cookieBanner").style.display = "none";
-        loadGoogleAnalytics();
-      }
-      function rejectNonEssentialCookies() {
-        localStorage.setItem(
-          "cookieConsent",
-          JSON.stringify({
-            essential: true,
-            analytics: false,
-            marketing: false,
-          })
-        );
-        document.getElementById("cookieBanner").style.display = "none";
-      }
       function showModal(type) {
         event.preventDefault();
         const modals = document.querySelectorAll(".modal");
@@ -1359,22 +1223,15 @@
           modal.style.display = "none";
         });
         document.body.classList.remove("no-scroll");
+
         const modal = document.getElementById(type + "Modal");
         if (modal) {
-          if (type === "cookiePreferences") {
-            const consent = JSON.parse(
-              localStorage.getItem("cookieConsent") || "{}"
-            );
-            document.getElementById("analyticsCookies").checked =
-              consent.analytics || false;
-            document.getElementById("marketingCookies").checked =
-              consent.marketing || false;
-          }
           modal.style.display = "block";
           document.body.classList.add("no-scroll");
           document.querySelector(".logo").classList.remove("logo-hidden");
         }
       }
+
       function closeModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
@@ -1382,25 +1239,12 @@
           document.body.classList.remove("no-scroll");
         }
       }
-      function saveCookiePreferences() {
-        const preferences = {
-          essential: true,
-          analytics: document.getElementById("analyticsCookies").checked,
-          marketing: document.getElementById("marketingCookies").checked,
-        };
-        localStorage.setItem("cookieConsent", JSON.stringify(preferences));
-        document.getElementById("cookiePreferencesModal").style.display =
-          "none";
-        document.getElementById("cookieBanner").style.display = "none";
-        document.body.classList.remove("no-scroll");
-        if (preferences.analytics) {
-          loadGoogleAnalytics();
-        }
-      }
+
       function detectAndRedirectLanguage() {
         const userLang = (
           navigator.language || navigator.userLanguage
         ).toLowerCase();
+
         const supportedLangs = {
           en: "/en/",
           de: "/de/",
@@ -1408,17 +1252,21 @@
           it: "/it/",
           rm: "/rm/",
         };
+
         let selectedLang = "en";
+
         for (const lang in supportedLangs) {
           if (userLang.startsWith(lang)) {
             selectedLang = lang;
             break;
           }
         }
+
         const currentPath = window.location.pathname;
+
         if (
           !Object.values(supportedLangs).some((path) =>
-            currentPath.startsWith(path)
+            currentPath.startsWith(path),
           )
         ) {
           window.location.href = supportedLangs[selectedLang];
@@ -1431,93 +1279,102 @@
             it: "Italiano",
             rm: "Rumantsch",
           }[langCode];
-          document.getElementById("selectedLanguage").textContent = langText;
+
+          const label = document.getElementById("selectedLanguage");
+          if (label) label.textContent = langText;
         }
       }
+
       function toggleTheme() {
         const body = document.body;
         const themeIcon = document.getElementById("themeIcon");
         const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+
         const isDark = body.classList.toggle("dark");
+
         themeIcon.textContent = isDark ? "Light" : "Dark";
         mobileThemeIcon.textContent = isDark ? "Light" : "Dark";
+
         localStorage.setItem("theme", isDark ? "dark" : "light");
       }
+
       function initTheme() {
         const savedTheme = localStorage.getItem("theme");
         const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
+          "(prefers-color-scheme: dark)",
         ).matches;
+
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+
         if (shouldUseDark) {
           document.body.classList.add("dark");
           document.getElementById("themeIcon").textContent = "Light";
           document.getElementById("mobileThemeIcon").textContent = "Light";
         }
       }
+
       function toggleMobileMenu() {
         const mobileNav = document.getElementById("mobileNav");
         const burgerMenu = document.querySelector(".burger-menu");
         const logo = document.querySelector(".logo");
+
         const isActive = mobileNav.classList.contains("active");
 
-        if (isActive) {
-          mobileNav.classList.remove("active");
-          burgerMenu.classList.remove("active");
-          logo.classList.remove("logo-hidden");
-          document.body.classList.remove("no-scroll");
-        } else {
-          mobileNav.classList.add("active");
-          burgerMenu.classList.add("active");
-          logo.classList.add("logo-hidden");
-          document.body.classList.add("no-scroll");
-        }
+        mobileNav.classList.toggle("active", !isActive);
+        burgerMenu.classList.toggle("active", !isActive);
+        logo.classList.toggle("logo-hidden", !isActive);
+        document.body.classList.toggle("no-scroll", !isActive);
       }
+
       function closeMobileMenu() {
         const burger = document.querySelector(".burger-menu");
         const mobileNav = document.getElementById("mobileNav");
+
         burger.classList.remove("active");
         mobileNav.classList.remove("active");
+        document.body.classList.remove("no-scroll");
       }
+
       function shareTool(title, url) {
         if (navigator.share) {
-          navigator
-            .share({
-              title: title,
-              text: `Discover this open-source Business IT tool: ${title}`,
-              url: url,
-            })
-            .catch((error) => console.log("Error sharing:", error));
+          navigator.share({
+            title: title,
+            text: `Check out ${title} by Soyth`,
+            url: url,
+          });
         } else {
-          alert(
-            "Sharing is not supported in this browser. Copy the link: " + url
-          );
+          alert("Sharing not supported. Copy this link: " + url);
         }
       }
+
       function toggleLanguageMenu() {
         const menu = document.getElementById("languageMenu");
         const isActive = menu.classList.toggle("active");
+
         document.body.classList.toggle("no-scroll", isActive);
+
         if (isActive) {
           const toggleButton = document.querySelector(".language-toggle");
-          const menuWidth = toggleButton.offsetWidth;
-          menu.style.width = `${menuWidth}px`;
+          menu.style.width = `${toggleButton.offsetWidth}px`;
         }
       }
+
       function selectLanguage(lang, text) {
         document.getElementById("selectedLanguage").textContent = text;
         document.getElementById("languageMenu").classList.remove("active");
         document.body.classList.remove("no-scroll");
       }
+
       window.addEventListener("click", function (event) {
         const languageSelector = document.querySelector(
-          ".custom-language-selector"
+          ".custom-language-selector",
         );
-        if (!languageSelector.contains(event.target)) {
+        if (languageSelector && !languageSelector.contains(event.target)) {
           document.getElementById("languageMenu").classList.remove("active");
           document.body.classList.remove("no-scroll");
         }
       });
+
       window.onclick = function (event) {
         const modals = document.querySelectorAll(".modal");
         modals.forEach((modal) => {
@@ -1527,47 +1384,47 @@
           }
         });
       };
+
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-          const modals = document.querySelectorAll(".modal");
-          modals.forEach((modal) => {
-            if (modal.style.display === "block") {
-              modal.style.display = "none";
-              document.body.classList.remove("no-scroll");
-            }
+          document.querySelectorAll(".modal").forEach((modal) => {
+            modal.style.display = "none";
           });
-          document.getElementById("languageMenu").classList.remove("active");
-          document.getElementById("projectsNav").classList.remove("active");
+
+          document.getElementById("languageMenu")?.classList.remove("active");
+          document.getElementById("projectsNav")?.classList.remove("active");
+
           document.body.classList.remove("no-scroll");
           closeMobileMenu();
         }
       });
+
       document.addEventListener("DOMContentLoaded", function () {
         initTheme();
-        document.getElementById("currentYear").textContent =
-          new Date().getFullYear();
+
+        const year = document.getElementById("currentYear");
+        if (year) year.textContent = new Date().getFullYear();
+
         detectAndRedirectLanguage();
-        showCookieBanner();
-        loadGoogleAnalytics();
+
         window.addEventListener("resize", function () {
           if (window.innerWidth > 768) {
             closeMobileMenu();
           }
         });
       });
+
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", function (e) {
           if (!localStorage.getItem("theme")) {
-            if (e.matches) {
-              document.body.classList.add("dark");
-              document.getElementById("themeIcon").textContent = "Light";
-              document.getElementById("mobileThemeIcon").textContent = "Light";
-            } else {
-              document.body.classList.remove("dark");
-              document.getElementById("themeIcon").textContent = "Dark";
-              document.getElementById("mobileThemeIcon").textContent = "Dark";
-            }
+            document.body.classList.toggle("dark", e.matches);
+            document.getElementById("themeIcon").textContent = e.matches
+              ? "Light"
+              : "Dark";
+            document.getElementById("mobileThemeIcon").textContent = e.matches
+              ? "Light"
+              : "Dark";
           }
         });
     </script>
@@ -1584,7 +1441,7 @@
         const documentHeight = document.documentElement.scrollHeight;
         const scrollButton = document.getElementById("scrollButton");
         const scrollDistance = Math.abs(
-          scrollTop - lastDirectionChangePosition
+          scrollTop - lastDirectionChangePosition,
         );
 
         if (
@@ -1679,7 +1536,7 @@
         let resultCount = 0;
 
         const searchableElements = document.querySelectorAll(
-          "h1, h2, h3, p, .tool-tech, .tool-status, .skill-card li"
+          "h1, h2, h3, p, .tool-tech, .tool-status, .skill-card li",
         );
         searchableElements.forEach((element) => {
           if (element.closest(".carousel")) {
@@ -1701,12 +1558,10 @@
 
         const endTime = performance.now();
         const searchTime = (endTime - startTime).toFixed(2);
-        document.getElementById(
-          "searchSpeed"
-        ).textContent = `Search Speed: ${searchTime} ms`;
-        document.getElementById(
-          "searchResultsCount"
-        ).textContent = `Items Found: ${resultCount}`;
+        document.getElementById("searchSpeed").textContent =
+          `Search Speed: ${searchTime} ms`;
+        document.getElementById("searchResultsCount").textContent =
+          `Results: ${resultCount}`;
       }
     </script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -1745,7 +1600,7 @@
         icon.classList.toggle("fa-play", !playing);
         toggle.setAttribute(
           "aria-label",
-          playing ? "Pause Carousel Animation" : "Play Carousel Animation"
+          playing ? "Pause Carousel Animation" : "Play Carousel Animation",
         );
       }
 
@@ -1758,13 +1613,11 @@
       }
 
       document.addEventListener("DOMContentLoaded", function () {
-        // Check if Flickity is loaded
         if (typeof Flickity === "undefined") {
           console.error("Flickity not loaded. Check CDN or network.");
           return;
         }
 
-        // Initialize Flickity
         flkty = new Flickity(".carousel", {
           wrapAround: true,
           pageDots: true,
@@ -1779,10 +1632,8 @@
           autoPlay: false,
         });
 
-        // Start carousel
         startCarousel();
 
-        // Attach event listeners to existing navigation buttons
         const prevBtn = document.querySelector(".nav-buttons .prev-btn");
         const nextBtn = document.querySelector(".nav-buttons .next-btn");
 
@@ -1802,11 +1653,9 @@
           console.error("Navigation buttons not found in the DOM.");
         }
 
-        // Handle drag and click events
         flkty.on("dragStart", stopCarousel);
         flkty.on("staticClick", stopCarousel);
 
-        // Customize page dots
         const dots = document.querySelectorAll(".flickity-page-dots .dot");
         dots.forEach((dot, index) => {
           dot.textContent = "";
@@ -1814,7 +1663,6 @@
           dot.addEventListener("click", stopCarousel);
         });
 
-        // Handle visibility change
         document.addEventListener("visibilitychange", () => {
           isDocumentVisible = !document.hidden;
           console.log("Document visibility:", isDocumentVisible);
@@ -1832,13 +1680,11 @@
         console.log("Document visibility:", isDocumentVisible);
 
         if (!isDocumentVisible) {
-          // Save playing state
           wasPlayingBeforeHidden = isCarouselPlaying;
 
-          // Wait a short time to allow current animation to complete
           setTimeout(() => {
             stopCarousel();
-          }, 600); // Wait for Flickity's transition (typically 400–600ms)
+          }, 600);
         } else {
           if (wasPlayingBeforeHidden) {
             startCarousel();
@@ -1854,27 +1700,25 @@
       let startX;
       let scrollLeft;
 
-      // Pause animation on touchstart or mousedown
       carousel.addEventListener("mousedown", (e) => {
         isDown = true;
-        group.classList.add("paused"); // Pause animation
+        group.classList.add("paused");
         startX = e.pageX - carousel.offsetLeft;
         scrollLeft = carousel.scrollLeft;
       });
 
       carousel.addEventListener("touchstart", (e) => {
         isDown = true;
-        group.classList.add("paused"); // Pause animation
+        group.classList.add("paused");
         startX = e.touches[0].pageX - carousel.offsetLeft;
         scrollLeft = carousel.scrollLeft;
       });
 
-      // Mouse drag or touchmove
       carousel.addEventListener("mousemove", (e) => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2; // scroll-fast factor
+        const walk = (x - startX) * 2;
         carousel.scrollLeft = scrollLeft - walk;
       });
 
@@ -1882,29 +1726,28 @@
         if (!isDown) return;
         e.preventDefault();
         const x = e.touches[0].pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2; // scroll-fast factor
+        const walk = (x - startX) * 2;
         carousel.scrollLeft = scrollLeft - walk;
       });
 
-      // When mouse or touch is released
       carousel.addEventListener("mouseup", () => {
         isDown = false;
-        group.classList.remove("paused"); // Resume animation
+        group.classList.remove("paused");
       });
 
       carousel.addEventListener("mouseleave", () => {
         isDown = false;
-        group.classList.remove("paused"); // Resume animation
+        group.classList.remove("paused");
       });
 
       carousel.addEventListener("touchend", () => {
         isDown = false;
-        group.classList.remove("paused"); // Resume animation
+        group.classList.remove("paused");
       });
 
       carousel.addEventListener("touchcancel", () => {
         isDown = false;
-        group.classList.remove("paused"); // Resume animation
+        group.classList.remove("paused");
       });
     </script>
   </body>
