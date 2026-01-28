@@ -180,7 +180,9 @@ body.dark .theme-toggle {
   height: 1px;
   background: var(--text-primary);
   border-radius: var(--border-radius-20);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 body.dark .burger-line {
   background: var(--text-primary-dark);
@@ -739,7 +741,9 @@ body.dark .cookie-option label {
   outline: none;
   cursor: pointer;
   position: relative;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
   accent-color: var(--accent);
 }
 body.dark .cookie-option input[type="checkbox"] {
@@ -1363,7 +1367,9 @@ body.dark .projects-carousel-section {
   border-radius: var(--border-radius-0);
   color: var(--text-primary);
   padding: 2rem;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 body.dark .carousel-cell {
   background: var(--bg-secondary-dark);
@@ -1405,7 +1411,9 @@ body.dark .carousel-cell p {
   min-height: 35px;
   background: none;
   cursor: pointer;
-  transition: border-color 0.3s, color 0.3s;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
 }
 .carousel-cell .content {
   opacity: 0.05;
@@ -1447,7 +1455,9 @@ body.dark .carousel-cell button {
   height: 0.7rem;
   background: var(--border);
   border-radius: var(--border-radius-full);
-  transition: background 0.3s, transform 0.3s;
+  transition:
+    background 0.3s,
+    transform 0.3s;
   cursor: pointer;
   text-indent: -9999px;
   overflow: hidden;
@@ -1477,8 +1487,18 @@ body.dark .flickity-page-dots .dot.is-selected {
 .nav-buttons button {
   pointer-events: auto;
   background: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   border: none;
   font-size: 3.5rem;
   font-weight: 50;
@@ -1539,7 +1559,9 @@ body.dark .carousel-cell {
   color: var(--text-primary-dark);
 }
 .carousel-cell .content {
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 .carousel-cell .content h1,
 .carousel-cell .content p,
@@ -2394,7 +2416,9 @@ body.dark .cookie-option label {
   font-size: revert !important;
 }
 .carousel-cell {
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 .mini-carousel-section {
   margin-top: 1rem;
@@ -2517,11 +2541,12 @@ body.dark .card {
 .shop-services-section {
   padding: 3rem 0rem;
   width: 100vw;
+  background-color: var(--bg-secondary);
   margin: 0;
 }
 
 body.dark .shop-services-section {
-  background: var(--bg-primary-dark);
+  background: var(--bg-secondary-dark);
 }
 
 .shop-services-intro {
@@ -2564,7 +2589,7 @@ body.dark .shop-services-intro p {
 }
 
 .service-card {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: var(--border-0);
   border-color: var(--border);
   border-radius: var(--border-radius-0);
@@ -2574,7 +2599,7 @@ body.dark .shop-services-intro p {
 }
 
 body.dark .service-card {
-  background: var(--bg-secondary-dark);
+  background: var(--bg-primary-dark);
   border: var(--border-0-dark);
   border-color: var(--border-dark);
 }
@@ -2582,8 +2607,8 @@ body.dark .service-card {
 .service-card .material-icons {
   font-size: 4rem;
   margin-bottom: 1rem;
-  padding: 1rem;
-  background: var(--bg-secondary);
+  padding: 0rem;
+  background: none;
   color: var(--text-primary);
   border-radius: var(--border-radius-0);
   border: 0px solid var(--border);
@@ -2591,7 +2616,7 @@ body.dark .service-card {
 
 body.dark .service-card .material-icons {
   color: var(--text-primary-dark);
-  background: var(--bg-secondary-dark);
+  background: none;
   border-color: var(--border-dark);
 }
 
@@ -2713,7 +2738,7 @@ body.dark .why-choose-section h2 {
   font-size: 3rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   color: var(--text-primary);
   border-radius: var(--border-radius-20);
   border: 0px solid var(--border);
