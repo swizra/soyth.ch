@@ -1,338 +1,883 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Student Company Preferences Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - KEFE STUDIO</title>
+    <meta
+      name="description"
+      content="Privacy Policy for KEFE Studio"
+    />
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-      }
-      table {
-        margin-top: 20px;
-      }
-      .best-place td {
-        background-color: cyan !important;
-      }
-      #controls {
-        margin-bottom: 20px;
-      }
-      #uniSelect {
-        margin-top: 10px;
-      }
-      canvas {
-        max-width: 600px;
-        margin-top: 20px;
-      }
-      img.logo {
-        width: 50px;
-        height: auto;
-        margin-right: 10px;
-        vertical-align: middle;
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    outline: none;
+  }
+
+  *:focus,
+  *:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-logo-giant,
+  .legal-bar-giant {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --off-white: #f2f2f2;
+    --gray: #666666;
+    --border-color: #f2f2f2;
+    --border: 1rem solid var(--border-color);
+    --section-padding: clamp(80px, 12vh, 140px);
+    --content-padding: 4vw;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --black: #ffffff;
+      --white: #0a0a0a;
+      --off-white: #1a1a1a;
+      --gray: #999999;
+      --border-color: #1a1a1a;
+    }
+  }
+
+  body {
+    background-color: var(--white);
+    color: var(--black);
+    font-family: "Inter", sans-serif;
+    line-height: 1.4;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px var(--content-padding);
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 100;
+  }
+
+  .logo {
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .theme-toggle .material-icons {
+    font-size: 28px;
+    color: var(--black);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-btn {
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    padding: 14px 32px;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    line-height: 1;
+  }
+
+  .burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 201;
+  }
+
+  .burger-menu span {
+    display: block;
+    height: 4px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5.66px, 5.66px);
+  }
+
+  .burger-menu.active span:nth-child(2) {
+    transform: rotate(-45deg) translate(5.66px, -5.66px);
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--white);
+    padding: 17px var(--content-padding) 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: right 0.3s ease;
+    z-index: 200;
+    overflow-y: auto;
+  }
+
+  .mobile-nav.active {
+    right: 0;
+  }
+
+  .mobile-link {
+    font-size: 32px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--black);
+    padding: 16px 0;
+    line-height: 1.1;
+  }
+
+  .mobile-cta {
+    font-size: 20px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    padding: 18px 36px;
+    border-radius: 100px;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1;
+  }
+
+  .legal-hero {
+    padding: clamp(80px, 15vh, 200px) var(--content-padding) clamp(60px, 10vh, 120px);
+    border-bottom: var(--border);
+    background-color: var(--white);
+  }
+
+  .legal-hero h1 {
+    color: var(--black);
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .legal-hero p {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .legal-content {
+    padding: var(--section-padding) var(--content-padding);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .legal-content h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 900;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: var(--black);
+  }
+
+  .legal-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal-content h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--black);
+  }
+
+  .legal-content p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .legal-content ul,
+  .legal-content ol {
+    margin: 20px 0 20px 24px;
+    line-height: 1.7;
+  }
+
+  .legal-content li {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--black);
+  }
+
+  .legal-content strong {
+    font-weight: 900;
+  }
+
+  .legal-content a {
+    color: var(--black);
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  .highlight-box {
+    background: var(--off-white);
+    padding: 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+    border-left: 4px solid var(--black);
+  }
+
+  footer {
+    padding: var(--section-padding) var(--content-padding) 40px;
+    width: 100%;
+    background: var(--white);
+    border-top: var(--border);
+  }
+
+  .footer-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 80px;
+    border-top: var(--border);
+  }
+
+  .accordion-item {
+    border-bottom: var(--border);
+  }
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+    text-align: left;
+    transition: opacity 0.3s ease;
+  }
+
+  .accordion-header:hover {
+    opacity: 0.7;
+  }
+
+  .accordion-icon {
+    font-size: 32px;
+    transition: transform 0.3s ease;
+    color: var(--black);
+  }
+
+  .accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .accordion-item.active .accordion-content {
+    max-height: 500px;
+    padding-bottom: 28px;
+  }
+
+  .accordion-content p,
+  .accordion-content a {
+    font-size: 15px;
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    margin-bottom: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .accordion-content a:hover {
+    opacity: 0.7;
+  }
+
+  .footer-big-elements {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo-giant {
+    font-size: clamp(120px, 22vw, 360px);
+    font-weight: 900;
+    line-height: 0.9;
+    margin-left: -0.04em;
+    color: var(--black);
+  }
+
+  .legal-bar-giant {
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 900;
+    margin-top: 24px;
+    line-height: 0.9;
+    color: var(--black);
+  }
+
+  body.dark-mode {
+    --black: #ffffff;
+    --white: #0a0a0a;
+    --off-white: #1a1a1a;
+    --gray: #999999;
+    --border-color: #1a1a1a;
+  }
+
+  body.light-mode {
+    --black: #000000;
+    --white: #ffffff;
+    --off-white: #f2f2f2;
+    --gray: #666666;
+    --border-color: #f2f2f2;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-btn {
+      display: none;
+    }
+    .burger-menu {
+      display: flex;
+    }
+    .header-right {
+      gap: 15px;
+    }
+  }
+</style>
+
+
   </head>
   <body>
-    <div class="container">
-      <h1 class="text-center">Student Company Preferences Dashboard</h1>
-      <div id="controls" class="row">
-        <div class="col-md-3">
-          <label for="category" class="form-label">Category:</label>
-          <select id="category" class="form-select">
-            <option value="All">All</option>
-            <option value="No Roche">No Roche</option>
-            <option value="Banks">Banks</option>
-            <option value="Insurance">Insurance</option>
-            <option value="Consulting">Consulting</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label for="filter" class="form-label">Filter Companies:</label>
-          <input
-            type="text"
-            id="filter"
-            class="form-control"
-            placeholder="Enter company name..."
-          />
-        </div>
-        <div class="col-md-3">
-          <label for="sortUni" class="form-label">Sort By:</label>
-          <select id="sortUni" class="form-select"></select>
-        </div>
-        <div class="col-md-3">
-          <label for="sortDir" class="form-label">Direction:</label>
-          <select id="sortDir" class="form-select">
-            <option value="desc">Descending</option>
-            <option value="asc">Ascending</option>
-          </select>
+    <header>
+      <a href="/en/index.html" class="logo">KEFE</a>
+      <div class="header-right">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <span class="material-icons">light_mode</span>
+        </button>
+        <a href="mailto:volodymyr@kefe.ch" class="header-btn desktop-btn"
+          >Get Started</a
+        >
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
         </div>
       </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="/en/index.html#strategy" class="mobile-link">Strategy</a>
+        <a href="/en/index.html#design" class="mobile-link">Design</a>
+        <a href="/en/index.html#scaling" class="mobile-link">Scaling</a>
+        <a href="/en/index.html#consulting" class="mobile-link">Consulting</a>
+        <a href="/en/index.html#process" class="mobile-link">Our Process</a>
+        <a href="/en/index.html#services" class="mobile-link">Services</a>
+        <a href="mailto:volodymyr@kefe.ch" class="mobile-cta">Get Started</a>
+      </nav>
+    </header>
 
-      <div id="uniSelect" class="mb-3">
-        <strong>Universities to Show:</strong>
+
+<section class="legal-hero">
+  <h1>Privacy Policy</h1>
+  <p>Last updated: February 2026</p>
+</section>
+
+<section class="legal-content">
+  <div class="highlight-box">
+    <p style="margin-bottom: 0;">
+      <strong>Simple Summary:</strong> KEFE does not use cookies, tracking tools, or analytics. We do not collect any personal data through this website. The only information we have is what you voluntarily share with us via email, phone, or in-person meetings.
+    </p>
+  </div>
+
+  <h2>1. Introduction</h2>
+  <p>
+    This Privacy Policy explains how KEFE (Volodymyr Shalavylo) handles personal information in compliance with Swiss data protection laws, including the Federal Act on Data Protection (FADP). This policy applies to all interactions with KEFE, including through the website, email communications, phone calls, and in-person meetings.
+  </p>
+  <p>
+    KEFE is committed to protecting your privacy and handling your personal data responsibly and transparently.
+  </p>
+
+  <h2>2. Data Controller</h2>
+  <p>
+    The data controller responsible for processing your personal data is:
+  </p>
+  <p>
+    <strong>Volodymyr Shalavylo</strong><br>
+    KEFE<br>
+    Ziegelweg 1<br>
+    4102 Binningen<br>
+    Basel-Landschaft, Switzerland<br>
+    <br>
+    Email: <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a><br>
+    Phone: <a href="tel:+41783514822">+41 78 351 48 22</a>
+  </p>
+
+  <h2>3. No Website Tracking or Cookies</h2>
+  <p>
+    KEFE's website does not use:
+  </p>
+  <ul>
+    <li>Cookies of any kind (essential, functional, analytics, or marketing)</li>
+    <li>Tracking pixels or web beacons</li>
+    <li>Analytics tools (such as Google Analytics)</li>
+    <li>Third-party advertising or tracking services</li>
+    <li>Social media plugins or widgets</li>
+    <li>Session tracking or user profiling</li>
+  </ul>
+  <p>
+    Your visit to this website is completely private and anonymous. No data about your browsing behavior, IP address, location, device, or any other information is collected, stored, or analyzed.
+  </p>
+
+  <h2>4. Data We Collect</h2>
+  <p>
+    KEFE only collects personal data that you <strong>voluntarily provide</strong> through the following channels:
+  </p>
+
+  <h3>4.1 Email Communications</h3>
+  <p>
+    When you contact KEFE via email, we collect:
+  </p>
+  <ul>
+    <li>Your name</li>
+    <li>Your email address</li>
+    <li>The content of your message</li>
+    <li>Any attachments you include</li>
+    <li>Technical metadata (date, time, email headers) automatically generated by email systems</li>
+  </ul>
+
+  <h3>4.2 Phone Communications</h3>
+  <p>
+    When you contact KEFE via phone or messaging apps (WhatsApp, Telegram), we may collect:
+  </p>
+  <ul>
+    <li>Your phone number</li>
+    <li>Your name (if provided)</li>
+    <li>The content of our conversation</li>
+    <li>Date and time of contact</li>
+  </ul>
+
+  <h3>4.3 In-Person Meetings</h3>
+  <p>
+    During business meetings, we may collect:
+  </p>
+  <ul>
+    <li>Your name and contact details</li>
+    <li>Your company name and position</li>
+    <li>Business-related information you share</li>
+    <li>Notes from our discussions</li>
+  </ul>
+
+  <h3>4.4 Project Engagement</h3>
+  <p>
+    When you engage KEFE for services, we collect information necessary for project delivery:
+  </p>
+  <ul>
+    <li>Contact information (name, email, phone, address)</li>
+    <li>Company information</li>
+    <li>Project requirements and specifications</li>
+    <li>Billing and payment information</li>
+    <li>Any materials or content you provide for the project</li>
+  </ul>
+
+  <h2>5. How We Use Your Data</h2>
+  <p>
+    KEFE uses your personal data solely for legitimate business purposes:
+  </p>
+  <ul>
+    <li><strong>Communication:</strong> Responding to your inquiries and maintaining business correspondence</li>
+    <li><strong>Service Delivery:</strong> Providing the design and consulting services you have requested</li>
+    <li><strong>Project Management:</strong> Coordinating project timelines, deliverables, and feedback</li>
+    <li><strong>Billing:</strong> Processing payments and maintaining financial records</li>
+    <li><strong>Legal Compliance:</strong> Meeting legal obligations under Swiss law</li>
+    <li><strong>Business Records:</strong> Maintaining records for business continuity and professional purposes</li>
+  </ul>
+  <p>
+    We do not use your data for:
+  </p>
+  <ul>
+    <li>Marketing or promotional purposes (unless you explicitly request updates)</li>
+    <li>Selling or renting to third parties</li>
+    <li>Automated decision-making or profiling</li>
+    <li>Any purpose unrelated to your business relationship with KEFE</li>
+  </ul>
+
+  <h2>6. Legal Basis for Data Processing</h2>
+  <p>
+    Under Swiss data protection law, KEFE processes your personal data based on:
+  </p>
+  <ul>
+    <li><strong>Contract Performance:</strong> Processing necessary to fulfill service agreements</li>
+    <li><strong>Legitimate Interest:</strong> Operating our business and maintaining client relationships</li>
+    <li><strong>Consent:</strong> Your voluntary provision of information when contacting us</li>
+    <li><strong>Legal Obligation:</strong> Compliance with Swiss legal requirements (tax, business records)</li>
+  </ul>
+
+  <h2>7. Data Sharing and Third Parties</h2>
+  <p>
+    KEFE does not sell, rent, or trade your personal data to third parties.
+  </p>
+  
+  <h3>Limited Sharing</h3>
+  <p>
+    Your data may only be shared in these specific circumstances:
+  </p>
+  <ul>
+    <li><strong>Email Services:</strong> Email communications are processed through Apple Inc.'s email services, subject to their privacy policies</li>
+    <li><strong>Website Hosting:</strong> This website is hosted on GitHub Pages (GitHub, Inc.), but no personal data is collected through the website</li>
+    <li><strong>Legal Requirements:</strong> If required by Swiss law, court order, or legal process</li>
+    <li><strong>Professional Advisors:</strong> With accountants or lawyers when necessary for business operations (subject to professional confidentiality)</li>
+  </ul>
+  <p>
+    Any data sharing is limited to what is strictly necessary and is always done in accordance with Swiss data protection standards.
+  </p>
+
+  <h2>8. Data Security</h2>
+  <p>
+    KEFE implements appropriate technical and organizational measures to protect your personal data:
+  </p>
+  <ul>
+    <li>Secure email communications using encrypted connections</li>
+    <li>Password-protected devices and systems</li>
+    <li>Limited access to personal data (only Volodymyr Shalavylo)</li>
+    <li>Regular backups stored securely</li>
+    <li>Physical security of paper records</li>
+  </ul>
+  <p>
+    However, no method of transmission or storage is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.
+  </p>
+
+  <h2>9. Data Retention</h2>
+  <p>
+    KEFE retains personal data only as long as necessary for business and legal purposes:
+  </p>
+  <ul>
+    <li><strong>Active Projects:</strong> Data retained throughout project duration and for reasonable follow-up period</li>
+    <li><strong>Completed Projects:</strong> Data retained for potential portfolio use, references, or legal requirements</li>
+    <li><strong>Inquiry Communications:</strong> Typically retained for 2 years unless a business relationship develops</li>
+    <li><strong>Financial Records:</strong> Retained for 10 years as required by Swiss law</li>
+    <li><strong>Marketing Consent:</strong> Retained until you withdraw consent</li>
+  </ul>
+  <p>
+    After retention periods expire, data is securely deleted or anonymized.
+  </p>
+
+  <h2>10. Your Rights</h2>
+  <p>
+    Under Swiss data protection law, you have the following rights:
+  </p>
+  <ul>
+    <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you</li>
+    <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete data</li>
+    <li><strong>Right to Erasure:</strong> Request deletion of your data (subject to legal retention requirements)</li>
+    <li><strong>Right to Restriction:</strong> Request limitation of data processing</li>
+    <li><strong>Right to Data Portability:</strong> Receive your data in a structured, machine-readable format</li>
+    <li><strong>Right to Object:</strong> Object to processing based on legitimate interests</li>
+    <li><strong>Right to Withdraw Consent:</strong> Withdraw previously given consent at any time</li>
+  </ul>
+  <p>
+    To exercise any of these rights, please contact us at <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a>. We will respond within 30 days.
+  </p>
+
+  <h2>11. International Data Transfers</h2>
+  <p>
+    Your personal data is processed within Switzerland. Some third-party services (such as email services provided by Apple Inc.) may process data internationally. Any international transfers are conducted with appropriate safeguards in compliance with Swiss data protection requirements.
+  </p>
+
+  <h2>12. Children's Privacy</h2>
+  <p>
+    KEFE's services are not directed at individuals under 18 years of age. We do not knowingly collect personal data from children. If you become aware that a child has provided us with personal data, please contact us immediately so we can delete it.
+  </p>
+
+  <h2>13. Business Transfers</h2>
+  <p>
+    In the event KEFE's business operations are transferred, sold, or merged with another entity, personal data may be transferred as part of that transaction. You will be notified of any such change, and the new entity will be bound by this Privacy Policy.
+  </p>
+
+  <h2>14. Changes to This Privacy Policy</h2>
+  <p>
+    KEFE may update this Privacy Policy to reflect changes in:
+  </p>
+  <ul>
+    <li>Legal requirements</li>
+    <li>Business practices</li>
+    <li>Technology used</li>
+    <li>Our understanding of data protection best practices</li>
+  </ul>
+  <p>
+    The "Last Updated" date at the top of this page indicates when the policy was last modified. For significant changes, we will notify active clients via email. Your continued use of KEFE's services after changes constitutes acceptance of the updated policy.
+  </p>
+
+  <h2>15. Complaints and Regulatory Authority</h2>
+  <p>
+    If you believe KEFE has not handled your personal data properly, please contact us first so we can address your concerns:
+  </p>
+  <p>
+    Email: <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a><br>
+    Phone: <a href="tel:+41783514822">+41 78 351 48 22</a>
+  </p>
+  <p>
+    You also have the right to lodge a complaint with the Swiss Federal Data Protection and Information Commissioner (FDPIC):
+  </p>
+  <p>
+    <strong>Federal Data Protection and Information Commissioner (FDPIC)</strong><br>
+    Feldeggweg 1<br>
+    3003 Bern<br>
+    Switzerland<br>
+    <a href="https://www.edoeb.admin.ch" target="_blank">www.edoeb.admin.ch</a>
+  </p>
+
+  <h2>16. Contact Information</h2>
+  <p>
+    For any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact:
+  </p>
+  <p>
+    <strong>Volodymyr Shalavylo</strong><br>
+    KEFE<br>
+    Ziegelweg 1<br>
+    4102 Binningen<br>
+    Basel-Landschaft, Switzerland<br>
+    <br>
+    Email: <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a><br>
+    Phone: <a href="tel:+41783514822">+41 78 351 48 22</a>
+  </p>
+
+  <h2>17. Commitment to Privacy</h2>
+  <p>
+    KEFE (Volodymyr Shalavylo) is personally committed to protecting your privacy. As a sole proprietor, I handle all data personally and take this responsibility seriously. Your trust is essential to our business relationship, and protecting your personal information is a core principle of how KEFE operates.
+  </p>
+</section>
+
+<footer>
+  <div class="footer-accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Headquarters</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <p>4102 Binningen</p>
+        <p>Switzerland</p>
       </div>
-
-      <table id="dataTable" class="table table-striped table-bordered">
-        <thead class="table-light"></thead>
-        <tbody></tbody>
-      </table>
-
-      <canvas id="ratioChart" width="600" height="300"></canvas>
     </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Contact</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <p><a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a></p>
+        <p>+41 78 351 48 22</p>
+      </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Social Media</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <a href="https://wa.me/41783514822">WhatsApp</a>
+        <a href="https://t.me/kefestudio">Telegram</a>
+      </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Legal</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <a href="/en/terms.html">Terms & Conditions</a>
+        <a href="/en/imprint.html">Imprint</a>
+        <a href="/en/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-big-elements">
+    <div class="footer-logo-giant">KEFE</div>
+    <div class="legal-bar-giant">©<span id="year"></span></div>
+  </div>
+</footer>
 
-    <script>
-      const unis = ["UB", "HSG", "ZHAW (M&L)", "FHNW", "UG"];
-      const est = [1260, 3190, 810, 820, 1370];
-
-      const logos = {
-        UBS: "https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/UBS_Logo.svg/280px-UBS_Logo.svg.png",
-        McKinsey:
-          "https://cdn.cookielaw.org/logos/353d36fb-3a1c-4021-b831-ee6d50361d6a/07a8989e-cba1-4f60-a67a-0ffe9efc1b3a/5705935c-c99f-48d8-8aef-b78127f4aed3/mckinsey---company_owler_20190728_090718_original.png",
-        GS: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Goldman_Sachs.svg/2048px-Goldman_Sachs.svg.png",
-        JP: "https://media.designrush.com/inspiration_images/757008/conversions/JPMorgan-Chase-Logo-SVG-mobile.jpg",
-        "JP Private Bank":
-          "https://media.licdn.com/dms/image/v2/C4D0BAQE7S7hzBXDAnQ/company-logo_200_200/company-logo_200_200/0/1633033021268?e=2147483647&v=beta&t=d7LYQvPFV002PXY2CK5d81qmoDuIjyt2-BPUMxRUyrQ",
-        Roche:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/F._Hoffmann-La_Roche_2021_logo.svg/1200px-F._Hoffmann-La_Roche_2021_logo.svg.png",
-        Accenture:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
-        BlackRock:
-          "https://www.blackrock.com/blk-corp-assets/include/common/images/blackrock_logo.png",
-        "Julius Baer":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Julius_B%C3%A4r_Logo.svg/1200px-Julius_B%C3%A4r_Logo.svg.png",
-        "Swiss Re":
-          "https://www.swissre.com/dam/jcr:677cb3f5-a53d-4bf3-bf91-8018afbaa59b/SR_Logo_CMYK_Lake.jpg",
-        Zurich:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Zurich_Insurance_Group_logo.svg/1200px-Zurich_Insurance_Group_logo.svg.png",
-        BCG: "https://media-publications.bcg.com/BCG_MONOGRAM.png",
-        "Bain & Company":
-          "https://www.bain.com/globalassets/bain_logo_square_1200x1200.png",
-        "Swiss Life":
-          "https://www.swisslife.com/content/dam/com_rel/bilder/neu_uploads/Logo_Downloads/Downloads_jpg/SL_download.jpg",
-        "Swiss Life Asset Managers":
-          "https://www.swisslife.com/content/internet/com/en/home/medien/downloads/logos/_jcr_content/parsys/gridctrl_2012894388__1271087054/parsys_grid_ctrl/image/image.1560926091655.transform/no_ratio_3840w/SL_AsM_downloads.png",
-        "Baloise CH":
-          "https://upload.wikimedia.org/wikipedia/commons/8/88/Baloise_Logo_2022.svg",
-      };
-
-      const data = {
-        All: {
-          companies: [
-            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
-            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
-            { name: "GS", counts: [5, 150, 6, 0, 42] },
-            { name: "JP", counts: [5, 90, 2, 3, 55] },
-            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
-            { name: "Roche", counts: [837, 247, 46, 561, 148] },
-            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
-            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
-            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
-            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
-            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
-            { name: "BCG", counts: [14, 328, 8, 3, 10] },
-            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
-            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
-            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
-            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
-          ],
-        },
-        "No Roche": {
-          companies: [
-            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
-            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
-            { name: "GS", counts: [5, 150, 6, 0, 42] },
-            { name: "JP", counts: [5, 90, 2, 3, 55] },
-            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
-            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
-            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
-            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
-            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
-            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
-            { name: "BCG", counts: [14, 328, 8, 3, 10] },
-            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
-            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
-            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
-            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
-          ],
-        },
-        Banks: {
-          companies: [
-            { name: "UBS", counts: [404, 1494, 935, 817, 456] },
-            { name: "GS", counts: [5, 150, 6, 0, 42] },
-            { name: "JP", counts: [5, 90, 2, 3, 55] },
-            { name: "JP Private Bank", counts: [0, 11, 2, 0, 18] },
-            { name: "BlackRock", counts: [3, 50, 2, 9, 10] },
-            { name: "Julius Baer", counts: [44, 243, 145, 79, 85] },
-          ],
-        },
-        Insurance: {
-          companies: [
-            { name: "Swiss Re", counts: [46, 204, 39, 24, 26] },
-            { name: "Zurich", counts: [40, 310, 211, 92, 32] },
-            { name: "Swiss Life", counts: [33, 101, 86, 46, 8] },
-            { name: "Swiss Life Asset Managers", counts: [19, 45, 21, 14, 9] },
-            { name: "Baloise CH", counts: [246, 83, 27, 213, 13] },
-          ],
-        },
-        Consulting: {
-          companies: [
-            { name: "McKinsey", counts: [13, 354, 7, 4, 30] },
-            { name: "Accenture", counts: [34, 219, 56, 44, 29] },
-            { name: "BCG", counts: [14, 328, 8, 3, 10] },
-            { name: "Bain & Company", counts: [4, 218, 7, 3, 8] },
-          ],
-        },
-      };
-
-      let uniChecks = "";
-      unis.forEach((u, i) => {
-        uniChecks += `<div class="form-check form-check-inline"><input type="checkbox" class="form-check-input uni-check" data-index="${i}" checked> <label class="form-check-label">${u}</label></div>`;
+<script>
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const accordionItem = header.parentElement;
+      const isActive = accordionItem.classList.contains('active');
+      
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('active');
       });
-      document.getElementById("uniSelect").innerHTML += uniChecks;
-
-      let sortUniOptions = '<option value="-1">Total</option>';
-      unis.forEach((u, i) => {
-        sortUniOptions += `<option value="${i}">${u}</option>`;
-      });
-      document.getElementById("sortUni").innerHTML = sortUniOptions;
-
-      document.getElementById("category").addEventListener("change", update);
-      document.getElementById("filter").addEventListener("input", update);
-      document.getElementById("sortUni").addEventListener("change", update);
-      document.getElementById("sortDir").addEventListener("change", update);
-      document
-        .querySelectorAll(".uni-check")
-        .forEach((ch) => ch.addEventListener("change", update));
-
-      function update() {
-        const cat = document.getElementById("category").value;
-        const d = data[cat];
-        const filterText = document
-          .getElementById("filter")
-          .value.toLowerCase();
-        let comps = d.companies.filter((c) =>
-          c.name.toLowerCase().includes(filterText)
-        );
-
-        const sortUniIdx = parseInt(document.getElementById("sortUni").value);
-        const dir =
-          document.getElementById("sortDir").value === "desc" ? -1 : 1;
-        comps.sort((a, b) => {
-          const valA =
-            sortUniIdx === -1
-              ? a.counts.reduce((x, y) => x + y, 0)
-              : a.counts[sortUniIdx];
-          const valB =
-            sortUniIdx === -1
-              ? b.counts.reduce((x, y) => x + y, 0)
-              : b.counts[sortUniIdx];
-          return dir * (valA - valB);
-        });
-
-        const selectedIndices = Array.from(
-          document.querySelectorAll(".uni-check:checked")
-        ).map((ch) => parseInt(ch.dataset.index));
-
-        if (selectedIndices.length === 0) {
-          document
-            .getElementById("dataTable")
-            .querySelector("tbody").innerHTML = "";
-          if (window.myChart) window.myChart.destroy();
-          return;
-        }
-
-        const computedTotals = new Array(unis.length).fill(0);
-        comps.forEach((c) => {
-          c.counts.forEach((val, i) => {
-            computedTotals[i] += val;
-          });
-        });
-
-        const ratios = computedTotals.map((total, i) => total / est[i]);
-
-        const ranks = new Array(unis.length).fill(0);
-        const sortedSelected = [...selectedIndices].sort(
-          (a, b) => ratios[b] - ratios[a]
-        );
-        sortedSelected.forEach((i, idx) => (ranks[i] = idx + 1));
-
-        let thead = "<tr><th>Company</th>";
-        selectedIndices.forEach((i) => (thead += `<th>${unis[i]}</th>`));
-        thead += "<th>Total</th></tr>";
-        document.getElementById("dataTable").querySelector("thead").innerHTML =
-          thead;
-
-        let tbody = "";
-        comps.forEach((c) => {
-          tbody += `<tr><td><img src="${logos[c.name] || ""}" alt="${
-            c.name
-          } logo" class="logo">${c.name}</td>`;
-          selectedIndices.forEach((i) => (tbody += `<td>${c.counts[i]}</td>`));
-          const companyTotal = selectedIndices.reduce(
-            (sum, i) => sum + c.counts[i],
-            0
-          );
-          tbody += `<td>${companyTotal}</td></tr>`;
-        });
-
-        // Students EST row
-        tbody += "<tr><td>Students (EST)</td>";
-        selectedIndices.forEach((i) => (tbody += `<td>${est[i]}</td>`));
-        tbody += "<td></td></tr>";
-
-        tbody += '<tr class="table-secondary"><td>Total</td>';
-        selectedIndices.forEach(
-          (i) => (tbody += `<td>${computedTotals[i]}</td>`)
-        );
-        const grandTotal = selectedIndices.reduce(
-          (sum, i) => sum + computedTotals[i],
-          0
-        );
-        tbody += `<td>${grandTotal}</td></tr>`;
-
-        tbody += "<tr><td>Ratio (EST)</td>";
-        selectedIndices.forEach(
-          (i) => (tbody += `<td>${ratios[i].toFixed(3)}</td>`)
-        );
-        tbody += "<td></td></tr>";
-
-        tbody += '<tr class="best-place"><td>Best Place</td>';
-        selectedIndices.forEach((i) => (tbody += `<td>${ranks[i]}</td>`));
-        tbody += "<td></td></tr>";
-
-        document.getElementById("dataTable").querySelector("tbody").innerHTML =
-          tbody;
-
-        const ctx = document.getElementById("ratioChart").getContext("2d");
-        if (window.myChart) window.myChart.destroy();
-        window.myChart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: selectedIndices.map((i) => unis[i]),
-            datasets: [
-              {
-                label: "Ratio (EST)",
-                data: selectedIndices.map((i) => ratios[i]),
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: { beginAtZero: true },
-            },
-          },
-        });
+      
+      if (!isActive) {
+        accordionItem.classList.add('active');
       }
+    });
+  });
+</script>
 
-      update();
-    </script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script>
+  const burger = document.getElementById("burger-menu");
+  const mobileNav = document.getElementById("mobile-nav");
+  const body = document.body;
+  let scrollPosition = 0;
+
+  function openMenu() {
+    scrollPosition = window.scrollY;
+    body.style.top = `-${scrollPosition}px`;
+    body.classList.add("no-scroll");
+    burger.classList.add("active");
+    mobileNav.classList.add("active");
+  }
+
+  function closeMenu() {
+    body.classList.remove("no-scroll");
+    body.style.top = "";
+    window.scrollTo(0, scrollPosition);
+    burger.classList.remove("active");
+    mobileNav.classList.remove("active");
+  }
+
+  burger.addEventListener("click", () => {
+    if (!burger.classList.contains("active")) openMenu();
+    else closeMenu();
+  });
+
+  document
+    .querySelectorAll(".mobile-link")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileNav.contains(e.target) &&
+      !burger.contains(e.target) &&
+      mobileNav.classList.contains("active")
+    ) {
+      closeMenu();
+    }
+  });
+</script>
+
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = themeToggle.querySelector(".material-icons");
+  const currentTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
+  if (currentTheme === "dark" || (!currentTheme && systemPrefersDark)) {
+    body.classList.add("dark-mode");
+    themeIcon.textContent = "dark_mode";
+  } else {
+    body.classList.add("light-mode");
+    themeIcon.textContent = "light_mode";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+      themeIcon.textContent = "light_mode";
+      localStorage.setItem("theme", "light");
+    } else {
+      body.classList.remove("light-mode");
+      body.classList.add("dark-mode");
+      themeIcon.textContent = "dark_mode";
+      localStorage.setItem("theme", "dark");
+    }
+  });
+</script>
+
+
   </body>
 </html>
