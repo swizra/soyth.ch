@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KEFE STUDIO</title>
+    <title>KEFE STUDIO - Strategisches Design & Beratung</title>
+    <meta
+      name="description"
+      content="Schweizer strategisches Design- und Beratungsstudio. Wir bauen Systeme, die skalieren, und Identitäten, die dominieren."
+    />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -16,8 +20,20 @@
         --white: #ffffff;
         --off-white: #f2f2f2;
         --gray: #888888;
-        --border: 1.5px solid #000000;
+        --border: 1rem solid #f2f2f2;
         --red: #ff0000;
+        --accent: #0066ff;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --black: #ffffff;
+          --white: #0a0a0a;
+          --off-white: #1a1a1a;
+          --gray: #aaaaaa;
+          --border: 1rem solid #1a1a1a;
+          --accent: #4d94ff;
+        }
       }
 
       * {
@@ -37,16 +53,100 @@
         overflow-x: hidden;
       }
 
+      body.no-scroll {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+      }
+
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 20px 4vw;
         border-bottom: var(--border);
+        border: none;
         position: sticky;
         top: 0;
         background: var(--white);
         z-index: 100;
+      }
+
+      .burger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 201;
+      }
+
+      .burger-menu span {
+        display: block;
+        height: 4px;
+        background: var(--black);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5.66px, 5.66px);
+      }
+
+      .burger-menu.active span:nth-child(2) {
+        transform: rotate(-45deg) translate(5.66px, -5.66px);
+      }
+
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--white);
+        padding: 60px 4vw 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: right 0.3s ease;
+        z-index: 200;
+        overflow-y: auto;
+      }
+
+      .mobile-nav.active {
+        right: 0;
+      }
+
+      .mobile-link {
+        font-size: 28px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--black);
+        padding: 12px 0;
+        border-bottom: 0px solid var(--off-white);
+      }
+
+      .mobile-cta {
+        font-size: 24px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--black);
+        padding: 20px 32px;
+        border-radius: 100px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-btn {
+          display: none;
+        }
+        .burger-menu {
+          display: flex;
+        }
       }
 
       .logo {
@@ -54,8 +154,38 @@
         font-size: clamp(40px, 4vw, 56px);
       }
 
+      .lang-nav {
+        display: flex;
+        width: 100%;
+        margin-top: 40px;
+      }
+
+      .lang-btn {
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--black);
+        background: transparent;
+        padding: 16px;
+        width: 25%;
+        text-align: center;
+        border: 1px solid var(--black);
+        border-right: none;
+      }
+
+      .lang-btn:first-child {
+        border: 1px solid var(--black);
+        border-right: none;
+        border-radius: 0px 0 0 0px;
+      }
+
+      .lang-btn:last-child {
+        border: 1px solid var(--black);
+        border-radius: 0 0px 0px 0;
+      }
+
       .header-btn {
-        font-size: 12px;
+        font-size: 20px;
         font-weight: 900;
         text-decoration: none;
         color: var(--white);
@@ -68,9 +198,16 @@
       .hero {
         padding: clamp(80px, 15vh, 200px) 4vw;
         border-bottom: var(--border);
+        border: none;
+        background-color: var(--accent);
+        min-height: 65vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
       .hero h1 {
+        color: var(--white);
         font-size: clamp(45px, 13vw, 220px);
         font-weight: 900;
         line-height: 0.8;
@@ -83,6 +220,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
+        background: var(--off-white);
       }
 
       .about-mini p {
@@ -91,6 +229,40 @@
         font-weight: 700;
         line-height: 1.1;
         max-width: 1200px;
+      }
+
+      .stats-section {
+        padding: 80px 4vw;
+        border-bottom: var(--border);
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 60px;
+        text-align: center;
+      }
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stat-number {
+        font-size: clamp(60px, 8vw, 120px);
+        font-weight: 900;
+        line-height: 0.9;
+        color: var(--white);
+      }
+
+      .stat-label {
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 20px;
+        color: var(--gray);
       }
 
       .grid {
@@ -108,6 +280,7 @@
         justify-content: center;
         text-align: center;
         min-height: 50vh;
+        transition: background 0.3s ease;
       }
 
       .grid-item:nth-child(odd) {
@@ -115,6 +288,7 @@
       }
 
       .material-icons.huge {
+        color: var(--accent);
         font-size: clamp(80px, 8vw, 140px);
         margin-bottom: 30px;
       }
@@ -133,52 +307,126 @@
         max-width: 400px;
       }
 
-      .carousel-section {
-        padding: 120px 0;
+      .process-section {
+        padding: 100px 4vw;
         border-bottom: var(--border);
-        background: var(--off-white);
-        overflow: hidden;
+        border: NONE;
       }
 
-      .marquee {
-        display: flex;
-        width: fit-content;
-        animation: scroll 30s linear infinite;
+      .process-title {
+        font-size: clamp(40px, 6vw, 80px);
+        font-weight: 900;
+        margin-bottom: 80px;
+        text-align: center;
       }
 
-      .client-card {
-        padding: 0 clamp(40px, 5vw, 100px);
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 60px;
+      }
+
+      .process-step {
         display: flex;
         flex-direction: column;
-        white-space: nowrap;
       }
 
-      .client-name {
-        font-size: clamp(40px, 10vw, 160px);
+      .step-number {
+        font-size: clamp(80px, 10vw, 140px);
         font-weight: 900;
-        line-height: 0.85;
+        line-height: 0.8;
+        color: var(--gray);
+        opacity: 0.3;
       }
 
-      .client-loc {
+      .step-title {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 900;
+        margin: 20px 0 16px;
+      }
+
+      .step-desc {
         font-size: 14px;
         font-weight: 700;
-        margin-top: 20px;
-        opacity: 0.4;
+        line-height: 1.5;
+        color: var(--gray);
       }
 
-      @keyframes scroll {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
+      .case-studies {
+        padding: 100px 4vw;
+        border-bottom: var(--border);
+        background: var(--off-white);
+      }
+
+      .section-header {
+        font-size: clamp(40px, 6vw, 80px);
+        font-weight: 900;
+        margin-bottom: 60px;
+      }
+
+      .case-study-grid {
+        display: grid;
+        gap: 40px;
+      }
+
+      .case-study-card {
+        border: var(--border);
+        padding: 60px 40px;
+        background: var(--white);
+        transition: transform 0.3s ease;
+      }
+
+      .case-client {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+
+      .case-category {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
+
+      .case-desc {
+        font-size: clamp(16px, 1.5vw, 20px);
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 24px;
+      }
+
+      .case-results {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: var(--border);
+      }
+
+      .case-metric {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .metric-value {
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 900;
+        color: var(--accent);
+      }
+
+      .metric-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gray);
+        margin-top: 8px;
       }
 
       .contact-trigger {
         width: 100%;
         padding: 15vh 4vw;
-        background-color: var(--black);
+        background-color: var(--red);
         color: var(--white);
         text-align: center;
         text-decoration: none;
@@ -191,6 +439,7 @@
       footer {
         padding: 80px 4vw 40px;
         width: 100%;
+        background: linear-gradient(180deg, var(--white) 0%, var(-white) 100%);
       }
 
       .footer-grid {
@@ -217,7 +466,7 @@
       }
 
       .footer-big-elements {
-        border-top: var(--border);
+        border-top: none;
         padding-top: 40px;
         display: flex;
         flex-direction: column;
@@ -238,13 +487,41 @@
         line-height: 0.8;
       }
 
+      .footer-links {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .footer-links a {
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--black);
+        transition: opacity 0.3s ease;
+      }
+
       @media (max-width: 1024px) {
         .footer-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 768px) {
+        .lang-nav {
+          margin-top: 60px;
+        }
+
+        .lang-btn {
+          padding: 20px;
+        }
+
         .grid {
           grid-template-columns: 1fr;
         }
@@ -263,126 +540,291 @@
         }
         .marquee {
           animation-duration: 15s;
-        } /* Faster on mobile for better feel */
+        }
+        .footer-links {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .case-results {
+          gap: 30px;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+        }
       }
     </style>
   </head>
   <body>
     <header>
       <div class="logo">KEFE</div>
-      <a href="mailto:info@kefe.ch" class="header-btn">GET STARTED</a>
+
+      <a href="mailto:info@kefe.ch" class="header-btn desktop-btn"
+        >Jetzt Starten</a
+      >
+
+      <div class="burger-menu" id="burger-menu">
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="#strategie" class="mobile-link">Strategie</a>
+        <a href="#design" class="mobile-link">Design</a>
+        <a href="#skalierung" class="mobile-link">Skalierung</a>
+        <a href="#beratung" class="mobile-link">Beratung</a>
+        <a href="#prozess" class="mobile-link">Unser Prozess</a>
+        <a href="#leistungen" class="mobile-link">Leistungen</a>
+        <a href="mailto:info@kefe.ch" class="mobile-cta">Jetzt Starten</a>
+        <nav class="lang-nav">
+          <a href="/en" class="lang-btn">EN</a>
+          <a href="/fr" class="lang-btn">FR</a>
+          <a href="/it" class="lang-btn">IT</a>
+          <a href="/rm" class="lang-btn">RM</a>
+        </nav>
+      </nav>
     </header>
 
     <section class="hero">
-      <h1>OBJECTIVE<br />DRIVEN<br />RESULTS</h1>
+      <h1>Ziel<br />Orientierte<br />Resultate</h1>
     </section>
 
     <section class="about-mini">
       <p>
-        WE ARE A STRATEGIC DESIGN & ADVISORY STUDIO BASED IN SWITZERLAND. WE
-        BUILD SYSTEMS THAT SCALE AND IDENTITIES THAT DOMINATE.
+        Wir sind ein strategisches Design- und Beratungsstudio mit Sitz in der
+        Schweiz. Unsere Arbeit basiert auf etablierter Branchenforschung und
+        bewährten Best Practices in den Bereichen Strategie, Design und digitale
+        Systeme.
       </p>
     </section>
 
     <div class="grid">
-      <div class="grid-item">
+      <div class="grid-item" id="strategie">
         <span class="material-icons huge">psychology</span>
-        <h2 class="item-title">STRATEGY</h2>
+        <h2 class="item-title">Strategie</h2>
         <p class="item-desc">
-          High-level architecture for complex business challenges and roadmap
-          optimization.
+          High-Level-Architektur für komplexe Geschäftsherausforderungen und
+          Roadmap-Optimierung.
         </p>
       </div>
-      <div class="grid-item">
+      <div class="grid-item" id="design">
         <span class="material-icons huge">token</span>
-        <h2 class="item-title">DESIGN</h2>
+        <h2 class="item-title">Design</h2>
         <p class="item-desc">
-          Visual languages that command attention, drive conversion, and
-          reinforce brand authority.
+          Visuelle Sprachen, die Aufmerksamkeit erregen, Konversionen steigern
+          und Markenautorität stärken.
         </p>
       </div>
-      <div class="grid-item">
+      <div class="grid-item" id="skalierung">
         <span class="material-icons huge">polyline</span>
-        <h2 class="item-title">SCALE</h2>
+        <h2 class="item-title">Skalierung</h2>
         <p class="item-desc">
-          Infrastructural growth patterns designed for modern enterprises in a
-          digital-first economy.
+          Infrastrukturelle Wachstumsmuster für moderne Unternehmen in einer
+          Digital-First-Wirtschaft.
         </p>
       </div>
-      <div class="grid-item">
+      <div class="grid-item" id="beratung">
         <span class="material-icons huge">public</span>
-        <h2 class="item-title">ADVISORY</h2>
+        <h2 class="item-title">Beratung</h2>
         <p class="item-desc">
-          Global market navigation, tactical consulting, and digital product
-          leadership.
+          Globale Marktnavigation, taktisches Consulting und digitale
+          Produktführung.
         </p>
       </div>
     </div>
 
-    <section class="carousel-section">
-      <div class="marquee">
-        <div class="client-card">
-          <div class="client-name">DAAN TERLOUW</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
+    <section class="process-section" id="prozess">
+      <h2 class="process-title">Wie Wir Arbeiten</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Entdeckung</h3>
+          <p class="step-desc">
+            Tiefgehende Analyse Ihres Unternehmens, Ihrer Marktpositionierung
+            und Wachstumsziele. Wir analysieren Wettbewerber, identifizieren
+            Lücken und decken Chancen auf.
+          </p>
         </div>
-        <div class="client-card">
-          <div class="client-name">BBF MANAGEMENT AG</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
+        <div class="process-step">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Strategie</h3>
+          <p class="step-desc">
+            Entwicklung eines umfassenden strategischen Frameworks, das auf
+            Geschäftsziele ausgerichtet ist. Definition von Positionierung,
+            Messaging-Architektur und Wachstums-Roadmap.
+          </p>
         </div>
-        <div class="client-card">
-          <div class="client-name">CYAN TRADING GMBH</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
+        <div class="process-step">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Umsetzung</h3>
+          <p class="step-desc">
+            Präzise Entwicklung und Implementierung von Systemen. Von
+            Markenidentität bis zu digitalen Produkten wird jedes Element für
+            maximale Wirkung und Performance gestaltet.
+          </p>
         </div>
-        <div class="client-card">
-          <div class="client-name">DAAN TERLOUW</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
-        </div>
-        <div class="client-card">
-          <div class="client-name">BBF MANAGEMENT AG</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
-        </div>
-        <div class="client-card">
-          <div class="client-name">CYAN TRADING GMBH</div>
-          <div class="client-loc">BASEL, SCHWEIZ</div>
+        <div class="process-step">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Optimierung</h3>
+          <p class="step-desc">
+            Kontinuierliche Verfeinerung basierend auf Daten und Markt-Feedback.
+            Wir stellen nachhaltiges Wachstum durch systematische Iteration und
+            Verbesserung sicher.
+          </p>
         </div>
       </div>
     </section>
 
-    <a href="mailto:info@kefe.ch" class="contact-trigger">GET IN TOUCH</a>
+    <section
+      class="about-mini"
+      style="background: var(--off-white)"
+      id="leistungen"
+    >
+      <p style="grid-column: 1 / -1; max-width: 100%">Was Wir Tun</p>
+      <div
+        style="
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 40px;
+          margin-top: 40px;
+        "
+      >
+        <div>
+          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
+            Markenidentität
+          </h3>
+          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
+            Logos, visuelle Systeme, Naming, Positionierung, Guidelines,
+            Touchpoint-Design
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
+            Digitale Produkte
+          </h3>
+          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
+            Websites, Apps, Plattformen, User Experience, Interface Design,
+            Prototyping
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
+            Unternehmensstrategie
+          </h3>
+          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
+            Marktanalyse, Wachstumsplanung, Wettbewerbspositionierung,
+            Go-to-Market
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
+            Beratungsleistungen
+          </h3>
+          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
+            Fractional CMO, Design Leadership, strategisches Consulting,
+            Workshops
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <a href="mailto:info@kefe.ch" class="contact-trigger">Kontakt Aufnehmen</a>
 
     <footer>
       <div class="footer-grid">
         <div class="footer-col">
-          <h3>HEADQUARTERS</h3>
-          <p>4102 BINNINGEN</p>
-          <p>SWITZERLAND</p>
+          <h3>Hauptsitz</h3>
+          <p>4102 Binningen</p>
+          <p>Schweiz</p>
         </div>
         <div class="footer-col">
-          <h3>DIGITAL</h3>
-          <p>INFO@KEFE.CH</p>
+          <h3>Digital</h3>
+          <p>
+            <a
+              href="mailto:info@kefe.ch"
+              style="color: var(--black); text-decoration: none"
+              >info@kefe.ch</a
+            >
+          </p>
           <p>+41 78 351 48 22</p>
         </div>
         <div class="footer-col">
-          <h3>SOCIAL</h3>
-          <a href="https://wa.me/41783514822">WHATSAPP</a>
-          <a href="https://t.me/kefestudio">TELEGRAM</a>
+          <h3>Soziale Medien</h3>
+          <a href="https://wa.me/41783514822">WhatsApp</a>
+          <a href="https://t.me/kefestudio">Telegram</a>
         </div>
         <div class="footer-col">
-          <h3>SERVICES</h3>
-          <p>CONSULTING</p>
-          <p>BRANDING</p>
-          <p>SYSTEMS</p>
+          <h3>Rechtliches</h3>
+          <a href="terms.html">AGB</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="privacy.html">Datenschutz</a>
         </div>
       </div>
 
       <div class="footer-big-elements">
         <div class="footer-logo-giant">KEFE</div>
         <div class="legal-bar-giant">©<span id="year"></span></div>
+        <nav class="lang-nav">
+          <a href="/en" class="lang-btn">EN</a>
+          <a href="/fr" class="lang-btn">FR</a>
+          <a href="/it" class="lang-btn">IT</a>
+          <a href="/rm" class="lang-btn">RM</a>
+        </nav>
       </div>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      const burger = document.getElementById("burger-menu");
+      const mobileNav = document.getElementById("mobile-nav");
+      const body = document.body;
+      let scrollPosition = 0;
+
+      // Function to open menu
+      function openMenu() {
+        scrollPosition = window.scrollY;
+        body.style.top = `-${scrollPosition}px`;
+        body.classList.add("no-scroll");
+        burger.classList.add("active");
+        mobileNav.classList.add("active");
+      }
+
+      // Function to close menu
+      function closeMenu() {
+        body.classList.remove("no-scroll");
+        body.style.top = "";
+        window.scrollTo(0, scrollPosition);
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+      }
+
+      // Toggle menu on burger click
+      burger.addEventListener("click", () => {
+        if (!burger.classList.contains("active")) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+
+      // Close menu when a link is clicked
+      document.querySelectorAll(".mobile-link").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      // Close menu if user clicks outside the nav
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileNav.contains(e.target) &&
+          !burger.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          closeMenu();
+        }
+      });
     </script>
   </body>
 </html>
