@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KEFE STUDIO</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
+
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+        --off-white: #f2f2f2;
+        --gray: #888888;
+        --border: 1.5px solid #000000;
+        --red: #ff0000;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        background-color: var(--white);
+        color: var(--black);
+        font-family: "Inter", sans-serif;
+        text-transform: uppercase;
+        line-height: 1;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 4vw;
+        border-bottom: var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--white);
+        z-index: 100;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: clamp(40px, 4vw, 56px);
+      }
+
+      .header-btn {
+        font-size: 12px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--black);
+        padding: 12px 28px;
+        border-radius: 100px;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .hero {
+        padding: clamp(80px, 15vh, 200px) 4vw;
+        border-bottom: var(--border);
+      }
+
+      .hero h1 {
+        font-size: clamp(45px, 13vw, 220px);
+        font-weight: 900;
+        line-height: 0.8;
+        word-wrap: break-word;
+      }
+
+      .about-mini {
+        padding: 60px 4vw;
+        border-bottom: var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .about-mini p {
+        grid-column: 1 / -1;
+        font-size: clamp(20px, 2.5vw, 32px);
+        font-weight: 700;
+        line-height: 1.1;
+        max-width: 1200px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+
+      .grid-item {
+        padding: 10vh 4vw;
+        border-bottom: var(--border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 50vh;
+      }
+
+      .grid-item:nth-child(odd) {
+        border-right: var(--border);
+      }
+
+      .material-icons.huge {
+        font-size: clamp(80px, 8vw, 140px);
+        margin-bottom: 30px;
+      }
+
+      .item-title {
+        font-size: clamp(32px, 5vw, 70px);
+        font-weight: 900;
+        line-height: 0.9;
+        margin-bottom: 24px;
+      }
+
+      .item-desc {
+        font-size: clamp(14px, 1.2vw, 18px);
+        font-weight: 700;
+        line-height: 1.4;
+        max-width: 400px;
+      }
+
+      .carousel-section {
+        padding: 120px 0;
+        border-bottom: var(--border);
+        background: var(--off-white);
+        overflow: hidden;
+      }
+
+      .marquee {
+        display: flex;
+        width: fit-content;
+        animation: scroll 30s linear infinite;
+      }
+
+      .client-card {
+        padding: 0 clamp(40px, 5vw, 100px);
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+      }
+
+      .client-name {
+        font-size: clamp(40px, 10vw, 160px);
+        font-weight: 900;
+        line-height: 0.85;
+      }
+
+      .client-loc {
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 20px;
+        opacity: 0.4;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .contact-trigger {
+        width: 100%;
+        padding: 15vh 4vw;
+        background-color: var(--black);
+        color: var(--white);
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-size: clamp(40px, 12vw, 200px);
+        font-weight: 900;
+        transition: background 0.4s ease;
+      }
+
+      footer {
+        padding: 80px 4vw 40px;
+        width: 100%;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        padding-bottom: 100px;
+      }
+
+      .footer-col h3 {
+        font-size: 11px;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
+
+      .footer-col p,
+      .footer-col a {
+        font-size: 14px;
+        display: block;
+        text-decoration: none;
+        color: var(--black);
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .footer-big-elements {
+        border-top: var(--border);
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-logo-giant {
+        font-size: clamp(100px, 24vw, 500px);
+        font-weight: 900;
+        line-height: 0.7;
+        margin-left: -0.04em;
+      }
+
+      .legal-bar-giant {
+        font-size: clamp(40px, 10vw, 180px);
+        font-weight: 900;
+        margin-top: 20px;
+        line-height: 0.8;
+      }
+
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .grid-item:nth-child(odd) {
+          border-right: none;
+        }
+        .about-mini {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .material-icons.huge {
+          font-size: 100px;
+        }
+        .marquee {
+          animation-duration: 15s;
+        } /* Faster on mobile for better feel */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">KEFE</div>
+      <a href="mailto:info@kefe.ch" class="header-btn">GET STARTED</a>
+    </header>
+
+    <section class="hero">
+      <h1>OBJECTIVE<br />DRIVEN<br />RESULTS</h1>
+    </section>
+
+    <section class="about-mini">
+      <p>
+        WE ARE A STRATEGIC DESIGN & ADVISORY STUDIO BASED IN SWITZERLAND. WE
+        BUILD SYSTEMS THAT SCALE AND IDENTITIES THAT DOMINATE.
+      </p>
+    </section>
+
+    <div class="grid">
+      <div class="grid-item">
+        <span class="material-icons huge">psychology</span>
+        <h2 class="item-title">STRATEGY</h2>
+        <p class="item-desc">
+          High-level architecture for complex business challenges and roadmap
+          optimization.
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">token</span>
+        <h2 class="item-title">DESIGN</h2>
+        <p class="item-desc">
+          Visual languages that command attention, drive conversion, and
+          reinforce brand authority.
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">polyline</span>
+        <h2 class="item-title">SCALE</h2>
+        <p class="item-desc">
+          Infrastructural growth patterns designed for modern enterprises in a
+          digital-first economy.
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">public</span>
+        <h2 class="item-title">ADVISORY</h2>
+        <p class="item-desc">
+          Global market navigation, tactical consulting, and digital product
+          leadership.
+        </p>
+      </div>
+    </div>
+
+    <section class="carousel-section">
+      <div class="marquee">
+        <div class="client-card">
+          <div class="client-name">DAAN TERLOUW</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+        <div class="client-card">
+          <div class="client-name">BBF MANAGEMENT AG</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+        <div class="client-card">
+          <div class="client-name">CYAN TRADING GMBH</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+        <div class="client-card">
+          <div class="client-name">DAAN TERLOUW</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+        <div class="client-card">
+          <div class="client-name">BBF MANAGEMENT AG</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+        <div class="client-card">
+          <div class="client-name">CYAN TRADING GMBH</div>
+          <div class="client-loc">BASEL, SCHWEIZ</div>
+        </div>
+      </div>
+    </section>
+
+    <a href="mailto:info@kefe.ch" class="contact-trigger">GET IN TOUCH</a>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>HEADQUARTERS</h3>
+          <p>4102 BINNINGEN</p>
+          <p>SWITZERLAND</p>
+        </div>
+        <div class="footer-col">
+          <h3>DIGITAL</h3>
+          <p>INFO@KEFE.CH</p>
+          <p>+41 78 351 48 22</p>
+        </div>
+        <div class="footer-col">
+          <h3>SOCIAL</h3>
+          <a href="https://wa.me/41783514822">WHATSAPP</a>
+          <a href="https://t.me/kefestudio">TELEGRAM</a>
+        </div>
+        <div class="footer-col">
+          <h3>SERVICES</h3>
+          <p>CONSULTING</p>
+          <p>BRANDING</p>
+          <p>SYSTEMS</p>
+        </div>
+      </div>
+
+      <div class="footer-big-elements">
+        <div class="footer-logo-giant">KEFE</div>
+        <div class="legal-bar-giant">©<span id="year"></span></div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
