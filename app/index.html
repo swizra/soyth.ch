@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="de">
+
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KEFE STUDIO - Strategisches Design & Beratung</title>
+    <title>KEFE STUDIO - Strategic Design & Consulting</title>
     <meta
       name="description"
-      content="Schweizer strategisches Design- und Beratungsstudio. Wir bauen Systeme, die skalieren, und Identitäten, die dominieren."
+      content="Swiss strategic design and consulting studio. We build systems that scale and identities that dominate."
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -15,816 +16,784 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
 
-      :root {
-        --black: #000000;
-        --white: #ffffff;
-        --off-white: #f2f2f2;
-        --gray: #888888;
-        --border: 1rem solid #f2f2f2;
-        --red: #ff0000;
-        --accent: #0066ff;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --black: #ffffff;
-          --white: #0a0a0a;
-          --off-white: #1a1a1a;
-          --gray: #aaaaaa;
-          --border: 1rem solid #1a1a1a;
-          --accent: #4d94ff;
-        }
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      body {
-        background-color: var(--white);
-        color: var(--black);
-        font-family: "Inter", sans-serif;
-        text-transform: uppercase;
-        line-height: 1;
-        width: 100%;
-        overflow-x: hidden;
-      }
-
-      body.no-scroll {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-      }
-
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 4vw;
-        border-bottom: var(--border);
-        border: none;
-        position: sticky;
-        top: 0;
-        background: var(--white);
-        z-index: 100;
-      }
-
-      .burger-menu {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 40px;
-        height: 20px;
-        cursor: pointer;
-        z-index: 201;
-      }
-
-      .burger-menu span {
-        display: block;
-        height: 4px;
-        background: var(--black);
-        border-radius: 2px;
-        transition: all 0.3s ease;
-        transform-origin: center;
-      }
-
-      .burger-menu.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5.66px, 5.66px);
-      }
-
-      .burger-menu.active span:nth-child(2) {
-        transform: rotate(-45deg) translate(5.66px, -5.66px);
-      }
-
-      .mobile-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: var(--white);
-        padding: 60px 4vw 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        transition: right 0.3s ease;
-        z-index: 200;
-        overflow-y: auto;
-      }
-
-      .mobile-nav.active {
-        right: 0;
-      }
-
-      .mobile-link {
-        font-size: 28px;
-        font-weight: 900;
-        text-decoration: none;
-        color: var(--black);
-        padding: 12px 0;
-        border-bottom: 0px solid var(--off-white);
-      }
-
-      .mobile-cta {
-        font-size: 24px;
-        font-weight: 900;
-        text-decoration: none;
-        color: var(--white);
-        background: var(--black);
-        padding: 20px 32px;
-        border-radius: 100px;
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      @media (max-width: 768px) {
-        .desktop-btn {
-          display: none;
-        }
-        .burger-menu {
-          display: flex;
-        }
-      }
-
-      .logo {
-        font-weight: 900;
-        font-size: clamp(40px, 4vw, 56px);
-      }
-
-      .lang-nav {
-        display: flex;
-        width: 100%;
-        margin-top: 40px;
-      }
-
-      .lang-btn {
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-        color: var(--black);
-        background: transparent;
-        padding: 16px;
-        width: 25%;
-        text-align: center;
-        border: 1px solid var(--black);
-        border-right: none;
-      }
-
-      .lang-btn:first-child {
-        border: 1px solid var(--black);
-        border-right: none;
-        border-radius: 0px 0 0 0px;
-      }
-
-      .lang-btn:last-child {
-        border: 1px solid var(--black);
-        border-radius: 0 0px 0px 0;
-      }
-
-      .header-btn {
-        font-size: 20px;
-        font-weight: 900;
-        text-decoration: none;
-        color: var(--white);
-        background: var(--black);
-        padding: 12px 28px;
-        border-radius: 100px;
-        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-      }
-
-      .hero {
-        padding: clamp(80px, 15vh, 200px) 4vw;
-        border-bottom: var(--border);
-        border: none;
-        background-color: var(--accent);
-        min-height: 65vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .hero h1 {
-        color: var(--white);
-        font-size: clamp(45px, 13vw, 220px);
-        font-weight: 900;
-        line-height: 0.8;
-        word-wrap: break-word;
-      }
-
-      .about-mini {
-        padding: 60px 4vw;
-        border-bottom: var(--border);
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        background: var(--off-white);
-      }
-
-      .about-mini p {
-        grid-column: 1 / -1;
-        font-size: clamp(20px, 2.5vw, 32px);
-        font-weight: 700;
-        line-height: 1.1;
-        max-width: 1200px;
-      }
-
-      .stats-section {
-        padding: 80px 4vw;
-        border-bottom: var(--border);
-        background: var(--black);
-        color: var(--white);
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 60px;
-        text-align: center;
-      }
-
-      .stat-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .stat-number {
-        font-size: clamp(60px, 8vw, 120px);
-        font-weight: 900;
-        line-height: 0.9;
-        color: var(--white);
-      }
-
-      .stat-label {
-        font-size: 14px;
-        font-weight: 700;
-        margin-top: 20px;
-        color: var(--gray);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
-      }
-
-      .grid-item {
-        padding: 10vh 4vw;
-        border-bottom: var(--border);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        min-height: 50vh;
-        transition: background 0.3s ease;
-      }
-
-      .grid-item:nth-child(odd) {
-        border-right: var(--border);
-      }
-
-      .material-icons.huge {
-        color: var(--accent);
-        font-size: clamp(80px, 8vw, 140px);
-        margin-bottom: 30px;
-      }
-
-      .item-title {
-        font-size: clamp(32px, 5vw, 70px);
-        font-weight: 900;
-        line-height: 0.9;
-        margin-bottom: 24px;
-      }
-
-      .item-desc {
-        font-size: clamp(14px, 1.2vw, 18px);
-        font-weight: 700;
-        line-height: 1.4;
-        max-width: 400px;
-      }
-
-      .process-section {
-        padding: 100px 4vw;
-        border-bottom: var(--border);
-        border: NONE;
-      }
-
-      .process-title {
-        font-size: clamp(40px, 6vw, 80px);
-        font-weight: 900;
-        margin-bottom: 80px;
-        text-align: center;
-      }
-
-      .process-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 60px;
-      }
-
-      .process-step {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .step-number {
-        font-size: clamp(80px, 10vw, 140px);
-        font-weight: 900;
-        line-height: 0.8;
-        color: var(--gray);
-        opacity: 0.3;
-      }
-
-      .step-title {
-        font-size: clamp(24px, 3vw, 36px);
-        font-weight: 900;
-        margin: 20px 0 16px;
-      }
-
-      .step-desc {
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 1.5;
-        color: var(--gray);
-      }
-
-      .case-studies {
-        padding: 100px 4vw;
-        border-bottom: var(--border);
-        background: var(--off-white);
-      }
-
-      .section-header {
-        font-size: clamp(40px, 6vw, 80px);
-        font-weight: 900;
-        margin-bottom: 60px;
-      }
-
-      .case-study-grid {
-        display: grid;
-        gap: 40px;
-      }
-
-      .case-study-card {
-        border: var(--border);
-        padding: 60px 40px;
-        background: var(--white);
-        transition: transform 0.3s ease;
-      }
-
-      .case-client {
-        font-size: clamp(32px, 5vw, 56px);
-        font-weight: 900;
-        margin-bottom: 20px;
-      }
-
-      .case-category {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--gray);
-        margin-bottom: 24px;
-      }
-
-      .case-desc {
-        font-size: clamp(16px, 1.5vw, 20px);
-        font-weight: 700;
-        line-height: 1.4;
-        margin-bottom: 24px;
-      }
-
-      .case-results {
-        display: flex;
-        gap: 40px;
-        flex-wrap: wrap;
-        margin-top: 32px;
-        padding-top: 32px;
-        border-top: var(--border);
-      }
-
-      .case-metric {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .metric-value {
-        font-size: clamp(28px, 4vw, 48px);
-        font-weight: 900;
-        color: var(--accent);
-      }
-
-      .metric-label {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--gray);
-        margin-top: 8px;
-      }
-
-      .contact-trigger {
-        width: 100%;
-        padding: 15vh 4vw;
-        background-color: var(--red);
-        color: var(--white);
-        text-align: center;
-        text-decoration: none;
-        display: block;
-        font-size: clamp(40px, 12vw, 200px);
-        font-weight: 900;
-        transition: background 0.4s ease;
-      }
-
-      footer {
-        padding: 80px 4vw 40px;
-        width: 100%;
-        background: linear-gradient(180deg, var(--white) 0%, var(-white) 100%);
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 40px;
-        padding-bottom: 100px;
-      }
-
-      .footer-col h3 {
-        font-size: 11px;
-        color: var(--gray);
-        margin-bottom: 24px;
-      }
-
-      .footer-col p,
-      .footer-col a {
-        font-size: 14px;
-        display: block;
-        text-decoration: none;
-        color: var(--black);
-        margin-bottom: 12px;
-        font-weight: 700;
-      }
-
-      .footer-big-elements {
-        border-top: none;
-        padding-top: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-logo-giant {
-        font-size: clamp(100px, 24vw, 500px);
-        font-weight: 900;
-        line-height: 0.7;
-        margin-left: -0.04em;
-      }
-
-      .legal-bar-giant {
-        font-size: clamp(40px, 10vw, 180px);
-        font-weight: 900;
-        margin-top: 20px;
-        line-height: 0.8;
-      }
-
-      .footer-links {
-        display: flex;
-        gap: 40px;
-        margin-top: 40px;
-      }
-
-      .footer-links a {
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-        color: var(--black);
-        transition: opacity 0.3s ease;
-      }
-
-      @media (max-width: 1024px) {
-        .footer-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .process-grid {
-          grid-template-columns: 1fr;
-        }
-        .testimonial-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .lang-nav {
-          margin-top: 60px;
-        }
-
-        .lang-btn {
-          padding: 20px;
-        }
-
-        .grid {
-          grid-template-columns: 1fr;
-        }
-        .grid-item:nth-child(odd) {
-          border-right: none;
-        }
-        .about-mini {
-          grid-template-columns: 1fr;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-        .material-icons.huge {
-          font-size: 100px;
-        }
-        .marquee {
-          animation-duration: 15s;
-        }
-        .footer-links {
-          flex-direction: column;
-          gap: 20px;
-        }
-        .case-results {
-          gap: 30px;
-        }
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
-        }
-      }
-    </style>
+ 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    outline: none;
+  }
+
+  *:focus,
+  *:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-logo-giant,
+  .legal-bar-giant {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .material-icons.huge,
+  .step-number {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  :root {
+    /* Colors */
+    --black: #000000;
+    --white: #ffffff;
+    --off-white: #f2f2f2;
+    --gray: #666666;
+    --border-color: #f2f2f2;
+    
+    /* Spacing */
+    --border: 1rem solid var(--border-color);
+    --section-padding: clamp(80px, 12vh, 140px);
+    --content-padding: 4vw;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --black: #ffffff;
+      --white: #0a0a0a;
+      --off-white: #1a1a1a;
+      --gray: #999999;
+      --border-color: #1a1a1a;
+    }
+  }
+
+  body {
+    background-color: var(--white);
+    color: var(--black);
+    font-family: "Inter", sans-serif;
+    line-height: 1.4;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-size: var(--text-base);
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px var(--content-padding);
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 100;
+  }
+
+  .logo {
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .theme-toggle .material-icons {
+    font-size: 28px;
+    color: var(--black);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-btn {
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    padding: 14px 32px;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    line-height: 1;
+  }
+
+  /* MOBILE MENU */
+  .burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 201;
+  }
+
+  .burger-menu span {
+    display: block;
+    height: 4px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5.66px, 5.66px);
+  }
+
+  .burger-menu.active span:nth-child(2) {
+    transform: rotate(-45deg) translate(5.66px, -5.66px);
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--white);
+    padding: 17px var(--content-padding) 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: right 0.3s ease;
+    z-index: 200;
+    overflow-y: auto;
+  }
+
+  .mobile-nav.active {
+    right: 0;
+  }
+
+  .mobile-link {
+    font-size: 32px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--black);
+    padding: 16px 0;
+    line-height: 1.1;
+  }
+
+  .mobile-cta {
+    font-size: 20px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    padding: 18px 36px;
+    border-radius: 100px;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1;
+  }
+
+  /* HERO */
+  .hero {
+    padding: clamp(80px, 15vh, 200px) var(--content-padding);
+    border-bottom: var(--border);
+    background-color: var(--white);
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    color: var(--black);
+    font-size: clamp(64px, 12vw, 180px);
+    font-weight: 900;
+    line-height: 0.95;
+    word-wrap: break-word;
+  }
+
+  /* ABOUT SECTION */
+  .about-mini {
+    padding: var(--section-padding) var(--content-padding);
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: var(--off-white);
+  }
+
+  .about-mini p {
+    grid-column: 1 / -1;
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    line-height: 1.4;
+    max-width: 1200px;
+    color: var(--black);
+  }
+
+  /* GRID SECTIONS (Strategy, Design, Process, Services) */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .grid-item {
+    padding: clamp(60px, 10vh, 120px) var(--content-padding);
+    border-bottom: var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 65vh;
+    transition: background 0.3s ease;
+  }
+
+  .grid-item:nth-child(odd) {
+    border-right: var(--border);
+  }
+
+  .process-item {
+    position: relative;
+  }
+
+  .material-icons.huge {
+    color: var(--black);
+    background: var(--off-white);
+    border-radius: 24px;
+    padding: 24px;
+    font-size: clamp(80px, 7vw, 120px);
+    margin-bottom: 32px;
+    line-height: 1;
+  }
+
+  .step-number {
+    font-size: clamp(100px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--gray);
+    opacity: 0.25;
+    margin-bottom: 32px;
+  }
+
+  .item-title {
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .item-desc {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    max-width: 380px;
+    color: var(--black);
+  }
+
+  /* CONTACT CTA */
+  .contact-trigger {
+    width: 100%;
+    padding: clamp(100px, 15vh, 200px) var(--content-padding);
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(56px, 10vw, 140px);
+    font-weight: 900;
+    transition: background 0.4s ease;
+    line-height: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: var(--section-padding) var(--content-padding) 40px;
+    width: 100%;
+    background: var(--white);
+  }
+
+  .footer-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 80px;
+    border-top: var(--border);
+  }
+
+  .accordion-item {
+    border-bottom: var(--border);
+  }
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+    text-align: left;
+    transition: opacity 0.3s ease;
+  }
+
+  .accordion-header:hover {
+    opacity: 0.7;
+  }
+
+  .accordion-icon {
+    font-size: 32px;
+    transition: transform 0.3s ease;
+    color: var(--black);
+  }
+
+  .accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .accordion-item.active .accordion-content {
+    max-height: 500px;
+    padding-bottom: 28px;
+  }
+
+  .accordion-content p,
+  .accordion-content a {
+    font-size: 15px;
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    margin-bottom: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .accordion-content a:hover {
+    opacity: 0.7;
+  }
+
+  .footer-big-elements {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo-giant {
+    font-size: clamp(120px, 22vw, 360px);
+    font-weight: 900;
+    line-height: 0.9;
+    margin-left: -0.04em;
+    color: var(--black);
+  }
+
+  .legal-bar-giant {
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 900;
+    margin-top: 24px;
+    line-height: 0.9;
+    color: var(--black);
+  }
+
+  /* THEME MODES */
+  body.dark-mode {
+    --black: #ffffff;
+    --white: #0a0a0a;
+    --off-white: #1a1a1a;
+    --gray: #999999;
+    --border-color: #1a1a1a;
+  }
+
+  body.light-mode {
+    --black: #000000;
+    --white: #ffffff;
+    --off-white: #f2f2f2;
+    --gray: #666666;
+    --border-color: #f2f2f2;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-btn {
+      display: none;
+    }
+    .burger-menu {
+      display: flex;
+    }
+    .header-right {
+      gap: 15px;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .grid-item:nth-child(odd) {
+      border-right: none;
+    }
+    .about-mini {
+      grid-template-columns: 1fr;
+    }
+    .material-icons.huge {
+      font-size: 90px;
+    }
+  }
+</style>
+ 
+
   </head>
   <body>
     <header>
       <div class="logo">KEFE</div>
-
-      <a href="mailto:info@kefe.ch" class="header-btn desktop-btn"
-        >Jetzt Starten</a
-      >
-
-      <div class="burger-menu" id="burger-menu">
-        <span></span>
-        <span></span>
+      <div class="header-right">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <span class="material-icons">light_mode</span>
+        </button>
+        <a href="mailto:info@kefe.ch" class="header-btn desktop-btn"
+          >Get Started</a
+        >
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+        </div>
       </div>
-
       <nav class="mobile-nav" id="mobile-nav">
-        <a href="#strategie" class="mobile-link">Strategie</a>
+        <a href="#strategy" class="mobile-link">Strategy</a>
         <a href="#design" class="mobile-link">Design</a>
-        <a href="#skalierung" class="mobile-link">Skalierung</a>
-        <a href="#beratung" class="mobile-link">Beratung</a>
-        <a href="#prozess" class="mobile-link">Unser Prozess</a>
-        <a href="#leistungen" class="mobile-link">Leistungen</a>
-        <a href="mailto:info@kefe.ch" class="mobile-cta">Jetzt Starten</a>
-        <nav class="lang-nav">
-          <a href="/en" class="lang-btn">EN</a>
-          <a href="/fr" class="lang-btn">FR</a>
-          <a href="/it" class="lang-btn">IT</a>
-          <a href="/rm" class="lang-btn">RM</a>
-        </nav>
+        <a href="#scaling" class="mobile-link">Scaling</a>
+        <a href="#consulting" class="mobile-link">Consulting</a>
+        <a href="#process" class="mobile-link">Our Process</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="mailto:info@kefe.ch" class="mobile-cta">Get Started</a>
       </nav>
     </header>
 
-    <section class="hero">
-      <h1>Ziel<br />Orientierte<br />Resultate</h1>
-    </section>
+ 
+<section class="hero">
+  <h1>Design<br />Strategy<br />Growth</h1>
+</section>
 
-    <section class="about-mini">
-      <p>
-        Wir sind ein strategisches Design- und Beratungsstudio mit Sitz in der
-        Schweiz. Unsere Arbeit basiert auf etablierter Branchenforschung und
-        bewährten Best Practices in den Bereichen Strategie, Design und digitale
-        Systeme.
-      </p>
-    </section>
+<section class="about-mini">
+  <p>
+    We are a strategic design and consulting studio based in Switzerland.
+    Our work is grounded in established industry research and proven best
+    practices in strategy, design, and digital systems.
+  </p>
+</section>
 
-    <div class="grid">
-      <div class="grid-item" id="strategie">
-        <span class="material-icons huge">psychology</span>
-        <h2 class="item-title">Strategie</h2>
-        <p class="item-desc">
-          High-Level-Architektur für komplexe Geschäftsherausforderungen und
-          Roadmap-Optimierung.
-        </p>
-      </div>
-      <div class="grid-item" id="design">
-        <span class="material-icons huge">token</span>
-        <h2 class="item-title">Design</h2>
-        <p class="item-desc">
-          Visuelle Sprachen, die Aufmerksamkeit erregen, Konversionen steigern
-          und Markenautorität stärken.
-        </p>
-      </div>
-      <div class="grid-item" id="skalierung">
-        <span class="material-icons huge">polyline</span>
-        <h2 class="item-title">Skalierung</h2>
-        <p class="item-desc">
-          Infrastrukturelle Wachstumsmuster für moderne Unternehmen in einer
-          Digital-First-Wirtschaft.
-        </p>
-      </div>
-      <div class="grid-item" id="beratung">
-        <span class="material-icons huge">public</span>
-        <h2 class="item-title">Beratung</h2>
-        <p class="item-desc">
-          Globale Marktnavigation, taktisches Consulting und digitale
-          Produktführung.
-        </p>
+<div class="grid">
+  <div class="grid-item" id="strategy">
+    <span class="material-icons huge">psychology</span>
+    <h2 class="item-title">Strategy</h2>
+    <p class="item-desc">
+      High-level architecture for complex business challenges and roadmap
+      optimization.
+    </p>
+  </div>
+  <div class="grid-item" id="design">
+    <span class="material-icons huge">token</span>
+    <h2 class="item-title">Design</h2>
+    <p class="item-desc">
+      Visual languages that capture attention, drive conversions, and
+      strengthen brand authority.
+    </p>
+  </div>
+  <div class="grid-item" id="scaling">
+    <span class="material-icons huge">polyline</span>
+    <h2 class="item-title">Scaling</h2>
+    <p class="item-desc">
+      Infrastructural growth patterns for modern businesses in a
+      digital-first economy.
+    </p>
+  </div>
+  <div class="grid-item" id="consulting">
+    <span class="material-icons huge">public</span>
+    <h2 class="item-title">Consulting</h2>
+    <p class="item-desc">
+      Global market navigation, tactical consulting, and digital product
+      leadership.
+    </p>
+  </div>
+</div>
+
+<section class="grid" id="process">
+  <div class="grid-item process-item">
+    <div class="step-number">01</div>
+    <h3 class="item-title">Discovery</h3>
+    <p class="item-desc">
+      In-depth analysis of your business, market positioning, and growth
+      objectives. We analyze competitors, identify gaps, and uncover
+      opportunities.
+    </p>
+  </div>
+  <div class="grid-item process-item">
+    <div class="step-number">02</div>
+    <h3 class="item-title">Strategy</h3>
+    <p class="item-desc">
+      Development of a comprehensive strategic framework aligned with
+      business goals. Definition of positioning, messaging architecture,
+      and growth roadmap.
+    </p>
+  </div>
+  <div class="grid-item process-item">
+    <div class="step-number">03</div>
+    <h3 class="item-title">Execution</h3>
+    <p class="item-desc">
+      Precise development and implementation of systems. From brand
+      identity to digital products, every element is crafted for maximum
+      impact and performance.
+    </p>
+  </div>
+  <div class="grid-item process-item">
+    <div class="step-number">04</div>
+    <h3 class="item-title">Optimization</h3>
+    <p class="item-desc">
+      Continuous refinement based on data and market feedback. We ensure
+      sustainable growth through systematic iteration and improvement.
+    </p>
+  </div>
+</section>
+
+<section class="grid" id="services">
+  <div class="grid-item">
+    <span class="material-icons huge">branding_watermark</span>
+    <h2 class="item-title">Brand Identity</h2>
+    <p class="item-desc">
+      Logos, visual systems, naming, positioning, guidelines, touchpoint
+      design
+    </p>
+  </div>
+  <div class="grid-item">
+    <span class="material-icons huge">devices</span>
+    <h2 class="item-title">Digital Products</h2>
+    <p class="item-desc">
+      Websites, apps, platforms, user experience, interface design,
+      prototyping
+    </p>
+  </div>
+  <div class="grid-item">
+    <span class="material-icons huge">insights</span>
+    <h2 class="item-title">Business Strategy</h2>
+    <p class="item-desc">
+      Market analysis, growth planning, competitive positioning,
+      go-to-market
+    </p>
+  </div>
+  <div class="grid-item">
+    <span class="material-icons huge">support_agent</span>
+    <h2 class="item-title">Consulting Services</h2>
+    <p class="item-desc">
+      Fractional CMO, design leadership, strategic consulting, workshops
+    </p>
+  </div>
+</section>
+
+<a href="mailto:info@kefe.ch" class="contact-trigger">Get in Touch</a>
+
+<footer>
+  <div class="footer-accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Headquarters</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <p>4102 Binningen</p>
+        <p>Switzerland</p>
       </div>
     </div>
-
-    <section class="process-section" id="prozess">
-      <h2 class="process-title">Wie Wir Arbeiten</h2>
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="step-number">01</div>
-          <h3 class="step-title">Entdeckung</h3>
-          <p class="step-desc">
-            Tiefgehende Analyse Ihres Unternehmens, Ihrer Marktpositionierung
-            und Wachstumsziele. Wir analysieren Wettbewerber, identifizieren
-            Lücken und decken Chancen auf.
-          </p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">02</div>
-          <h3 class="step-title">Strategie</h3>
-          <p class="step-desc">
-            Entwicklung eines umfassenden strategischen Frameworks, das auf
-            Geschäftsziele ausgerichtet ist. Definition von Positionierung,
-            Messaging-Architektur und Wachstums-Roadmap.
-          </p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">03</div>
-          <h3 class="step-title">Umsetzung</h3>
-          <p class="step-desc">
-            Präzise Entwicklung und Implementierung von Systemen. Von
-            Markenidentität bis zu digitalen Produkten wird jedes Element für
-            maximale Wirkung und Performance gestaltet.
-          </p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">04</div>
-          <h3 class="step-title">Optimierung</h3>
-          <p class="step-desc">
-            Kontinuierliche Verfeinerung basierend auf Daten und Markt-Feedback.
-            Wir stellen nachhaltiges Wachstum durch systematische Iteration und
-            Verbesserung sicher.
-          </p>
-        </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Contact</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <p><a href="mailto:info@kefe.ch">info@kefe.ch</a></p>
+        <p>+41 78 351 48 22</p>
       </div>
-    </section>
-
-    <section
-      class="about-mini"
-      style="background: var(--off-white)"
-      id="leistungen"
-    >
-      <p style="grid-column: 1 / -1; max-width: 100%">Was Wir Tun</p>
-      <div
-        style="
-          grid-column: 1 / -1;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 40px;
-          margin-top: 40px;
-        "
-      >
-        <div>
-          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
-            Markenidentität
-          </h3>
-          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
-            Logos, visuelle Systeme, Naming, Positionierung, Guidelines,
-            Touchpoint-Design
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
-            Digitale Produkte
-          </h3>
-          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
-            Websites, Apps, Plattformen, User Experience, Interface Design,
-            Prototyping
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
-            Unternehmensstrategie
-          </h3>
-          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
-            Marktanalyse, Wachstumsplanung, Wettbewerbspositionierung,
-            Go-to-Market
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 11px; color: var(--gray); margin-bottom: 12px">
-            Beratungsleistungen
-          </h3>
-          <p style="font-size: 14px; font-weight: 700; line-height: 1.4">
-            Fractional CMO, Design Leadership, strategisches Consulting,
-            Workshops
-          </p>
-        </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Social Media</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <a href="https://wa.me/41783514822">WhatsApp</a>
+        <a href="https://t.me/kefestudio">Telegram</a>
       </div>
-    </section>
-
-    <a href="mailto:info@kefe.ch" class="contact-trigger">Kontakt Aufnehmen</a>
-
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3>Hauptsitz</h3>
-          <p>4102 Binningen</p>
-          <p>Schweiz</p>
-        </div>
-        <div class="footer-col">
-          <h3>Digital</h3>
-          <p>
-            <a
-              href="mailto:info@kefe.ch"
-              style="color: var(--black); text-decoration: none"
-              >info@kefe.ch</a
-            >
-          </p>
-          <p>+41 78 351 48 22</p>
-        </div>
-        <div class="footer-col">
-          <h3>Soziale Medien</h3>
-          <a href="https://wa.me/41783514822">WhatsApp</a>
-          <a href="https://t.me/kefestudio">Telegram</a>
-        </div>
-        <div class="footer-col">
-          <h3>Rechtliches</h3>
-          <a href="terms.html">AGB</a>
-          <a href="impressum.html">Impressum</a>
-          <a href="privacy.html">Datenschutz</a>
-        </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Legal</span>
+        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
+      </button>
+      <div class="accordion-content">
+        <a href="/en/terms.html">Terms & Conditions</a>
+        <a href="/en/imprint.html">Imprint</a>
+        <a href="/en/privacy.html">Privacy Policy</a>
       </div>
+    </div>
+  </div>
+  
+  <div class="footer-big-elements">
+    <div class="footer-logo-giant">KEFE</div>
+    <div class="legal-bar-giant">©<span id="year"></span></div>
+  </div>
+</footer>
 
-      <div class="footer-big-elements">
-        <div class="footer-logo-giant">KEFE</div>
-        <div class="legal-bar-giant">©<span id="year"></span></div>
-        <nav class="lang-nav">
-          <a href="/en" class="lang-btn">EN</a>
-          <a href="/fr" class="lang-btn">FR</a>
-          <a href="/it" class="lang-btn">IT</a>
-          <a href="/rm" class="lang-btn">RM</a>
-        </nav>
-      </div>
-    </footer>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-    <script>
-      const burger = document.getElementById("burger-menu");
-      const mobileNav = document.getElementById("mobile-nav");
-      const body = document.body;
-      let scrollPosition = 0;
-
-      // Function to open menu
-      function openMenu() {
-        scrollPosition = window.scrollY;
-        body.style.top = `-${scrollPosition}px`;
-        body.classList.add("no-scroll");
-        burger.classList.add("active");
-        mobileNav.classList.add("active");
+<script>
+  // Accordion functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const accordionItem = header.parentElement;
+      const isActive = accordionItem.classList.contains('active');
+      
+      // Close all accordion items
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+        accordionItem.classList.add('active');
       }
+    });
+  });
+</script>
 
-      // Function to close menu
-      function closeMenu() {
-        body.classList.remove("no-scroll");
-        body.style.top = "";
-        window.scrollTo(0, scrollPosition);
-        burger.classList.remove("active");
-        mobileNav.classList.remove("active");
-      }
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-      // Toggle menu on burger click
-      burger.addEventListener("click", () => {
-        if (!burger.classList.contains("active")) {
-          openMenu();
-        } else {
-          closeMenu();
-        }
-      });
+<script>
+  // Burger menu
+  const burger = document.getElementById("burger-menu");
+  const mobileNav = document.getElementById("mobile-nav");
+  const body = document.body;
+  let scrollPosition = 0;
 
-      // Close menu when a link is clicked
-      document.querySelectorAll(".mobile-link").forEach((link) => {
-        link.addEventListener("click", closeMenu);
-      });
+  function openMenu() {
+    scrollPosition = window.scrollY;
+    body.style.top = `-${scrollPosition}px`;
+    body.classList.add("no-scroll");
+    burger.classList.add("active");
+    mobileNav.classList.add("active");
+  }
 
-      // Close menu if user clicks outside the nav
-      document.addEventListener("click", (e) => {
-        if (
-          !mobileNav.contains(e.target) &&
-          !burger.contains(e.target) &&
-          mobileNav.classList.contains("active")
-        ) {
-          closeMenu();
-        }
-      });
-    </script>
+  function closeMenu() {
+    body.classList.remove("no-scroll");
+    body.style.top = "";
+    window.scrollTo(0, scrollPosition);
+    burger.classList.remove("active");
+    mobileNav.classList.remove("active");
+  }
+
+  burger.addEventListener("click", () => {
+    if (!burger.classList.contains("active")) openMenu();
+    else closeMenu();
+  });
+
+  document
+    .querySelectorAll(".mobile-link")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileNav.contains(e.target) &&
+      !burger.contains(e.target) &&
+      mobileNav.classList.contains("active")
+    ) {
+      closeMenu();
+    }
+  });
+</script>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = themeToggle.querySelector(".material-icons");
+  const currentTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
+  if (currentTheme === "dark" || (!currentTheme && systemPrefersDark)) {
+    body.classList.add("dark-mode");
+    themeIcon.textContent = "dark_mode";
+  } else {
+    body.classList.add("light-mode");
+    themeIcon.textContent = "light_mode";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+      themeIcon.textContent = "light_mode";
+      localStorage.setItem("theme", "light");
+    } else {
+      body.classList.remove("light-mode");
+      body.classList.add("dark-mode");
+      themeIcon.textContent = "dark_mode";
+      localStorage.setItem("theme", "dark");
+    }
+  });
+</script>
+ 
+
   </body>
 </html>
