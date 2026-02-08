@@ -101,6 +101,7 @@
         --border: 1rem solid var(--border-color);
         --section-padding: clamp(80px, 12vh, 140px);
         --content-padding: 4vw;
+        --btn-primary-bg: #c62828;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -110,6 +111,7 @@
           --off-white: #1a1a1a;
           --gray: #999999;
           --border: 1rem solid var(--border-color);
+          --btn-primary-bg: #ef5350;
         }
       }
       body.dark-mode {
@@ -269,7 +271,7 @@
         font-weight: 900;
         text-decoration: none;
         color: var(--white);
-        background: var(--black);
+        background: var(--btn-primary-bg);
         padding: 14px 32px;
         border-radius: 100px;
         transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -382,7 +384,7 @@
         font-weight: 900;
         text-decoration: none;
         color: var(--white);
-        background: var(--black);
+        background: var(--btn-primary-bg);
         padding: 18px 36px;
         border-radius: 100px;
         text-align: center;
@@ -434,14 +436,14 @@
       }
 
       .btn-primary {
-        background: var(--black);
+        background: var(--btn-primary-bg);
         color: var(--white);
       }
 
       .btn-secondary {
         background: transparent;
-        color: var(--black);
-        border: 2px solid var(--black);
+        color: var(--btn-primary-bg);
+        border: 2px solid var(--btn-primary-bg);
       }
 
       .about-mini {
@@ -590,14 +592,14 @@
       }
 
       .btn-read-more {
-        background: var(--black);
+        background: var(--btn-primary-bg);
         color: var(--white);
       }
 
       .btn-ask-us {
         background: transparent;
-        color: var(--black);
-        border: 2px solid var(--black);
+        color: var(--btn-primary-bg);
+        border: 2px solid var(--btn-primary-bg);
       }
 
       .contact-trigger {
