@@ -1,475 +1,2967 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
     />
-    <title>KEFE | BSL_SYSTEM_V2</title>
+    <title>KEFE STUDIO - Strategic Design & Consulting</title>
+    <meta
+      name="description"
+      content="Swiss strategic design and consulting studio. We build systems that scale and identities that dominate."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <link rel="canonical" href="https://kefe.ch" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <meta property="og:title" content="KEFE — Strategic Design & Consulting" />
+    <meta
+      property="og:description"
+      content="Swiss strategic design and consulting studio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kefe.ch" />
+    <meta property="og:image" content="https://kefe.ch/og-image.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KEFE — Strategic Design & Consulting" />
+    <meta
+      name="twitter:description"
+      content="Swiss strategic design and consulting studio."
+    />
     <style>
-      :root {
-        --bg: #000;
-        --txt: #fff;
-        --line: #fff;
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap");
+
+      html {
+        transition:
+          background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      @media (prefers-color-scheme: light) {
-        :root {
-          --bg: #fff;
-          --txt: #000;
-          --line: #000;
-        }
+
+      body,
+      body * {
+        transition:
+          background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        border-radius: 0 !important;
-        transition: none !important;
-      }
-      body {
-        font-family: "JetBrains Mono", monospace;
-        background: var(--bg);
-        color: var(--txt);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        outline: none;
       }
 
-      .huge {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 25vw;
-        line-height: 0.75;
-        letter-spacing: -0.05em;
-        padding: 20px;
-        border-bottom: 2px solid var(--line);
-        text-transform: uppercase;
+      *:focus,
+      *:active {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a,
+      button,
+      input,
+      select,
+      textarea {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .footer-logo-giant,
+      .legal-bar-giant {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .material-icons.huge,
+      .step-number {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+        --off-white: #f2f2f2;
+        --gray: #666666;
+        --border-color: #f2f2f2;
+        --border: 1rem solid var(--border-color);
+        --section-padding: clamp(80px, 12vh, 140px);
+        --content-padding: 4vw;
+        --btn-primary-bg: #c62828;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --black: #ffffff;
+          --white: #0a0a0a;
+          --off-white: #1a1a1a;
+          --gray: #999999;
+          --border: 1rem solid var(--border-color);
+          --btn-primary-bg: #ef5350;
+        }
+      }
+      body.dark-mode {
+        --border-color: #1a1a1a;
+        --border: 1rem solid var(--border-color);
+      }
+
+      body {
+        background-color: var(--white);
+        color: var(--black);
+        font-family: "Inter", sans-serif;
+        line-height: 1.4;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        font-size: var(--text-base);
+      }
+
+      body.no-scroll {
+        overflow: hidden;
+        position: fixed;
         width: 100%;
       }
 
-      .controls {
-        display: flex;
-        border-bottom: 1px solid var(--line);
-        background: var(--bg);
+      body,
+      body * {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        hyphens: none;
       }
-      .controls span {
-        padding: 15px 20px;
-        border-right: 1px solid var(--line);
-        font-size: 10px;
-        text-transform: uppercase;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      p,
+      a,
+      span,
+      div,
+      li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      img,
+      video,
+      embed,
+      iframe,
+      object {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      table {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      code,
+      pre {
+        overflow-x: auto;
+        word-break: break-all;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 500;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px var(--content-padding);
+        position: sticky;
+        top: 0;
+        background: var(--white);
+        z-index: 100;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 1;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
         cursor: pointer;
-        font-weight: bold;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle .material-icons {
+        font-size: 28px;
+        color: var(--black);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .theme-toggle {
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .theme-toggle .material-icons {
+        transition:
+          transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.4s ease;
+      }
+      .theme-toggle:active {
+        transform: scale(0.92);
+      }
+
+      body.dark-mode .theme-toggle .material-icons {
+        transform: rotate(-90deg) scale(0.85);
+      }
+
+      body.light-mode .theme-toggle .material-icons {
+        transform: rotate(0deg) scale(1);
+      }
+      .theme-fade {
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        pointer-events: none;
+        opacity: 0;
+        z-index: 999;
+        transition: opacity 0.4s ease;
+      }
+
+      .theme-fade.active {
+        opacity: 1;
+      }
+
+      .header-btn {
+        font-size: 18px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--btn-primary-bg);
+        padding: 14px 32px;
+        border-radius: 100px;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        line-height: 1;
+      }
+
+      .burger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 201;
+      }
+
+      .burger-menu span {
+        display: block;
+        height: 4px;
+        background: var(--black);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5.66px, 5.66px);
+      }
+
+      .burger-menu.active span:nth-child(2) {
+        transform: rotate(-45deg) translate(5.66px, -5.66px);
+      }
+
+      .mobile-nav {
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        padding: 120px var(--content-padding) 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        transform: scale(1.04);
+        opacity: 0;
+        pointer-events: none;
+
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.4s ease;
+
+        z-index: 200;
+      }
+
+      .mobile-nav.active {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-link {
+        font-size: 32px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--black);
+        padding: 16px 0;
+        line-height: 1.1;
+      }
+      .mobile-link,
+      .mobile-cta {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(6px);
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.4s ease,
+          filter 0.6s ease;
+      }
+
+      .mobile-nav.active .mobile-link,
+      .mobile-nav.active .mobile-cta {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .mobile-nav.active .mobile-link:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .mobile-nav.active .mobile-link:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .mobile-nav.active .mobile-link:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      .mobile-nav.active .mobile-link:nth-child(4) {
+        transition-delay: 0.2s;
+      }
+      .mobile-nav.active .mobile-link:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+      .mobile-nav.active .mobile-link:nth-child(6) {
+        transition-delay: 0.3s;
+      }
+      .mobile-nav.active .mobile-cta {
+        transition-delay: 0.4s;
+      }
+
+      .mobile-cta {
+        font-size: 20px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--btn-primary-bg);
+        padding: 18px 36px;
+        border-radius: 100px;
+        text-align: center;
+        margin-top: 30px;
+        line-height: 1;
+      }
+
+      .hero {
+        padding: clamp(80px, 15vh, 200px) var(--content-padding);
+        border-bottom: var(--border);
+        background-color: var(--white);
+        min-height: 65vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        color: var(--black);
+        font-size: clamp(64px, 12vw, 180px);
+        font-weight: 900;
+        line-height: 0.95;
+        word-wrap: break-word;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        margin-top: clamp(32px, 5vh, 56px);
+        flex-wrap: wrap;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 14px 32px;
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        line-height: 1;
+      }
+
+      .btn-primary {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--black);
+        border: 2px solid var(--black);
+      }
+
+      .about-mini {
+        padding: var(--section-padding) var(--content-padding);
+        border-bottom: var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        background: var(--off-white);
+      }
+
+      .about-mini p {
+        grid-column: 1 / -1;
+        font-size: clamp(22px, 2.2vw, 28px);
+        font-weight: 700;
+        line-height: 1.4;
+        max-width: 1200px;
+        color: var(--black);
       }
 
       .grid {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         width: 100%;
       }
-      @media (min-width: 768px) {
-        .grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
 
-      .cell {
-        padding: 30px 20px;
-        border-bottom: 1px solid var(--line);
-        border-right: 1px solid var(--line);
+      .grid-item {
+        padding: clamp(60px, 10vh, 120px) var(--content-padding);
+        border-bottom: var(--border);
         display: flex;
         flex-direction: column;
-      }
-      .label {
-        font-size: 10px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        display: block;
-        opacity: 0.8;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 65vh;
       }
 
-      input[type="password"],
-      textarea {
-        width: 100%;
-        background: transparent;
-        border: 1px solid var(--line);
-        color: var(--txt);
-        padding: 15px;
-        margin-bottom: 15px;
-        font-family: inherit;
-        outline: none;
-        resize: none;
-        font-size: 14px;
-      }
-      input[type="password"]::placeholder,
-      textarea::placeholder {
-        color: var(--txt);
-        opacity: 0.3;
+      .grid-item:nth-child(odd) {
+        border-right: var(--border);
       }
 
-      .action-btns {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-      button {
-        padding: 15px;
-        background: var(--txt);
-        color: var(--bg);
-        border: none;
-        font-family: inherit;
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer;
-        font-size: 11px;
-      }
-      .btn-alt {
-        background: transparent;
-        color: var(--txt);
-        border: 1px solid var(--line);
+      .process-item {
+        position: relative;
       }
 
-      .out-box {
-        margin-top: 15px;
-        padding: 20px;
-        border: 1px dashed var(--line);
-        font-size: 11px;
-        word-break: break-all;
-        background: rgba(128, 128, 128, 0.05);
-        display: none;
-      }
-      .copy-btn {
-        margin-top: 10px;
-        background: var(--txt);
-        color: var(--bg);
-        padding: 5px 10px;
-        font-size: 9px;
-        display: inline-block;
-        cursor: pointer;
-        font-weight: bold;
-        margin-right: 5px;
+      .material-icons.huge {
+        color: var(--black);
+        background: var(--off-white);
+        border-radius: 24px;
+        padding: 24px;
+        font-size: clamp(80px, 7vw, 120px);
+        margin-bottom: 32px;
+        line-height: 1;
       }
 
-      #qr-display {
-        margin-top: 20px;
-        background: white;
-        padding: 15px;
-        display: none;
+      .step-number {
+        font-size: clamp(100px, 10vw, 120px);
+        font-weight: 900;
+        line-height: 0.9;
+        color: var(--gray);
+        opacity: 0.25;
+        margin-bottom: 32px;
+      }
+
+      .item-title {
+        font-size: clamp(40px, 4.5vw, 64px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
+
+      .item-desc {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        max-width: 380px;
+        color: var(--black);
+      }
+
+      .grid-item.layout-1 {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
       }
-      #qr-display svg {
-        width: 100%;
-        height: auto;
-        max-width: 250px;
-        fill: #000;
+
+      .grid-item.layout-1 .material-icons.huge {
+        order: -1;
+        margin-bottom: 32px;
       }
 
-      .info-matrix {
-        display: grid;
-        grid-template-columns: 1fr;
+      .grid-item.layout-1 .step-number {
+        order: -1;
+      }
+
+      .grid-item.layout-2 {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .grid-item.layout-2 .step-number {
+        order: 0;
+      }
+
+      .grid-item.layout-2 .item-title {
+        order: 1;
+      }
+
+      .grid-item.layout-2 .item-desc {
+        order: 2;
+      }
+
+      .grid-item.layout-2 .item-buttons {
+        order: 3;
+      }
+
+      .grid-item.layout-2 .material-icons.huge {
+        order: 4;
+        margin-bottom: 0;
+        margin-top: 32px;
+      }
+
+      .item-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-read-more,
+      .btn-ask-us {
+        padding: 12px 28px;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: inline-block;
+        text-align: center;
+      }
+
+      .btn-read-more {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .btn-ask-us {
+        background: transparent;
+        color: var(--black);
+        border: 2px solid var(--black);
+      }
+
+      .contact-trigger {
         width: 100%;
-      }
-      @media (min-width: 768px) {
-        .info-matrix {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      .info-block {
-        padding: 25px 20px;
-        border-bottom: 1px solid var(--line);
-        border-right: 1px solid var(--line);
-      }
-      .info-block h4 {
-        font-size: 10px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-      }
-      .info-block p {
-        font-size: 11px;
-        line-height: 1.5;
-        opacity: 0.6;
+        padding: clamp(100px, 15vh, 200px) var(--content-padding);
+        background-color: var(--white);
+        color: var(--black);
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(56px, 10vw, 140px);
+        font-weight: 900;
+        transition: background 0.4s ease;
+        line-height: 1;
+        border-bottom: var(--border);
       }
 
       footer {
-        margin-top: auto;
-        padding: 20px;
-        font-size: 10px;
-        border-top: 2px solid var(--line);
+        padding: var(--section-padding) var(--content-padding) 40px;
+        width: 100%;
+        background: var(--white);
+      }
+
+      .footer-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 80px;
+        border-top: var(--border);
+      }
+
+      .accordion-item {
+        border-bottom: var(--border);
+      }
+
+      .accordion-header {
+        width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        padding: 28px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--black);
+        text-align: left;
+        transition: opacity 0.3s ease;
+      }
+
+      .accordion-icon {
+        font-size: 32px;
+        transition: transform 0.3s ease;
+        color: var(--black);
+      }
+
+      .accordion-item.active .accordion-icon {
+        transform: rotate(180deg);
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.3s ease;
+        padding: 0;
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: fit-content;
+        padding-bottom: 28px;
+      }
+
+      .show-phone-btn {
+        background: none;
+        border: none;
+        color: var(--black);
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .contact-email {
+        color: var(--black);
+        text-decoration: none;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .contact-email:hover {
+        color: var(--black);
+        text-decoration: none;
+      }
+
+      .accordion-content p,
+      .accordion-content a {
+        font-size: 15px;
+        display: block;
+        text-decoration: none;
+        color: var(--black);
+        margin-bottom: 12px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .legal-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+
+      .legal-item a:first-child {
+        margin-bottom: 0;
+      }
+
+      .download-links {
+        display: flex;
+        gap: 8px;
+      }
+
+      .download-links a {
+        font-size: 11px;
+        padding: 4px 8px;
+        border: 1px solid var(--gray);
+        border-radius: 8px;
+        color: var(--gray);
+        font-weight: 600;
+        margin-bottom: 0;
+        background: transparent;
+        transition: all 0.3s ease;
+      }
+
+      .download-links a:hover {
+        color: var(--gray);
+        border-color: var(--gray);
+        background: transparent;
+      }
+
+      .footer-big-elements {
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-logo-giant {
+        font-size: clamp(120px, 22vw, 360px);
+        font-weight: 900;
+        line-height: 0.9;
+        margin-left: -0.04em;
+        color: var(--black);
+      }
+
+      .legal-bar-giant {
+        font-size: clamp(48px, 9vw, 120px);
+        font-weight: 900;
+        margin-top: 24px;
+        line-height: 0.9;
+        color: var(--black);
+      }
+
+      body.dark-mode {
+        --black: #ffffff;
+        --white: #0a0a0a;
+        --off-white: #1a1a1a;
+        --gray: #999999;
+        --border-color: #1a1a1a;
+      }
+
+      body.light-mode {
+        --black: #000000;
+        --white: #ffffff;
+        --off-white: #f2f2f2;
+        --gray: #666666;
+        --border-color: #f2f2f2;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        z-index: 1000;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+
+      .modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .modal-content {
+        background: var(--white);
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        transform: translateY(40px) scale(0.98);
+        opacity: 0;
+        filter: blur(12px);
+
+        transition:
+          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.4s ease,
+          filter 0.6s ease;
+      }
+
+      .modal.active .modal-content {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+      }
+
+      .modal-close {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--black);
+        color: var(--white);
+        border: none;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+      .modal-close {
+        opacity: 0;
+        transform: scale(0.7) rotate(-90deg);
+        transition:
+          opacity 0.3s ease,
+          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .modal-body > * {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(6px);
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.4s ease,
+          filter 0.6s ease;
+      }
+
+      .modal.active .modal-body > * {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .modal.active .modal-body > *:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .modal.active .modal-body > *:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .modal.active .modal-body > *:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      .modal.active .modal-body > *:nth-child(4) {
+        transition-delay: 0.2s;
+      }
+      .modal.active .modal-body > *:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+      .modal.active .modal-body > *:nth-child(6) {
+        transition-delay: 0.3s;
+      }
+      .modal.active .modal-body > *:nth-child(7) {
+        transition-delay: 0.35s;
+      }
+      .modal.active .modal-body > *:nth-child(8) {
+        transition-delay: 0.4s;
+      }
+      .modal.active .modal-body > *:nth-child(9) {
+        transition-delay: 0.45s;
+      }
+      .modal.active .modal-body > *:nth-child(10) {
+        transition-delay: 0.5s;
+      }
+      .modal.active .modal-body > *:nth-child(11) {
+        transition-delay: 0.55s;
+      }
+      .modal.active .modal-body > *:nth-child(12) {
+        transition-delay: 0.6s;
+      }
+      .modal.active .modal-body > *:nth-child(13) {
+        transition-delay: 0.65s;
+      }
+      .modal.active .modal-body > *:nth-child(14) {
+        transition-delay: 0.7s;
+      }
+      .modal.active .modal-body > *:nth-child(15) {
+        transition-delay: 0.75s;
+      }
+      .modal.active .modal-body > *:nth-child(16) {
+        transition-delay: 0.8s;
+      }
+      .modal.active .modal-body > *:nth-child(17) {
+        transition-delay: 0.85s;
+      }
+      .modal.active .modal-body > *:nth-child(18) {
+        transition-delay: 0.9s;
+      }
+      .modal.active .modal-body > *:nth-child(19) {
+        transition-delay: 0.95s;
+      }
+      .modal.active .modal-body > *:nth-child(20) {
+        transition-delay: 1s;
+      }
+
+      .modal.active .modal-close {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        transition-delay: 0.25s;
+      }
+
+      .modal-close .material-icons {
+        font-size: 32px;
+      }
+
+      .modal-body {
+        padding: clamp(80px, 12vh, 140px) var(--content-padding) 80px;
+        overflow-y: auto;
+        height: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .modal-body::-webkit-scrollbar {
+        display: none;
+      }
+
+      .modal-body h1 {
+        font-size: clamp(48px, 8vw, 100px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        color: var(--black);
+      }
+
+      .modal-subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gray);
+        margin-bottom: 60px;
+      }
+
+      .modal-body h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 900;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: var(--black);
+      }
+
+      .modal-body h2:first-of-type {
+        margin-top: 0;
+      }
+
+      .modal-body h3 {
+        font-size: 24px;
+        font-weight: 900;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        line-height: 1.2;
+        color: var(--black);
+      }
+
+      .modal-body p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
+
+      .modal-body ul,
+      .modal-body ol {
+        margin: 20px 0 20px 24px;
+        line-height: 1.7;
+      }
+
+      .modal-body li {
+        margin-bottom: 12px;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--black);
+      }
+
+      .modal-body strong {
+        font-weight: 900;
+      }
+
+      .modal-body a {
+        color: var(--black);
+        text-decoration: underline;
+        font-weight: 700;
+      }
+
+      .info-box {
+        background: var(--off-white);
+        padding: 32px;
+        border-radius: 16px;
+        margin: 32px 0;
+      }
+
+      .info-box h3 {
+        margin-top: 0;
+      }
+
+      .info-box p {
+        margin-bottom: 12px;
+      }
+
+      .info-box p:last-child {
+        margin-bottom: 0;
+      }
+
+      .highlight-box {
+        background: var(--off-white);
+        padding: 32px;
+        border-radius: 16px;
+        margin: 32px 0;
+        border-left: 0px solid var(--black);
+      }
+
+      @media (max-width: 768px) {
+        .modal-body {
+          padding: 80px 6vw 60px;
+        }
+
+        .modal-body h1 {
+          font-size: 40px;
+        }
+
+        .modal-close {
+          width: 56px;
+          height: 56px;
+          top: 16px;
+          right: 16px;
+        }
+
+        .modal-close .material-icons {
+          font-size: 28px;
+        }
+
+        .info-box,
+        .highlight-box {
+          padding: 24px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .desktop-btn {
+          display: none;
+        }
+        .burger-menu {
+          display: flex;
+        }
+        .header-right {
+          gap: 15px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .grid-item:nth-child(odd) {
+          border-right: none;
+        }
+        .about-mini {
+          grid-template-columns: 1fr;
+        }
+        .material-icons.huge {
+          font-size: 90px;
+        }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "KEFE",
+        "url": "https://kefe.ch",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Binningen",
+          "postalCode": "4102",
+          "addressCountry": "CH"
+        },
+        "email": "info@kefe.ch",
+        "telephone": "+41783514822"
+      }
+    </script>
   </head>
   <body>
-    <div class="huge">KEFE</div>
-
-    <div class="controls">
-      <span onclick="openModal('legalModal')">Legal_Notice</span>
-      <span onclick="wipeAll()">Wipe_System</span>
-    </div>
-
-    <section class="grid">
-      <div class="cell">
-        <span class="label">01 // Input_Plaintext</span>
-        <textarea id="in-c" placeholder="DATA_STRING"></textarea>
-        <span class="label">Passphrase (Optional)</span>
-        <input type="password" id="pass-c" placeholder="KEY_AES_256" />
-        <div class="action-btns">
-          <button onclick="runEncrypt()">Encrypt</button>
-          <button class="btn-alt" onclick="paste('in-c')">Paste</button>
-        </div>
-        <div id="box-c" class="out-box">
-          <div id="out-c"></div>
-          <div style="margin-top: 10px">
-            <div class="copy-btn" onclick="copy('out-c')">COPY_TEXT</div>
-            <div class="copy-btn" onclick="genQR()">GEN_SVG_QR</div>
-            <div
-              class="copy-btn"
-              onclick="downloadSVG()"
-              id="dl-btn"
-              style="display: none"
-            >
-              DL_SVG
-            </div>
-          </div>
-          <div id="qr-display"></div>
+    <header>
+      <div class="logo">KEFE</div>
+      <div class="header-right">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <span class="material-icons">light_mode</span>
+        </button>
+        <a href="mailto:info@kefe.ch" class="header-btn desktop-btn"
+          >Get Started</a
+        >
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
         </div>
       </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="#strategy" class="mobile-link">Strategy</a>
+        <a href="#design" class="mobile-link">Design</a>
+        <a href="#scaling" class="mobile-link">Scaling</a>
+        <a href="#consulting" class="mobile-link">Consulting</a>
+        <a href="#process" class="mobile-link">Our Process</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="mailto:info@kefe.ch" class="mobile-cta">Get Started</a>
+      </nav>
+    </header>
 
-      <div class="cell">
-        <span class="label">02 // Input_Cipher</span>
-        <textarea id="in-d" placeholder="KEFE_PKT:: or KEFE_SEC::"></textarea>
-        <span class="label">Passphrase</span>
-        <input type="password" id="pass-d" placeholder="KEY_AES_256" />
-        <div class="action-btns">
-          <button onclick="runDecrypt()">Decrypt</button>
-          <button class="btn-alt" onclick="paste('in-d')">Paste</button>
+    <section class="hero">
+      <h1>Design<br />Strategy<br />Growth</h1>
+      <div class="hero-cta">
+        <a href="mailto:info@kefe.ch" class="btn-primary">Get Started</a>
+        <a href="#strategy" class="btn-secondary">Learn More</a>
+      </div>
+    </section>
+
+    <section class="about-mini">
+      <p class="mono">
+        We are a strategic design and consulting studio based in Switzerland.
+        Our work is grounded in established industry research and proven best
+        practices in strategy, design, and digital systems.
+      </p>
+    </section>
+
+    <div class="grid">
+      <div class="grid-item layout-1" id="strategy">
+        <span class="material-icons huge">psychology</span>
+        <h2 class="item-title">Strategy</h2>
+        <p class="item-desc mono">
+          High-level architecture for complex business challenges and roadmap
+          optimization.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="grid-strategy-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
         </div>
-        <div id="box-d" class="out-box">
-          <div id="out-d" style="white-space: pre-wrap"></div>
-          <div class="copy-btn" onclick="copy('out-d')">COPY_RESULT</div>
+      </div>
+      <div class="grid-item layout-2" id="design">
+        <span class="material-icons huge">token</span>
+        <h2 class="item-title">Design</h2>
+        <p class="item-desc mono">
+          Visual languages that capture attention, drive conversions, and
+          strengthen brand authority.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="grid-design-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-1" id="scaling">
+        <span class="material-icons huge">polyline</span>
+        <h2 class="item-title">Scaling</h2>
+        <p class="item-desc mono">
+          Infrastructural growth patterns for modern businesses in a
+          digital-first economy.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="grid-scaling-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-2" id="consulting">
+        <span class="material-icons huge">public</span>
+        <h2 class="item-title">Consulting</h2>
+        <p class="item-desc mono">
+          Global market navigation, tactical consulting, and digital product
+          leadership.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="grid-consulting-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="grid" id="process">
+      <div class="grid-item layout-1 process-item">
+        <div class="step-number">01</div>
+        <h3 class="item-title">Discovery</h3>
+        <p class="item-desc mono">
+          In-depth analysis of your business, market positioning, and growth
+          objectives. We analyze competitors, identify gaps, and uncover
+          opportunities.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="process-discovery-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-2 process-item">
+        <div class="step-number">02</div>
+        <h3 class="item-title">Strategy</h3>
+        <p class="item-desc mono">
+          Development of a comprehensive strategic framework aligned with
+          business goals. Definition of positioning, messaging architecture, and
+          growth roadmap.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="process-strategy-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-1 process-item">
+        <div class="step-number">03</div>
+        <h3 class="item-title">Execution</h3>
+        <p class="item-desc mono">
+          Precise development and implementation of systems. From brand identity
+          to digital products, every element is crafted for maximum impact and
+          performance.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="process-execution-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-2 process-item">
+        <div class="step-number">04</div>
+        <h3 class="item-title">Optimization</h3>
+        <p class="item-desc mono">
+          Continuous refinement based on data and market feedback. We ensure
+          sustainable growth through systematic iteration and improvement.
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="process-optimization-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
         </div>
       </div>
     </section>
 
-    <div class="info-matrix">
-      <div class="info-block">
-        <h4>01 // SVG_VECTOR_OUTPUT</h4>
-        <p>
-          QR codes are generated as high-precision SVG paths, ensuring 100% scan
-          accuracy even at extreme zoom levels.
+    <section class="grid" id="services">
+      <div class="grid-item layout-1">
+        <span class="material-icons huge">branding_watermark</span>
+        <h2 class="item-title">Brand Identity</h2>
+        <p class="item-desc mono">
+          Logos, visual systems, naming, positioning, guidelines, touchpoint
+          design
         </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="brand-identity-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
       </div>
-      <div class="info-block">
-        <h4>02 // AES_AUTHENTICATION</h4>
-        <p>
-          Using AES-GCM 256-bit encryption. Secure packets (SEC) include a
-          unique 16-byte salt and IV per session.
+      <div class="grid-item layout-2">
+        <span class="material-icons huge">devices</span>
+        <h2 class="item-title">Digital Products</h2>
+        <p class="item-desc mono">
+          Websites, apps, platforms, user experience, interface design,
+          prototyping
         </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="digital-products-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-1">
+        <span class="material-icons huge">insights</span>
+        <h2 class="item-title">Business Strategy</h2>
+        <p class="item-desc mono">
+          Market analysis, growth planning, competitive positioning,
+          go-to-market
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="business-strategy-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+      <div class="grid-item layout-2">
+        <span class="material-icons huge">support_agent</span>
+        <h2 class="item-title">Consulting Services</h2>
+        <p class="item-desc mono">
+          Fractional CMO, design leadership, strategic consulting, workshops
+        </p>
+        <div class="item-buttons">
+          <button class="btn-read-more" data-modal="consulting-services-modal">
+            Read More
+          </button>
+          <a href="mailto:info@kefe.ch" class="btn-ask-us">Ask Us</a>
+        </div>
+      </div>
+    </section>
+
+    <a href="mailto:info@kefe.ch" class="contact-trigger" id="contact-trigger">
+      info@kefe.ch
+    </a>
+
+    <div class="modal" id="brand-identity-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="brand-identity-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Brand Identity</h1>
+          <p class="modal-subtitle">
+            Creating visual systems that dominate your market
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Brand identity is the foundation of your market presence. We create
+            comprehensive visual systems that capture your brand's essence,
+            communicate your values, and establish lasting impressions with your
+            audience.
+          </p>
+
+          <h2>What We Do</h2>
+          <p>Our brand identity services include:</p>
+          <ul>
+            <li>
+              <strong>Logo Design:</strong> Distinctive, memorable marks that
+              represent your brand
+            </li>
+            <li>
+              <strong>Visual Systems:</strong> Cohesive design languages across
+              all touchpoints
+            </li>
+            <li>
+              <strong>Naming Strategy:</strong> Strategic development of brand
+              names and nomenclature
+            </li>
+            <li>
+              <strong>Brand Positioning:</strong> Clear articulation of your
+              market position
+            </li>
+            <li>
+              <strong>Design Guidelines:</strong> Comprehensive documentation
+              for consistent application
+            </li>
+            <li>
+              <strong>Touchpoint Design:</strong> Unified experience across
+              packaging, collateral, digital
+            </li>
+          </ul>
+
+          <h2>The Process</h2>
+          <p>
+            We begin with deep market research and competitive analysis to
+            understand your landscape. Through strategic workshopping and
+            iterative design exploration, we develop visual identities that are
+            not only aesthetically compelling but strategically grounded in your
+            business objectives.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A complete brand identity system that provides clarity, consistency,
+            and competitive differentiation. Your brand will be equipped with
+            the visual tools necessary to communicate effectively and build
+            recognition in your market.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="digital-products-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="digital-products-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Digital Products</h1>
+          <p class="modal-subtitle">
+            Designing and building products that users love
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Digital products are central to modern business. We design and
+            develop web applications, mobile platforms, and software solutions
+            that deliver exceptional user experiences while driving measurable
+            business results.
+          </p>
+
+          <h2>What We Do</h2>
+          <p>
+            Our digital product services span the entire development lifecycle:
+          </p>
+          <ul>
+            <li>
+              <strong>User Experience Design:</strong> Research-driven design
+              centered on user needs
+            </li>
+            <li>
+              <strong>Interface Design:</strong> Elegant, intuitive interfaces
+              that delight users
+            </li>
+            <li>
+              <strong>Information Architecture:</strong> Clear structure that
+              guides user navigation
+            </li>
+            <li>
+              <strong>Prototyping:</strong> High-fidelity prototypes for
+              validation and testing
+            </li>
+            <li>
+              <strong>Web Development:</strong> Modern, scalable web
+              applications
+            </li>
+            <li>
+              <strong>Mobile App Development:</strong> Native and cross-platform
+              solutions
+            </li>
+          </ul>
+
+          <h2>Our Approach</h2>
+          <p>
+            We combine strategic thinking with cutting-edge design and
+            development practices. Starting with user research and validation,
+            we build products incrementally, gathering feedback and optimizing
+            at each stage. This ensures we deliver solutions that users
+            genuinely need and want to use.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A fully functional digital product that combines beautiful design
+            with robust technology. Your product will be optimized for user
+            engagement, conversion, and long-term growth.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="business-strategy-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="business-strategy-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Business Strategy</h1>
+          <p class="modal-subtitle">
+            Strategic frameworks for sustainable growth
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Strategic clarity is essential for navigating complex markets. We
+            develop comprehensive business strategies that align your
+            operations, resources, and capabilities toward achievable growth
+            objectives.
+          </p>
+
+          <h2>What We Do</h2>
+          <p>Our business strategy services include:</p>
+          <ul>
+            <li>
+              <strong>Market Analysis:</strong> Deep competitive and market
+              landscape assessment
+            </li>
+            <li>
+              <strong>Growth Planning:</strong> Strategic roadmaps for market
+              expansion
+            </li>
+            <li>
+              <strong>Competitive Positioning:</strong> Differentiation
+              strategies that create advantage
+            </li>
+            <li>
+              <strong>Go-to-Market Strategy:</strong> Detailed launch and market
+              entry plans
+            </li>
+            <li>
+              <strong>Business Model Development:</strong> Revenue and
+              operational model design
+            </li>
+            <li>
+              <strong>Strategic Roadmapping:</strong> Multi-year strategic
+              timelines and milestones
+            </li>
+          </ul>
+
+          <h2>The Strategic Process</h2>
+          <p>
+            We combine industry research, competitive analysis, and financial
+            modeling to develop strategies grounded in reality. Through
+            facilitated workshops and iterative refinement, we align your
+            organization around a clear, actionable strategic direction.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A comprehensive business strategy that provides directional clarity,
+            competitive positioning, and a roadmap for sustainable growth. Your
+            organization will have the strategic foundation necessary to make
+            informed decisions and achieve long-term objectives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="consulting-services-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="consulting-services-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Consulting Services</h1>
+          <p class="modal-subtitle">
+            Expert guidance on demand for strategic and design leadership
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Specialized expertise on demand. We provide fractional leadership
+            and consulting services that accelerate your organization's
+            capabilities in design, strategy, and digital transformation.
+          </p>
+
+          <h2>What We Offer</h2>
+          <p>Our consulting services provide flexible, expert support:</p>
+          <ul>
+            <li>
+              <strong>Fractional CMO:</strong> Part-time Chief Marketing Officer
+              services for strategic marketing direction
+            </li>
+            <li>
+              <strong>Design Leadership:</strong> Strategic direction and
+              oversight of design functions
+            </li>
+            <li>
+              <strong>Strategic Consulting:</strong> Executive-level strategic
+              guidance on major initiatives
+            </li>
+            <li>
+              <strong>Workshops & Training:</strong> Facilitated sessions to
+              build internal capabilities
+            </li>
+            <li>
+              <strong>Digital Transformation:</strong> Guidance on digital
+              modernization and adoption
+            </li>
+            <li>
+              <strong>Advisory Board Services:</strong> Ongoing strategic
+              counsel for executive teams
+            </li>
+          </ul>
+
+          <h2>Why Choose Consulting</h2>
+          <p>
+            Fractional services provide expert guidance without the cost of
+            full-time hires. This model is ideal for organizations needing
+            specialized expertise for specific initiatives or transitions. We
+            integrate seamlessly with your existing teams and provide both
+            immediate impact and knowledge transfer.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            Accelerated strategic progress, improved organizational capability,
+            and successful execution of key initiatives. You gain access to
+            expert-level guidance tailored to your specific needs and
+            challenges.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="grid-strategy-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="grid-strategy-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Strategy</h1>
+          <p class="modal-subtitle">
+            High-level architecture for complex business challenges
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Strategic thinking is at the core of sustainable business success.
+            We provide comprehensive strategy frameworks that help you navigate
+            complex challenges, capitalize on market opportunities, and achieve
+            long-term competitive advantage.
+          </p>
+
+          <h2>What We Deliver</h2>
+          <p>Our strategic services include:</p>
+          <ul>
+            <li>
+              <strong>Competitive Analysis:</strong> Deep understanding of
+              market landscape and competitive positioning
+            </li>
+            <li>
+              <strong>Business Architecture:</strong> Frameworks for organizing
+              complex business operations
+            </li>
+            <li>
+              <strong>Roadmap Development:</strong> Clear, actionable strategies
+              for growth and expansion
+            </li>
+            <li>
+              <strong>Optimization:</strong> Identifying efficiencies and value
+              creation opportunities
+            </li>
+            <li>
+              <strong>Risk Assessment:</strong> Proactive identification and
+              mitigation of strategic risks
+            </li>
+          </ul>
+
+          <h2>Our Methodology</h2>
+          <p>
+            We combine quantitative analysis with qualitative insights to
+            develop strategies grounded in real market dynamics. Through
+            executive workshops and iterative refinement, we align your
+            organization around a clear strategic vision.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A comprehensive strategic framework that provides directional
+            clarity, identifies growth opportunities, and enables confident
+            decision-making at the executive level.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="grid-design-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="grid-design-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Design</h1>
+          <p class="modal-subtitle">
+            Visual languages that capture attention and drive results
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Design is a powerful tool for communication and differentiation. We
+            create visual languages that not only capture attention but also
+            drive conversions, build trust, and strengthen brand authority in
+            your market.
+          </p>
+
+          <h2>What We Create</h2>
+          <p>Our design services encompass:</p>
+          <ul>
+            <li>
+              <strong>Visual Identity:</strong> Cohesive design systems that
+              work across all applications
+            </li>
+            <li>
+              <strong>User Interface Design:</strong> Intuitive, beautiful
+              interfaces that drive engagement
+            </li>
+            <li>
+              <strong>Design Systems:</strong> Scalable frameworks for
+              consistent design execution
+            </li>
+            <li>
+              <strong>Brand Expression:</strong> Visual approaches that reflect
+              and reinforce brand values
+            </li>
+            <li>
+              <strong>Design Strategy:</strong> Strategic approaches to visual
+              communication
+            </li>
+          </ul>
+
+          <h2>Our Design Philosophy</h2>
+          <p>
+            We believe great design is both beautiful and functional. Every
+            visual decision is grounded in strategy and user insight. We create
+            designs that not only look exceptional but also deliver measurable
+            business results.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            Visual languages that command attention, communicate your brand's
+            essence, and drive user engagement and conversion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="grid-scaling-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="grid-scaling-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Scaling</h1>
+          <p class="modal-subtitle">
+            Infrastructural patterns for sustainable growth
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Growth requires more than ambition—it requires infrastructure. We
+            develop scalable systems, processes, and organizational frameworks
+            that enable sustainable expansion in the modern digital-first
+            economy.
+          </p>
+
+          <h2>What We Build</h2>
+          <p>Our scaling services include:</p>
+          <ul>
+            <li>
+              <strong>Growth Infrastructure:</strong> Systems and processes
+              designed for expansion
+            </li>
+            <li>
+              <strong>Digital Systems:</strong> Modern technology stacks that
+              scale efficiently
+            </li>
+            <li>
+              <strong>Organizational Design:</strong> Team structures and
+              processes for growth
+            </li>
+            <li>
+              <strong>Operational Efficiency:</strong> Streamlined processes
+              that reduce friction
+            </li>
+            <li>
+              <strong>Data & Analytics:</strong> Systems for measuring and
+              optimizing growth
+            </li>
+          </ul>
+
+          <h2>The Scaling Philosophy</h2>
+          <p>
+            Scaling is not just about growing bigger—it's about growing smarter.
+            We help you build the infrastructure and systems that enable
+            sustainable, profitable growth while maintaining quality and brand
+            integrity.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A scalable business architecture that supports rapid growth while
+            maintaining operational excellence and brand consistency.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="grid-consulting-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="grid-consulting-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Consulting</h1>
+          <p class="modal-subtitle">
+            Expert navigation for global markets and digital leadership
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Global markets are complex and constantly evolving. We provide
+            expert consulting that helps you navigate market dynamics, build
+            competitive advantage, and establish digital leadership in your
+            industry.
+          </p>
+
+          <h2>What We Offer</h2>
+          <p>Our consulting services cover:</p>
+          <ul>
+            <li>
+              <strong>Global Market Strategy:</strong> Navigation strategies for
+              international expansion
+            </li>
+            <li>
+              <strong>Tactical Consulting:</strong> On-demand expert advice for
+              specific challenges
+            </li>
+            <li>
+              <strong>Digital Product Leadership:</strong> Guidance on digital
+              product strategy and execution
+            </li>
+            <li>
+              <strong>Competitive Intelligence:</strong> Analysis of competitor
+              strategies and market positioning
+            </li>
+            <li>
+              <strong>Executive Advisory:</strong> Strategic counsel for
+              executive leadership teams
+            </li>
+          </ul>
+
+          <h2>Our Consulting Approach</h2>
+          <p>
+            We combine deep industry experience with data-driven analysis to
+            provide practical, actionable consulting. Our goal is not just to
+            advise, but to accelerate your success through expert guidance and
+            strategic partnership.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            Clear market strategies, competitive positioning, and the expert
+            guidance needed to build digital leadership and achieve sustainable
+            growth in global markets.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="process-discovery-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="process-discovery-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Discovery</h1>
+          <p class="modal-subtitle">
+            Understanding your business, market, and opportunities
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Every successful project begins with deep understanding. In the
+            discovery phase, we conduct in-depth analysis of your business,
+            market positioning, competitive landscape, and growth objectives to
+            establish a solid foundation for strategic work.
+          </p>
+
+          <h2>What We Analyze</h2>
+          <p>During discovery, we examine:</p>
+          <ul>
+            <li>
+              <strong>Business Analysis:</strong> Deep dive into your business
+              model, operations, and capabilities
+            </li>
+            <li>
+              <strong>Market Positioning:</strong> Assessment of where you stand
+              in your market
+            </li>
+            <li>
+              <strong>Competitive Landscape:</strong> Detailed competitive
+              analysis and benchmarking
+            </li>
+            <li>
+              <strong>Growth Objectives:</strong> Clarification of business
+              goals and growth targets
+            </li>
+            <li>
+              <strong>Opportunity Identification:</strong> Discovery of market
+              gaps and expansion opportunities
+            </li>
+          </ul>
+
+          <h2>The Discovery Process</h2>
+          <p>
+            We use a combination of interviews, research, data analysis, and
+            competitive assessment to build comprehensive understanding. This
+            phase typically involves extensive stakeholder engagement to ensure
+            we capture all relevant insights and perspectives.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A comprehensive understanding of your business context, market
+            dynamics, and opportunities. Discovery findings inform all
+            subsequent strategic and creative work.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="process-strategy-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="process-strategy-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Strategy</h1>
+          <p class="modal-subtitle">
+            Building comprehensive strategic frameworks aligned with your goals
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            With a deep understanding of your business and market, we develop
+            comprehensive strategic frameworks that align all activities toward
+            your business goals. This phase translates insights into actionable
+            strategy.
+          </p>
+
+          <h2>What We Develop</h2>
+          <p>Our strategy phase includes:</p>
+          <ul>
+            <li>
+              <strong>Strategic Framework:</strong> Comprehensive strategy
+              aligned with business objectives
+            </li>
+            <li>
+              <strong>Positioning:</strong> Clear articulation of market
+              position and differentiation
+            </li>
+            <li>
+              <strong>Messaging Architecture:</strong> Foundational messaging
+              that guides all communication
+            </li>
+            <li>
+              <strong>Growth Roadmap:</strong> Detailed roadmap for
+              implementation and growth
+            </li>
+            <li>
+              <strong>Key Initiatives:</strong> Definition of strategic
+              priorities and initiatives
+            </li>
+          </ul>
+
+          <h2>The Strategy Development Process</h2>
+          <p>
+            We work closely with your team through workshops and collaborative
+            sessions to develop strategy that is both ambitious and achievable.
+            The result is a clear, comprehensive framework that guides all
+            subsequent execution.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            A comprehensive strategic framework that provides clear direction,
+            aligned positioning, and a detailed roadmap for growth and
+            implementation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="process-execution-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="process-execution-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Execution</h1>
+          <p class="modal-subtitle">
+            Precise development and implementation of strategic systems
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Strategy is only valuable when executed well. In the execution
+            phase, we develop and implement all strategic systems—from brand
+            identity to digital products—with precision and attention to detail.
+            Every element is crafted for maximum impact and performance.
+          </p>
+
+          <h2>What We Execute</h2>
+          <p>Our execution phase includes:</p>
+          <ul>
+            <li>
+              <strong>Brand Development:</strong> Full development of brand
+              identity systems
+            </li>
+            <li>
+              <strong>Digital Products:</strong> Design and development of web
+              and mobile applications
+            </li>
+            <li>
+              <strong>Marketing Systems:</strong> Development of marketing and
+              communication systems
+            </li>
+            <li>
+              <strong>Content Creation:</strong> Development of strategic
+              content and assets
+            </li>
+            <li>
+              <strong>Implementation:</strong> Precise execution and deployment
+              of all systems
+            </li>
+          </ul>
+
+          <h2>The Execution Methodology</h2>
+          <p>
+            We execute with precision, rigor, and attention to detail. Our
+            approach combines strategic thinking with technical excellence. We
+            ensure all execution aligns with strategic objectives and delivers
+            measurable business results.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            Fully developed and implemented strategic systems—from brand
+            identity to digital products—that are ready for market and optimized
+            for performance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="process-optimization-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="process-optimization-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Optimization</h1>
+          <p class="modal-subtitle">
+            Continuous refinement for sustainable growth
+          </p>
+
+          <h2>Overview</h2>
+          <p>
+            Success is not a destination—it's a continuous journey. In the
+            optimization phase, we monitor performance, gather market feedback,
+            and systematically improve all systems to ensure sustainable growth
+            and long-term success.
+          </p>
+
+          <h2>What We Optimize</h2>
+          <p>Our optimization efforts focus on:</p>
+          <ul>
+            <li>
+              <strong>Performance Analysis:</strong> Data-driven measurement of
+              system performance
+            </li>
+            <li>
+              <strong>Market Feedback:</strong> Gathering and incorporating
+              customer and market feedback
+            </li>
+            <li>
+              <strong>Iterative Improvement:</strong> Systematic refinement of
+              all systems and processes
+            </li>
+            <li>
+              <strong>Growth Acceleration:</strong> Identifying and implementing
+              growth opportunities
+            </li>
+            <li>
+              <strong>Sustainability:</strong> Building sustainable approaches
+              to growth and operations
+            </li>
+          </ul>
+
+          <h2>The Optimization Approach</h2>
+          <p>
+            We believe in continuous improvement driven by data and real-world
+            feedback. Through systematic testing, measurement, and iteration, we
+            help you optimize every aspect of your business for sustainable,
+            profitable growth.
+          </p>
+
+          <h2>Expected Outcomes</h2>
+          <p>
+            Continuously improving systems that deliver increasing returns.
+            Through ongoing optimization, you achieve sustainable growth,
+            improved performance, and competitive advantage.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="terms-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="terms-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Terms & Conditions</h1>
+          <p class="modal-subtitle">Last updated: February 2026</p>
+
+          <h2>1. General Information</h2>
+          <p>
+            These Terms and Conditions govern the use of services provided by
+            Volodymyr Shalavylo (operating as KEFE), a private individual
+            offering strategic design and consulting services in Switzerland. By
+            engaging with these services, you agree to be bound by these terms.
+          </p>
+
+          <h2>2. Services</h2>
+          <p>
+            KEFE provides strategic design and consulting services including but
+            not limited to:
+          </p>
+          <ul>
+            <li>Strategic business consulting</li>
+            <li>Brand identity design</li>
+            <li>Digital product design and development</li>
+            <li>Business strategy development</li>
+            <li>Design leadership consulting</li>
+          </ul>
+
+          <h2>3. Scope of Services</h2>
+          <p>
+            The specific scope, deliverables, timeline, and compensation for
+            each project will be defined in a separate agreement or proposal.
+            Services begin only after mutual agreement on project terms and
+            receipt of initial payment where applicable.
+          </p>
+
+          <h2>4. Client Obligations</h2>
+          <p>Clients agree to:</p>
+          <ul>
+            <li>
+              Provide timely and accurate information necessary for project
+              completion
+            </li>
+            <li>Respond to communications within reasonable timeframes</li>
+            <li>Make timely payments as agreed upon</li>
+            <li>
+              Provide necessary feedback and approvals during project milestones
+            </li>
+          </ul>
+
+          <h2>5. Payment Terms</h2>
+          <p>
+            Payment terms are specified in individual project agreements. Unless
+            otherwise agreed, standard terms include:
+          </p>
+          <ul>
+            <li>50% deposit upon project commencement</li>
+            <li>50% upon project completion and delivery</li>
+            <li>Payment due within 14 days of invoice date</li>
+          </ul>
+
+          <h2>6. Intellectual Property</h2>
+          <p>
+            <strong>Client Ownership:</strong> Upon full payment, clients
+            receive ownership of final deliverables as specified in the project
+            agreement.
+          </p>
+          <p>
+            <strong>KEFE Ownership:</strong> KEFE retains ownership of all
+            concepts, processes, methodologies, and work-in-progress materials
+            not explicitly included in final deliverables.
+          </p>
+
+          <h2>7. Confidentiality</h2>
+          <p>
+            Both parties agree to maintain confidentiality of proprietary
+            information shared during the engagement. This obligation survives
+            termination of the service agreement.
+          </p>
+
+          <h2>8. Website and Communication</h2>
+          <p>
+            KEFE's website is hosted via GitHub Pages. Email services are
+            provided through Apple Inc. By using KEFE's website and
+            communication channels, you agree to use them solely for legitimate
+            business purposes. The following are strictly prohibited:
+          </p>
+          <ul>
+            <li>Unauthorized data scraping or collection</li>
+            <li>Spam or unsolicited communications</li>
+            <li>Malicious activities or attempts to breach security</li>
+            <li>Use for illegal purposes</li>
+          </ul>
+
+          <h2>9. No Data Collection</h2>
+          <p>
+            This website does not use cookies, analytics tools, or tracking
+            technologies. Server infrastructure (GitHub Pages) may process
+            technical data such as IP address as part of standard web hosting
+            operations. KEFE does not access, analyze, or use this data.
+          </p>
+
+          <h2>10. Copyright and Content</h2>
+          <p>
+            All content on KEFE's website, including text, images, graphics, and
+            design elements, is the exclusive property of Volodymyr Shalavylo
+            unless otherwise noted. Unauthorized reproduction, distribution, or
+            use is strictly prohibited.
+          </p>
+          <p><strong>Third-Party Resources:</strong></p>
+          <ul>
+            <li>Icons: Google Material Icons (Apache License 2.0)</li>
+            <li>Hosting: GitHub Pages</li>
+            <li>Email: Apple Inc. services</li>
+          </ul>
+
+          <h2>11. Limitation of Liability</h2>
+          <p>
+            To the extent permitted by Swiss law, Volodymyr Shalavylo is not
+            liable for indirect, incidental, or consequential damages arising
+            from the use of services or this website.
+          </p>
+
+          <h2>12. Governing Law</h2>
+          <p>
+            These Terms and Conditions are governed by Swiss law. The exclusive
+            place of jurisdiction is Basel-Landschaft, Switzerland.
+          </p>
+
+          <h2>13. Contact Information</h2>
+          <p>
+            <strong>Volodymyr Shalavylo</strong><br />
+            Ziegelweg 1<br />
+            4102 Binningen<br />
+            Basel-Landschaft, Switzerland<br />
+            <br />
+            Phone: <a href="tel:+41783514822">+41 78 351 48 22</a><br />
+            Email: <a href="mailto:info@kefe.ch">info@kefe.ch</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="imprint-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="imprint-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Imprint</h1>
+          <p class="modal-subtitle">Legal disclosure according to Swiss law</p>
+
+          <h2>Information according to Swiss Law</h2>
+          <p>
+            In accordance with Swiss law and the principle of transparency, this
+            page provides all legally required information about the operator of
+            this website and service provider.
+          </p>
+
+          <div class="info-box">
+            <h3>Service Provider</h3>
+            <p>
+              <strong>Name:</strong> Volodymyr Shalavylo<br />
+              <strong>Operating As:</strong> KEFE<br />
+              <strong>Legal Form:</strong> Private Individual
+            </p>
+
+            <h3>Address</h3>
+            <p>
+              Ziegelweg 1<br />
+              4102 Binningen<br />
+              Basel-Landschaft<br />
+              Switzerland
+            </p>
+
+            <h3>Contact Information</h3>
+            <p>
+              <strong>Phone:</strong>
+              <a href="tel:+41783514822">+41 78 351 48 22</a><br />
+              <strong>Email:</strong>
+              <a href="mailto:info@kefe.ch">info@kefe.ch</a>
+            </p>
+          </div>
+
+          <h2>Scope of Services</h2>
+          <p>
+            KEFE provides strategic design and consulting services, including:
+          </p>
+          <ul>
+            <li>Strategic business consulting</li>
+            <li>Brand identity design and development</li>
+            <li>Digital product design</li>
+            <li>User experience and interface design</li>
+            <li>Business strategy and positioning</li>
+            <li>Design leadership consulting</li>
+          </ul>
+
+          <h2>Responsible for Content</h2>
+          <p>
+            Volodymyr Shalavylo is solely responsible for all content published
+            on this website and through KEFE services.
+          </p>
+
+          <h2>Legal Status</h2>
+          <p>
+            Volodymyr Shalavylo is a private individual offering professional
+            strategic design and consulting services in Switzerland. This
+            operation does not require formal registration as a business entity
+            under Swiss law and operates on a freelance/independent contractor
+            basis.
+          </p>
+
+          <h2>Copyright and Intellectual Property</h2>
+          <p>
+            All content on this website is the exclusive property of Volodymyr
+            Shalavylo (KEFE) and is protected by Swiss and international
+            copyright laws.
+          </p>
+
+          <h2>Third-Party Resources</h2>
+          <p>This website utilizes the following third-party resources:</p>
+          <ul>
+            <li>
+              <strong>Icons:</strong> Google Material Icons (Apache License 2.0)
+            </li>
+            <li>
+              <strong>Fonts:</strong> Inter by Rasmus Andersson (SIL Open Font
+              License)
+            </li>
+            <li><strong>Hosting:</strong> GitHub Pages</li>
+            <li><strong>Email Services:</strong> Apple Inc.</li>
+          </ul>
+
+          <h2>Prohibited Uses</h2>
+          <p>The following activities are strictly prohibited:</p>
+          <ul>
+            <li>Data scraping, mining, or unauthorized automated access</li>
+            <li>Spam, unsolicited communications, or mass mailings</li>
+            <li>Attempts to breach security or access restricted areas</li>
+            <li>Malicious activities including virus distribution</li>
+            <li>
+              Use for illegal purposes or activities contrary to Swiss law
+            </li>
+          </ul>
+
+          <h2>Dispute Resolution and Jurisdiction</h2>
+          <p>
+            Any disputes arising from the use of this website or services
+            provided by KEFE shall be governed by Swiss law. The exclusive place
+            of jurisdiction is Basel-Landschaft, Switzerland.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="privacy-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="privacy-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Privacy Policy</h1>
+          <p class="modal-subtitle">Last updated: February 2026</p>
+
+          <div class="highlight-box">
+            <p style="margin-bottom: 0">
+              <strong>Simple Summary:</strong> KEFE does not use cookies,
+              tracking tools, or analytics. We do not collect any personal data
+              through this website. The only information we have is what you
+              voluntarily share with us via email, phone, or in-person meetings.
+            </p>
+          </div>
+
+          <h2>1. Introduction</h2>
+          <p>
+            This Privacy Policy explains how Volodymyr Shalavylo (operating as
+            KEFE) handles personal information in compliance with Swiss data
+            protection laws, including the Federal Act on Data Protection
+            (FADP).
+          </p>
+
+          <h2>2. Data Controller</h2>
+          <p>
+            <strong>Volodymyr Shalavylo</strong><br />
+            Ziegelweg 1<br />
+            4102 Binningen<br />
+            Basel-Landschaft, Switzerland<br />
+            <br />
+            Email: <a href="mailto:info@kefe.ch">info@kefe.ch</a><br />
+            Phone: <a href="tel:+41783514822">+41 78 351 48 22</a>
+          </p>
+
+          <h2>3. No Website Tracking or Cookies</h2>
+          <p>KEFE's website does not use:</p>
+          <ul>
+            <li>Cookies of any kind</li>
+            <li>Tracking pixels or web beacons</li>
+            <li>Analytics tools (such as Google Analytics)</li>
+            <li>Third-party advertising or tracking services</li>
+            <li>Social media plugins or widgets</li>
+          </ul>
+          <p>
+            Your visit to this website is completely private and anonymous. No
+            data about your browsing behavior, IP address, location, device, or
+            any other information is collected, stored, or analyzed.
+          </p>
+
+          <h2>4. Data We Collect</h2>
+          <p>
+            KEFE only collects personal data that you
+            <strong>voluntarily provide</strong> through:
+          </p>
+          <ul>
+            <li>Email communications</li>
+            <li>Phone calls and messaging apps (WhatsApp, Telegram)</li>
+            <li>In-person meetings</li>
+            <li>Project engagement</li>
+          </ul>
+
+          <h2>5. How We Use Your Data</h2>
+          <p>
+            KEFE uses your personal data solely for legitimate business
+            purposes:
+          </p>
+          <ul>
+            <li>
+              <strong>Communication:</strong> Responding to inquiries and
+              maintaining business correspondence
+            </li>
+            <li>
+              <strong>Service Delivery:</strong> Providing requested design and
+              consulting services
+            </li>
+            <li>
+              <strong>Project Management:</strong> Coordinating timelines,
+              deliverables, and feedback
+            </li>
+            <li>
+              <strong>Billing:</strong> Processing payments and maintaining
+              financial records
+            </li>
+          </ul>
+
+          <h2>6. Legal Basis for Data Processing</h2>
+          <p>
+            Under Swiss data protection law, KEFE processes your personal data
+            based on:
+          </p>
+          <ul>
+            <li>
+              <strong>Contract Performance:</strong> Fulfilling service
+              agreements
+            </li>
+            <li>
+              <strong>Legitimate Interest:</strong> Operating our business
+            </li>
+            <li>
+              <strong>Consent:</strong> Your voluntary provision of information
+            </li>
+            <li>
+              <strong>Legal Obligation:</strong> Compliance with Swiss law
+            </li>
+          </ul>
+
+          <h2>7. Data Sharing and Third Parties</h2>
+          <p>
+            KEFE does not sell, rent, or trade your personal data to third
+            parties.
+          </p>
+          <p>Limited sharing may occur only for:</p>
+          <ul>
+            <li>
+              <strong>Email Services:</strong> Apple Inc.'s email services
+            </li>
+            <li>
+              <strong>Website Hosting:</strong> GitHub Pages (no personal data
+              collected)
+            </li>
+            <li>
+              <strong>Legal Requirements:</strong> If required by Swiss law
+            </li>
+          </ul>
+
+          <h2>8. Data Security</h2>
+          <p>KEFE implements appropriate security measures:</p>
+          <ul>
+            <li>Secure email communications using encrypted connections</li>
+            <li>Password-protected devices and systems</li>
+            <li>Limited access to personal data (only Volodymyr Shalavylo)</li>
+            <li>Regular backups stored securely</li>
+          </ul>
+
+          <h2>9. Data Retention</h2>
+          <p>KEFE retains personal data only as long as necessary:</p>
+          <ul>
+            <li>
+              <strong>Active Projects:</strong> Throughout project duration
+            </li>
+            <li>
+              <strong>Completed Projects:</strong> For portfolio use and legal
+              requirements
+            </li>
+            <li><strong>Inquiry Communications:</strong> Typically 2 years</li>
+            <li>
+              <strong>Financial Records:</strong> 10 years (Swiss law
+              requirement)
+            </li>
+          </ul>
+
+          <h2>10. Your Rights</h2>
+          <p>Under Swiss data protection law, you have:</p>
+          <ul>
+            <li>
+              <strong>Right to Access:</strong> Request a copy of your data
+            </li>
+            <li>
+              <strong>Right to Rectification:</strong> Request correction of
+              inaccurate data
+            </li>
+            <li>
+              <strong>Right to Erasure:</strong> Request deletion of your data
+            </li>
+            <li>
+              <strong>Right to Restriction:</strong> Request limitation of
+              processing
+            </li>
+            <li>
+              <strong>Right to Data Portability:</strong> Receive your data in
+              structured format
+            </li>
+            <li><strong>Right to Object:</strong> Object to processing</li>
+          </ul>
+          <p>
+            To exercise these rights, contact us at
+            <a href="mailto:info@kefe.ch">info@kefe.ch</a>
+          </p>
+
+          <h2>11. Complaints and Regulatory Authority</h2>
+          <p>
+            You have the right to lodge a complaint with the Swiss Federal Data
+            Protection and Information Commissioner (FDPIC):
+          </p>
+          <p>
+            <strong>Federal Data Protection and Information Commissioner</strong
+            ><br />
+            Feldeggweg 1<br />
+            3003 Bern<br />
+            Switzerland<br />
+            <a href="https://www.edoeb.admin.ch" target="_blank"
+              >www.edoeb.admin.ch</a
+            >
+          </p>
+
+          <h2>12. Commitment to Privacy</h2>
+          <p>
+            KEFE (Volodymyr Shalavylo) is personally committed to protecting
+            your privacy. As a sole proprietor, I handle all data personally and
+            take this responsibility seriously.
+          </p>
+        </div>
       </div>
     </div>
 
     <footer>
-      <span>KEFE // BASEL // 2025</span>
-      <span id="clock">00:00:00 UTC</span>
-    </footer>
-
-    <div
-      id="legalModal"
-      class="modal"
-      style="
-        display: none;
-        position: fixed;
-        z-index: 2000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--bg);
-      "
-    >
-      <div
-        style="
-          max-width: 600px;
-          width: 90%;
-          border: 1px solid var(--line);
-          margin: 10vh auto;
-        "
-      >
-        <div
-          style="
-            padding: 15px;
-            border-bottom: 1px solid var(--line);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--txt);
-            color: var(--bg);
-          "
-        >
-          <span style="font-size: 10px; font-weight: bold"
-            >LEGAL_DISCLAIMER</span
-          >
-          <span style="cursor: pointer" onclick="closeModal('legalModal')"
-            >[X] CLOSE</span
-          >
+      <div class="footer-accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Headquarters</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <p>4102 Binningen</p>
+            <p>Switzerland</p>
+          </div>
         </div>
-        <div style="padding: 25px; font-size: 11px; line-height: 1.6">
-          <p>
-            KEFE is a private cryptographic interface. Logic is executed locally
-            via Web Crypto API. No data leaves the client browser.
-          </p>
-          <br />
-          <p>Jurisdiction: Basel, Switzerland.</p>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Contact</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <p><a href="mailto:info@kefe.ch" class="contact-email">info@kefe.ch</a></p>
+            <p><button class="show-phone-btn" onclick="togglePhone(this)">Show phone</button></p>
+            <p id="phone-number" style="display: none;"><a href="tel:+41783514822">+41 78 351 48 22</a></p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Social Media</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <a href="https://wa.me/41783514822">WhatsApp</a>
+            <a href="https://t.me/kefestudio">Telegram</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Legal</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <div class="legal-item">
+              <a href="#" data-modal="terms-modal">Terms & Conditions</a>
+              <div class="download-links">
+                <a href="#" onclick="event.preventDefault(); downloadTerms('txt')" class="download-link-btn" title="Download as TXT">TXT</a>
+              </div>
+            </div>
+            <div class="legal-item">
+              <a href="#" data-modal="imprint-modal">Imprint</a>
+              <div class="download-links">
+                <a href="#" onclick="event.preventDefault(); downloadImprint('txt')" class="download-link-btn" title="Download as TXT">TXT</a>
+              </div>
+            </div>
+            <div class="legal-item">
+              <a href="#" data-modal="privacy-modal">Privacy Policy</a>
+              <div class="download-links">
+                <a href="#" onclick="event.preventDefault(); downloadPrivacy('txt')" class="download-link-btn" title="Download as TXT">TXT</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Language</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <a href="/de">Deutsch</a>
+            <a href="/fr">Français</a>
+            <a href="/it">Italiano</a>
+            <a href="/rm">Rumantsch</a>
+
+            <a href="/en">English</a>
+            <a href="/es">Español</a>
+            <a href="/zh">中文 (Chinese)</a>
+            <a href="/ja">日本語 (Japanese)</a>
+            <a href="/ar">العربية (Arabic)</a>
+            <a href="/pt">Português</a>
+            <a href="/hi">हिन्दी (Hindi)</a>
+            <a href="/bn">বাংলা (Bengali)</a>
+            <a href="/pa">ਪੰਜਾਬੀ (Punjabi)</a>
+            <a href="/ru">Русский (Russian)</a>
+            <a href="/ko">한국어 (Korean)</a>
+            <a href="/vi">Tiếng Việt</a>
+            <a href="/de-AT">Deutsch (Austria)</a>
+            <a href="/fr-BE">Français (Belgique)</a>
+            <a href="/nl">Nederlands</a>
+            <a href="/sv">Svenska</a>
+            <a href="/pl">Polski</a>
+            <a href="/tr">Türkçe</a>
+            <a href="/id">Bahasa Indonesia</a>
+            <a href="/ms">Bahasa Melayu</a>
+            <a href="/th">ไทย (Thai)</a>
+            <a href="/fa">فارسی (Persian)</a>
+            <a href="/he">עברית (Hebrew)</a>
+            <a href="/it-IT">Italiano (Italy)</a>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="footer-big-elements">
+        <div class="footer-logo-giant">KEFE</div>
+        <div class="legal-bar-giant">©<span id="year"></span></div>
+      </div>
+    </footer>
+    <div class="theme-fade" id="theme-fade"></div>
 
     <script>
-      // --- CRYPTO ENGINE ---
-      async function deriveKey(password, salt) {
-        const enc = new TextEncoder();
-        const baseKey = await crypto.subtle.importKey(
-          "raw",
-          enc.encode(password),
-          "PBKDF2",
-          false,
-          ["deriveKey"]
-        );
-        return crypto.subtle.deriveKey(
-          { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-          baseKey,
-          { name: "AES-GCM", length: 256 },
-          false,
-          ["encrypt", "decrypt"]
-        );
-      }
+      const modalTriggers = document.querySelectorAll("[data-modal]");
+      const modals = document.querySelectorAll(".modal");
+      const modalCloses = document.querySelectorAll(".modal-close");
 
-      async function runEncrypt() {
-        const val = document.getElementById("in-c").value;
-        const pass = document.getElementById("pass-c").value;
-        if (!val) return;
-
-        let final;
-        if (pass) {
-          const salt = crypto.getRandomValues(new Uint8Array(16));
-          const iv = crypto.getRandomValues(new Uint8Array(12));
-          const key = await deriveKey(pass, salt);
-          const encoded = new TextEncoder().encode(val);
-          const encrypted = await crypto.subtle.encrypt(
-            { name: "AES-GCM", iv },
-            key,
-            encoded
-          );
-
-          const combined = new Uint8Array(
-            salt.length + iv.length + encrypted.byteLength
-          );
-          combined.set(salt, 0);
-          combined.set(iv, 16);
-          combined.set(new Uint8Array(encrypted), 28);
-          final = "KEFE_SEC::" + btoa(String.fromCharCode(...combined));
-        } else {
-          final = "KEFE_PKT::" + btoa(unescape(encodeURIComponent(val)));
-        }
-
-        document.getElementById("box-c").style.display = "block";
-        document.getElementById("out-c").innerText = final;
-        document.getElementById("qr-display").style.display = "none";
-        document.getElementById("dl-btn").style.display = "none";
-      }
-
-      async function runDecrypt() {
-        const val = document.getElementById("in-d").value.trim();
-        const pass = document.getElementById("pass-d").value;
-        const out = document.getElementById("out-d");
-        document.getElementById("box-d").style.display = "block";
-
-        try {
-          if (val.startsWith("KEFE_SEC::")) {
-            const data = Uint8Array.from(
-              atob(val.replace("KEFE_SEC::", "")),
-              (c) => c.charCodeAt(0)
-            );
-            const salt = data.slice(0, 16);
-            const iv = data.slice(16, 28);
-            const cipher = data.slice(28);
-            const key = await deriveKey(pass, salt);
-            const decrypted = await crypto.subtle.decrypt(
-              { name: "AES-GCM", iv },
-              key,
-              cipher
-            );
-            out.innerText = new TextDecoder().decode(decrypted);
-          } else {
-            const raw = val.replace("KEFE_PKT::", "");
-            out.innerText = decodeURIComponent(escape(atob(raw)));
+      modalTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          const modalId = trigger.getAttribute("data-modal");
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
           }
-        } catch (e) {
-          out.innerText = "ERROR::INVALID_KEY_OR_PAYLOAD";
+        });
+      });
+
+      modalCloses.forEach((closeBtn) => {
+        closeBtn.addEventListener("click", () => {
+          const modalId = closeBtn.getAttribute("data-modal");
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          modals.forEach((modal) => {
+            modal.classList.remove("active");
+          });
+          document.body.style.overflow = "";
+        }
+      });
+    </script>
+
+    <script>
+      const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+      accordionHeaders.forEach((header) => {
+        header.addEventListener("click", () => {
+          const accordionItem = header.parentElement;
+          const isActive = accordionItem.classList.contains("active");
+
+          document.querySelectorAll(".accordion-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          if (!isActive) {
+            accordionItem.classList.add("active");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+      const burger = document.getElementById("burger-menu");
+      const mobileNav = document.getElementById("mobile-nav");
+      const body = document.body;
+      let scrollPosition = 0;
+
+      function openMenu() {
+        scrollPosition = window.scrollY;
+        body.style.top = `-${scrollPosition}px`;
+        body.classList.add("no-scroll");
+        burger.classList.add("active");
+        mobileNav.classList.add("active");
+      }
+
+      function closeMenu() {
+        body.classList.remove("no-scroll");
+        body.style.top = "";
+        window.scrollTo(0, scrollPosition);
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+      }
+
+      burger.addEventListener("click", () => {
+        if (!burger.classList.contains("active")) openMenu();
+        else closeMenu();
+      });
+
+      document
+        .querySelectorAll(".mobile-link")
+        .forEach((link) => link.addEventListener("click", closeMenu));
+
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileNav.contains(e.target) &&
+          !burger.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          closeMenu();
+        }
+      });
+    </script>
+
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = themeToggle.querySelector(".material-icons");
+      const currentTheme = localStorage.getItem("theme");
+
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      if (currentTheme === "dark" || (!currentTheme && systemPrefersDark)) {
+        body.classList.add("dark-mode");
+        themeIcon.textContent = "dark_mode";
+      } else {
+        body.classList.add("light-mode");
+        themeIcon.textContent = "light_mode";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        if (body.classList.contains("dark-mode")) {
+          body.classList.remove("dark-mode");
+          body.classList.add("light-mode");
+          themeIcon.textContent = "light_mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          body.classList.remove("light-mode");
+          body.classList.add("dark-mode");
+          themeIcon.textContent = "dark_mode";
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
+
+    <script>
+      function togglePhone(button) {
+        const phoneNumber = document.getElementById('phone-number');
+        if (phoneNumber.style.display === 'none') {
+          phoneNumber.style.display = 'block';
+          button.textContent = 'Hide phone';
+        } else {
+          phoneNumber.style.display = 'none';
+          button.textContent = 'Show phone';
         }
       }
 
-      // --- SVG QR ENGINE ---
-      function genQR() {
-        const text = document.getElementById("out-c").innerText;
-        const display = document.getElementById("qr-display");
-        display.innerHTML = "";
-        display.style.display = "block";
+      function downloadTerms(format) {
+        const element = document.querySelector('#terms-modal .modal-body');
+        if (!element) {
+          console.error('Terms modal body not found');
+          return false;
+        }
+        if (format === 'txt') {
+          downloadElementAsTXT(element, 'Terms-and-Conditions.txt');
+        }
+        return false;
+      }
+
+      function downloadImprint(format) {
+        const element = document.querySelector('#imprint-modal .modal-body');
+        if (!element) {
+          console.error('Imprint modal body not found');
+          return false;
+        }
+        if (format === 'txt') {
+          downloadElementAsTXT(element, 'Imprint.txt');
+        }
+        return false;
+      }
+
+      function downloadPrivacy(format) {
+        const element = document.querySelector('#privacy-modal .modal-body');
+        if (!element) {
+          console.error('Privacy modal body not found');
+          return false;
+        }
+        if (format === 'txt') {
+          downloadElementAsTXT(element, 'Privacy-Policy.txt');
+        }
+        return false;
+      }
+
+      function downloadElementAsTXT(element, filename) {
+        if (!element) {
+          console.error('Element is null');
+          return;
+        }
 
         try {
-          const typeNumber = 0; // auto detect
-          const errorCorrectionLevel = "L";
-          const qr = qrcode(typeNumber, errorCorrectionLevel);
-          qr.addData(text);
-          qr.make();
-
-          // Generate SVG with module size 8
-          const svgTag = qr.createSvgTag(8, 0);
-          display.innerHTML = svgTag;
-          document.getElementById("dl-btn").style.display = "inline-block";
-        } catch (err) {
-          alert("DATA_TOO_LARGE_FOR_QR");
+          // Clone the element
+          const clonedElement = element.cloneNode(true);
+          
+          // Remove any interactive elements
+          clonedElement.querySelectorAll('.modal-close, .modal-header, .download-btn').forEach(el => el.remove());
+          
+          // Extract text content with proper formatting
+          let text = extractTextFromElement(clonedElement);
+          
+          if (!text || text.trim().length === 0) {
+            console.error('No text content extracted');
+            return;
+          }
+          
+          // Create blob and download
+          const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+          const link = document.createElement('a');
+          const url = URL.createObjectURL(blob);
+          
+          link.setAttribute('href', url);
+          link.setAttribute('download', filename);
+          link.style.display = 'none';
+          
+          document.body.appendChild(link);
+          link.click();
+          
+          // Clean up
+          setTimeout(() => {
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }, 100);
+        } catch (error) {
+          console.error('Download error:', error);
         }
       }
 
-      function downloadSVG() {
-        const svg = document.getElementById("qr-display").innerHTML;
-        const blob = new Blob([svg], { type: "image/svg+xml" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `KEFE_PKT_${Date.now()}.svg`;
-        a.click();
+      function extractTextFromElement(element) {
+        let text = '';
+        
+        const processNode = (node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const content = node.textContent.trim();
+            if (content) text += content + '\n';
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const tagName = node.tagName.toLowerCase();
+            
+            if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+              text += '\n' + node.textContent + '\n';
+              text += '='.repeat(node.textContent.length) + '\n\n';
+            } else if (tagName === 'p') {
+              text += node.textContent + '\n\n';
+            } else if (tagName === 'ul' || tagName === 'ol') {
+              node.querySelectorAll('li').forEach(li => {
+                text += '• ' + li.textContent + '\n';
+              });
+              text += '\n';
+            } else if (tagName === 'strong' || tagName === 'b') {
+              text += node.textContent;
+            } else if (tagName === 'a') {
+              text += node.textContent;
+            } else if (tagName === 'br') {
+              text += '\n';
+            } else {
+              node.childNodes.forEach(child => processNode(child));
+            }
+          }
+        };
+        
+        element.childNodes.forEach(node => processNode(node));
+        
+        return text;
       }
-
-      // --- UTILS ---
-      function openModal(id) {
-        document.getElementById(id).style.display = "block";
-      }
-      function closeModal(id) {
-        document.getElementById(id).style.display = "none";
-      }
-      function copy(id) {
-        navigator.clipboard.writeText(document.getElementById(id).innerText);
-      }
-      async function paste(id) {
-        document.getElementById(id).value =
-          await navigator.clipboard.readText();
-      }
-      function wipeAll() {
-        location.reload();
-      }
-      setInterval(() => {
-        document.getElementById("clock").innerText =
-          new Date().toLocaleTimeString("en-GB") + " UTC";
-      }, 1000);
     </script>
   </body>
 </html>
