@@ -93,7 +93,6 @@
       }
 
       :root {
-        /* Colors */
         --black: #000000;
         --white: #ffffff;
         --off-white: #f2f2f2;
@@ -135,7 +134,6 @@
         width: 100%;
       }
 
-      /* TEXT OVERFLOW & WORD BREAKING - GLOBAL */
       body,
       body * {
         max-width: 100%;
@@ -194,7 +192,6 @@
         font-weight: 500;
       }
 
-      /* HEADER */
       header {
         display: flex;
         justify-content: space-between;
@@ -279,7 +276,6 @@
         line-height: 1;
       }
 
-      /* MOBILE MENU */
       .burger-menu {
         display: none;
         flex-direction: column;
@@ -359,7 +355,6 @@
         filter: blur(0);
       }
 
-      /* Stagger timing */
       .mobile-nav.active .mobile-link:nth-child(1) {
         transition-delay: 0.05s;
       }
@@ -395,7 +390,6 @@
         line-height: 1;
       }
 
-      /* HERO */
       .hero {
         padding: clamp(80px, 15vh, 200px) var(--content-padding);
         border-bottom: var(--border);
@@ -414,7 +408,6 @@
         word-wrap: break-word;
       }
 
-      /* ABOUT SECTION */
       .about-mini {
         padding: var(--section-padding) var(--content-padding);
         border-bottom: var(--border);
@@ -433,7 +426,6 @@
         color: var(--black);
       }
 
-      /* GRID SECTIONS (Strategy, Design, Process, Services) */
       .grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -494,7 +486,6 @@
         color: var(--black);
       }
 
-      /* GRID ITEM LAYOUTS */
       .grid-item.layout-1 {
         flex-direction: column;
         align-items: center;
@@ -573,7 +564,6 @@
         border: 2px solid var(--black);
       }
 
-      /* CONTACT CTA */
       .contact-trigger {
         width: 100%;
         padding: clamp(100px, 15vh, 200px) var(--content-padding);
@@ -591,7 +581,6 @@
         border-bottom: var(--border);
       }
 
-      /* FOOTER */
       footer {
         padding: var(--section-padding) var(--content-padding) 40px;
         width: 100%;
@@ -684,7 +673,6 @@
         color: var(--black);
       }
 
-      /* THEME MODES */
       body.dark-mode {
         --black: #ffffff;
         --white: #0a0a0a;
@@ -785,7 +773,6 @@
         filter: blur(0);
       }
 
-      /* Staggered animation for modal elements */
       .modal.active .modal-body > *:nth-child(1) {
         transition-delay: 0.05s;
       }
@@ -992,7 +979,6 @@
         }
       }
 
-      /* RESPONSIVE */
       @media (max-width: 1024px) {
         .process-grid {
           grid-template-columns: 1fr;
@@ -1265,7 +1251,6 @@
       info@kefe.ch
     </a>
 
-    <!-- Service Modals -->
     <div class="modal" id="brand-identity-modal">
       <div class="modal-content">
         <button class="modal-close" data-modal="brand-identity-modal">
@@ -1537,7 +1522,6 @@
       </div>
     </div>
 
-    <!-- Grid Item Modals -->
     <div class="modal" id="grid-strategy-modal">
       <div class="modal-content">
         <button class="modal-close" data-modal="grid-strategy-modal">
@@ -2032,7 +2016,6 @@
       </div>
     </div>
 
-    <!-- Legal Modals -->
     <div class="modal" id="terms-modal">
       <div class="modal-content">
         <button class="modal-close" data-modal="terms-modal">
@@ -2552,13 +2535,11 @@
             >
           </button>
           <div class="accordion-content">
-            <!-- Swiss official languages -->
             <a href="/de">Deutsch</a>
             <a href="/fr">Français</a>
             <a href="/it">Italiano</a>
             <a href="/rm">Rumantsch</a>
 
-            <!-- Top global languages (covering 24 major ones) -->
             <a href="/en">English</a>
             <a href="/es">Español</a>
             <a href="/zh">中文 (Chinese)</a>
@@ -2595,12 +2576,10 @@
     <div class="theme-fade" id="theme-fade"></div>
 
     <script>
-      // Modal functionality
       const modalTriggers = document.querySelectorAll("[data-modal]");
       const modals = document.querySelectorAll(".modal");
       const modalCloses = document.querySelectorAll(".modal-close");
 
-      // Open modal
       modalTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
@@ -2613,7 +2592,6 @@
         });
       });
 
-      // Close modal
       modalCloses.forEach((closeBtn) => {
         closeBtn.addEventListener("click", () => {
           const modalId = closeBtn.getAttribute("data-modal");
@@ -2625,7 +2603,6 @@
         });
       });
 
-      // Close modal on Escape key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           modals.forEach((modal) => {
@@ -2637,7 +2614,6 @@
     </script>
 
     <script>
-      // Accordion functionality
       const accordionHeaders = document.querySelectorAll(".accordion-header");
 
       accordionHeaders.forEach((header) => {
@@ -2645,12 +2621,10 @@
           const accordionItem = header.parentElement;
           const isActive = accordionItem.classList.contains("active");
 
-          // Close all accordion items
           document.querySelectorAll(".accordion-item").forEach((item) => {
             item.classList.remove("active");
           });
 
-          // Open clicked item if it wasn't active
           if (!isActive) {
             accordionItem.classList.add("active");
           }
@@ -2663,7 +2637,6 @@
     </script>
 
     <script>
-      // Burger menu
       const burger = document.getElementById("burger-menu");
       const mobileNav = document.getElementById("mobile-nav");
       const body = document.body;
@@ -2706,7 +2679,6 @@
     </script>
 
     <script>
-      // Theme toggle
       const themeToggle = document.getElementById("theme-toggle");
       const themeIcon = themeToggle.querySelector(".material-icons");
       const currentTheme = localStorage.getItem("theme");
@@ -2736,212 +2708,6 @@
           localStorage.setItem("theme", "dark");
         }
       });
-    </script>
-    <script>
-      (function () {
-        const supportedLangs = [
-          "de",
-          "fr",
-          "it",
-          "rm",
-          "es",
-          "zh",
-          "ja",
-          "ar",
-          "pt",
-          "hi",
-          "bn",
-          "pa",
-          "ru",
-          "ko",
-          "vi",
-          "nl",
-          "sv",
-          "pl",
-          "tr",
-          "id",
-          "ms",
-          "th",
-          "fa",
-          "he",
-        ];
-        const userLang = (navigator.language || navigator.userLanguage).split(
-          "-",
-        )[0];
-        const currentPath = window.location.pathname.split("/")[1] || "en";
-        const bannerKey = "kefe_lang_choice";
-
-        if (
-          localStorage.getItem(bannerKey) ||
-          userLang === currentPath ||
-          !supportedLangs.includes(userLang)
-        )
-          return;
-
-        const messages = {
-          en: "We detected your language as English.",
-          de: "Wir haben Ihre Sprache als Deutsch erkannt.",
-          fr: "Nous avons détecté la langue française.",
-          it: "Abbiamo rilevato la tua lingua come Italiano.",
-          rm: "Avain nus detectau vossa lingua sco Rumantsch.",
-          es: "Hemos detectado su idioma como Español.",
-          zh: "我们检测到您的语言是中文。",
-          ja: "あなたの言語は日本語として検出されました。",
-          ar: "لقد اكتشفنا أن لغتك هي العربية.",
-          pt: "Detectamos que sua língua é Português.",
-          hi: "हमने आपकी भाषा को हिंदी के रूप में पाया।",
-          bn: "আমরা আপনার ভাষা বাংলা হিসেবে সনাক্ত করেছি।",
-          pa: "ਅਸੀਂ ਤੁਹਾਡੀ ਭਾਸ਼ਾ ਪੰਜਾਬੀ ਵਜੋਂ ਪਤਾ ਲਾਈ।",
-          ru: "Мы определили ваш язык как русский.",
-          ko: "언어를 한국어로 감지했습니다.",
-          vi: "Chúng tôi đã phát hiện ngôn ngữ của bạn là Tiếng Việt.",
-          nl: "We hebben uw taal als Nederlands gedetecteerd.",
-          sv: "Vi upptäckte ditt språk som Svenska.",
-          pl: "Wykryliśmy Twój język jako Polski.",
-          tr: "Dilinizi Türkçe olarak algıladık.",
-          id: "Kami mendeteksi bahasa Anda sebagai Bahasa Indonesia.",
-          ms: "Kami mengesan bahasa anda sebagai Bahasa Melayu.",
-          th: "เราตรวจพบว่าภาษาของคุณคือ ภาษาไทย",
-          fa: "ما زبان شما را فارسی شناسایی کردیم.",
-          he: "זיהינו את השפה שלך כעברית.",
-        };
-
-        const msg = messages[userLang] || messages.en;
-
-        const banner = document.createElement("div");
-        banner.id = "lang-banner";
-        banner.innerHTML = `
-    <span>${msg}</span>
-    <div class="lang-actions">
-      <a href="/${userLang}" id="lang-switch">Go to your language</a>
-      <a href="#" id="lang-stay">Stay in English</a>
-    </div>
-  `;
-        document.body.prepend(banner);
-
-        // Header adjustment
-        const header = document.querySelector("header");
-        const bannerHeight = banner.offsetHeight;
-        if (header) header.style.transition = "transform 0.3s ease";
-
-        // Add styles
-        const style = document.createElement("style");
-        style.innerHTML = `
-    #lang-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #1a73e8;  /* Your site's primary color */
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 20px;
-      z-index: 10000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-      text-align: center;
-    }
-
-    #lang-banner span {
-      margin-bottom: 8px;
-    }
-
-    #lang-banner .lang-actions a {
-      color: #ffd700;
-      text-decoration: underline;
-      margin: 0 6px;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-
-    #lang-banner .lang-actions a:hover {
-      color: #fff;
-    }
-
-    @media (min-width: 600px) {
-      #lang-banner {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 12px 40px;
-      }
-      #lang-banner span {
-        margin-bottom: 0;
-      }
-    }
-  `;
-        document.head.appendChild(style);
-
-        // Adjust header position
-        if (header)
-          header.style.transform = `translateY(${banner.offsetHeight}px)`;
-
-        // Actions
-        document
-          .getElementById("lang-stay")
-          .addEventListener("click", function (e) {
-            e.preventDefault();
-            localStorage.setItem(bannerKey, currentPath);
-            banner.style.transform = "translateY(-100%)";
-            if (header) header.style.transform = "translateY(0)";
-            setTimeout(() => banner.remove(), 300);
-          });
-
-        document
-          .getElementById("lang-switch")
-          .addEventListener("click", function () {
-            localStorage.setItem(bannerKey, userLang);
-          });
-      })();
-    </script>
-    <script>
-      (function () {
-        const supportedLangs = [
-          "de",
-          "fr",
-          "it",
-          "rm",
-          "es",
-          "zh",
-          "ja",
-          "ar",
-          "pt",
-          "hi",
-          "bn",
-          "pa",
-          "ru",
-          "ko",
-          "vi",
-          "nl",
-          "sv",
-          "pl",
-          "tr",
-          "id",
-          "ms",
-          "th",
-          "fa",
-          "he",
-        ];
-        const userLang = (navigator.language || navigator.userLanguage).split(
-          "-",
-        )[0];
-        const currentPath = window.location.pathname.split("/")[1] || "en";
-        const redirectKey = "kefe_lang_choice";
-
-        if (
-          localStorage.getItem(redirectKey) ||
-          userLang === currentPath ||
-          !supportedLangs.includes(userLang)
-        )
-          return;
-
-        localStorage.setItem(redirectKey, userLang);
-        window.location.href = `/${userLang}`;
-      })();
     </script>
   </body>
 </html>
