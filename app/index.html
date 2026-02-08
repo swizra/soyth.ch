@@ -406,6 +406,42 @@
         font-weight: 900;
         line-height: 0.95;
         word-wrap: break-word;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        margin-top: clamp(32px, 5vh, 56px);
+        flex-wrap: wrap;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 14px 32px;
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        line-height: 1;
+      }
+
+      .btn-primary {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--black);
+        border: 2px solid var(--black);
       }
 
       .about-mini {
@@ -1057,7 +1093,11 @@
     </header>
 
     <section class="hero">
-      <h1>Designg<br />Strategy<br />Growth</h1>
+      <h1>Design<br />Strategy<br />Growth</h1>
+      <div class="hero-cta">
+        <a href="mailto:info@kefe.ch" class="btn-primary">Get Started</a>
+        <a href="#strategy" class="btn-secondary">Learn More</a>
+      </div>
     </section>
 
     <section class="about-mini">
