@@ -16,476 +16,653 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
 
- 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    outline: none;
-  }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        outline: none;
+      }
 
-  *:focus,
-  *:active {
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-  }
+      *:focus,
+      *:active {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-  a,
-  button,
-  input,
-  select,
-  textarea {
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-  }
+      a,
+      button,
+      input,
+      select,
+      textarea {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-  .footer-logo-giant,
-  .legal-bar-giant {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
+      .footer-logo-giant,
+      .legal-bar-giant {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
 
-  .material-icons.huge,
-  .step-number {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
+      .material-icons.huge,
+      .step-number {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
 
-  :root {
-    /* Colors */
-    --black: #000000;
-    --white: #ffffff;
-    --off-white: #f2f2f2;
-    --gray: #666666;
-    --border-color: #f2f2f2;
-    
-    /* Spacing */
-    --border: 1rem solid var(--border-color);
-    --section-padding: clamp(80px, 12vh, 140px);
-    --content-padding: 4vw;
-  }
+      :root {
+        /* Colors */
+        --black: #000000;
+        --white: #ffffff;
+        --off-white: #f2f2f2;
+        --gray: #666666;
+        --border-color: #f2f2f2;
+        --border: 1rem solid var(--border-color);
+        --section-padding: clamp(80px, 12vh, 140px);
+        --content-padding: 4vw;
+      }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --black: #ffffff;
-      --white: #0a0a0a;
-      --off-white: #1a1a1a;
-      --gray: #999999;
-      --border-color: #1a1a1a;
-    }
-  }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --black: #ffffff;
+          --white: #0a0a0a;
+          --off-white: #1a1a1a;
+          --gray: #999999;
+          --border-color: #1a1a1a;
+          --border: 1rem solid var(--border-color);
+          --border-color: #1a1a1a;
+        }
+      }
 
-  body {
-    background-color: var(--white);
-    color: var(--black);
-    font-family: "Inter", sans-serif;
-    line-height: 1.4;
-    width: 100%;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    font-size: var(--text-base);
-  }
+      body.dark-mode {
+        --border-color: #1a1a1a;
+        --border: 1rem solid var(--border-color);
+      }
 
-  body.no-scroll {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-  }
+      body {
+        background-color: var(--white);
+        color: var(--black);
+        font-family: "Inter", sans-serif;
+        line-height: 1.4;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        font-size: var(--text-base);
+      }
 
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px var(--content-padding);
-    position: sticky;
-    top: 0;
-    background: var(--white);
-    z-index: 100;
-  }
+      body.no-scroll {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+      }
 
-  .logo {
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 1;
-  }
+      /* HEADER */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px var(--content-padding);
+        position: sticky;
+        top: 0;
+        background: var(--white);
+        z-index: 100;
+      }
 
-  .theme-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-  }
+      .logo {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 1;
+      }
 
-  .theme-toggle .material-icons {
-    font-size: 28px;
-    color: var(--black);
-  }
+      .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+      .theme-toggle .material-icons {
+        font-size: 28px;
+        color: var(--black);
+      }
 
-  .header-btn {
-    font-size: 18px;
-    font-weight: 900;
-    text-decoration: none;
-    color: var(--white);
-    background: var(--black);
-    padding: 14px 32px;
-    border-radius: 100px;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    line-height: 1;
-  }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
 
-  /* MOBILE MENU */
-  .burger-menu {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 201;
-  }
+      .header-btn {
+        font-size: 18px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--black);
+        padding: 14px 32px;
+        border-radius: 100px;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        line-height: 1;
+      }
 
-  .burger-menu span {
-    display: block;
-    height: 4px;
-    background: var(--black);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    transform-origin: center;
-  }
+      /* MOBILE MENU */
+      .burger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 201;
+      }
 
-  .burger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5.66px, 5.66px);
-  }
+      .burger-menu span {
+        display: block;
+        height: 4px;
+        background: var(--black);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
 
-  .burger-menu.active span:nth-child(2) {
-    transform: rotate(-45deg) translate(5.66px, -5.66px);
-  }
+      .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5.66px, 5.66px);
+      }
 
-  .mobile-nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: var(--white);
-    padding: 17px var(--content-padding) 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: right 0.3s ease;
-    z-index: 200;
-    overflow-y: auto;
-  }
+      .burger-menu.active span:nth-child(2) {
+        transform: rotate(-45deg) translate(5.66px, -5.66px);
+      }
 
-  .mobile-nav.active {
-    right: 0;
-  }
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--white);
+        padding: 17px var(--content-padding) 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: right 0.3s ease;
+        z-index: 200;
+        overflow-y: auto;
+      }
 
-  .mobile-link {
-    font-size: 32px;
-    font-weight: 900;
-    text-decoration: none;
-    color: var(--black);
-    padding: 16px 0;
-    line-height: 1.1;
-  }
+      .mobile-nav.active {
+        right: 0;
+      }
 
-  .mobile-cta {
-    font-size: 20px;
-    font-weight: 900;
-    text-decoration: none;
-    color: var(--white);
-    background: var(--black);
-    padding: 18px 36px;
-    border-radius: 100px;
-    text-align: center;
-    margin-top: 30px;
-    line-height: 1;
-  }
+      .mobile-link {
+        font-size: 32px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--black);
+        padding: 16px 0;
+        line-height: 1.1;
+      }
 
-  /* HERO */
-  .hero {
-    padding: clamp(80px, 15vh, 200px) var(--content-padding);
-    border-bottom: var(--border);
-    background-color: var(--white);
-    min-height: 65vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+      .mobile-cta {
+        font-size: 20px;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--white);
+        background: var(--black);
+        padding: 18px 36px;
+        border-radius: 100px;
+        text-align: center;
+        margin-top: 30px;
+        line-height: 1;
+      }
 
-  .hero h1 {
-    color: var(--black);
-    font-size: clamp(64px, 12vw, 180px);
-    font-weight: 900;
-    line-height: 0.95;
-    word-wrap: break-word;
-  }
+      /* HERO */
+      .hero {
+        padding: clamp(80px, 15vh, 200px) var(--content-padding);
+        border-bottom: var(--border);
+        background-color: var(--white);
+        min-height: 65vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-  /* ABOUT SECTION */
-  .about-mini {
-    padding: var(--section-padding) var(--content-padding);
-    border-bottom: var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    background: var(--off-white);
-  }
+      .hero h1 {
+        color: var(--black);
+        font-size: clamp(64px, 12vw, 180px);
+        font-weight: 900;
+        line-height: 0.95;
+        word-wrap: break-word;
+      }
 
-  .about-mini p {
-    grid-column: 1 / -1;
-    font-size: clamp(22px, 2.2vw, 28px);
-    font-weight: 700;
-    line-height: 1.4;
-    max-width: 1200px;
-    color: var(--black);
-  }
+      /* ABOUT SECTION */
+      .about-mini {
+        padding: var(--section-padding) var(--content-padding);
+        border-bottom: var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        background: var(--off-white);
+      }
 
-  /* GRID SECTIONS (Strategy, Design, Process, Services) */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-  }
+      .about-mini p {
+        grid-column: 1 / -1;
+        font-size: clamp(22px, 2.2vw, 28px);
+        font-weight: 700;
+        line-height: 1.4;
+        max-width: 1200px;
+        color: var(--black);
+      }
 
-  .grid-item {
-    padding: clamp(60px, 10vh, 120px) var(--content-padding);
-    border-bottom: var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 65vh;
-    transition: background 0.3s ease;
-  }
+      /* GRID SECTIONS (Strategy, Design, Process, Services) */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
 
-  .grid-item:nth-child(odd) {
-    border-right: var(--border);
-  }
+      .grid-item {
+        padding: clamp(60px, 10vh, 120px) var(--content-padding);
+        border-bottom: var(--border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 65vh;
+        transition: background 0.3s ease;
+      }
 
-  .process-item {
-    position: relative;
-  }
+      .grid-item:nth-child(odd) {
+        border-right: var(--border);
+      }
 
-  .material-icons.huge {
-    color: var(--black);
-    background: var(--off-white);
-    border-radius: 24px;
-    padding: 24px;
-    font-size: clamp(80px, 7vw, 120px);
-    margin-bottom: 32px;
-    line-height: 1;
-  }
+      .process-item {
+        position: relative;
+      }
 
-  .step-number {
-    font-size: clamp(100px, 10vw, 120px);
-    font-weight: 900;
-    line-height: 0.9;
-    color: var(--gray);
-    opacity: 0.25;
-    margin-bottom: 32px;
-  }
+      .material-icons.huge {
+        color: var(--black);
+        background: var(--off-white);
+        border-radius: 24px;
+        padding: 24px;
+        font-size: clamp(80px, 7vw, 120px);
+        margin-bottom: 32px;
+        line-height: 1;
+      }
 
-  .item-title {
-    font-size: clamp(40px, 4.5vw, 64px);
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 20px;
-    color: var(--black);
-  }
+      .step-number {
+        font-size: clamp(100px, 10vw, 120px);
+        font-weight: 900;
+        line-height: 0.9;
+        color: var(--gray);
+        opacity: 0.25;
+        margin-bottom: 32px;
+      }
 
-  .item-desc {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.5;
-    max-width: 380px;
-    color: var(--black);
-  }
+      .item-title {
+        font-size: clamp(40px, 4.5vw, 64px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
 
-  /* CONTACT CTA */
-  .contact-trigger {
-    width: 100%;
-    padding: clamp(100px, 15vh, 200px) var(--content-padding);
-    background-color: var(--black);
-    color: var(--white);
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(56px, 10vw, 140px);
-    font-weight: 900;
-    transition: background 0.4s ease;
-    line-height: 1;
-  }
+      .item-desc {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        max-width: 380px;
+        color: var(--black);
+      }
 
-  /* FOOTER */
-  footer {
-    padding: var(--section-padding) var(--content-padding) 40px;
-    width: 100%;
-    background: var(--white);
-  }
+      /* CONTACT CTA */
+      .contact-trigger {
+        width: 100%;
+        padding: clamp(100px, 15vh, 200px) var(--content-padding);
+        background-color: var(--white);
+        color: var(--black);
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(56px, 10vw, 140px);
+        font-weight: 900;
+        transition: background 0.4s ease;
+        line-height: 1;
+        border-bottom: var(--border);
+      }
 
-  .footer-accordion {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-bottom: 80px;
-    border-top: var(--border);
-  }
+      /* FOOTER */
+      footer {
+        padding: var(--section-padding) var(--content-padding) 40px;
+        width: 100%;
+        background: var(--white);
+      }
 
-  .accordion-item {
-    border-bottom: var(--border);
-  }
+      .footer-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 80px;
+        border-top: var(--border);
+      }
 
-  .accordion-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--black);
-    text-align: left;
-    transition: opacity 0.3s ease;
-  }
+      .accordion-item {
+        border-bottom: var(--border);
+      }
 
-  .accordion-header:hover {
-    opacity: 0.7;
-  }
+      .accordion-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--black);
+        text-align: left;
+        transition: opacity 0.3s ease;
+      }
 
-  .accordion-icon {
-    font-size: 32px;
-    transition: transform 0.3s ease;
-    color: var(--black);
-  }
+      .accordion-icon {
+        font-size: 32px;
+        transition: transform 0.3s ease;
+        color: var(--black);
+      }
 
-  .accordion-item.active .accordion-icon {
-    transform: rotate(180deg);
-  }
+      .accordion-item.active .accordion-icon {
+        transform: rotate(180deg);
+      }
 
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0;
-  }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.3s ease;
+        padding: 0;
+      }
 
-  .accordion-item.active .accordion-content {
-    max-height: 500px;
-    padding-bottom: 28px;
-  }
+      .accordion-item.active .accordion-content {
+        max-height: 500px;
+        padding-bottom: 28px;
+      }
 
-  .accordion-content p,
-  .accordion-content a {
-    font-size: 15px;
-    display: block;
-    text-decoration: none;
-    color: var(--black);
-    margin-bottom: 12px;
-    font-weight: 700;
-    line-height: 1.5;
-  }
+      .accordion-content p,
+      .accordion-content a {
+        font-size: 15px;
+        display: block;
+        text-decoration: none;
+        color: var(--black);
+        margin-bottom: 12px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
 
-  .accordion-content a:hover {
-    opacity: 0.7;
-  }
+      .footer-big-elements {
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-  .footer-big-elements {
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+      .footer-logo-giant {
+        font-size: clamp(120px, 22vw, 360px);
+        font-weight: 900;
+        line-height: 0.9;
+        margin-left: -0.04em;
+        color: var(--black);
+      }
 
-  .footer-logo-giant {
-    font-size: clamp(120px, 22vw, 360px);
-    font-weight: 900;
-    line-height: 0.9;
-    margin-left: -0.04em;
-    color: var(--black);
-  }
+      .legal-bar-giant {
+        font-size: clamp(48px, 9vw, 120px);
+        font-weight: 900;
+        margin-top: 24px;
+        line-height: 0.9;
+        color: var(--black);
+      }
 
-  .legal-bar-giant {
-    font-size: clamp(48px, 9vw, 120px);
-    font-weight: 900;
-    margin-top: 24px;
-    line-height: 0.9;
-    color: var(--black);
-  }
+      /* THEME MODES */
+      body.dark-mode {
+        --black: #ffffff;
+        --white: #0a0a0a;
+        --off-white: #1a1a1a;
+        --gray: #999999;
+        --border-color: #1a1a1a;
+      }
 
-  /* THEME MODES */
-  body.dark-mode {
-    --black: #ffffff;
-    --white: #0a0a0a;
-    --off-white: #1a1a1a;
-    --gray: #999999;
-    --border-color: #1a1a1a;
-  }
+      body.light-mode {
+        --black: #000000;
+        --white: #ffffff;
+        --off-white: #f2f2f2;
+        --gray: #666666;
+        --border-color: #f2f2f2;
+      }
 
-  body.light-mode {
-    --black: #000000;
-    --white: #ffffff;
-    --off-white: #f2f2f2;
-    --gray: #666666;
-    --border-color: #f2f2f2;
-  }
+      /* MODALS */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--white);
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 1000;
+        padding: 0;
+      }
 
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .process-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+      .modal.active {
+        display: flex;
+      }
 
-  @media (max-width: 768px) {
-    .desktop-btn {
-      display: none;
-    }
-    .burger-menu {
-      display: flex;
-    }
-    .header-right {
-      gap: 15px;
-    }
-    .grid {
-      grid-template-columns: 1fr;
-    }
-    .grid-item:nth-child(odd) {
-      border-right: none;
-    }
-    .about-mini {
-      grid-template-columns: 1fr;
-    }
-    .material-icons.huge {
-      font-size: 90px;
-    }
-  }
-</style>
- 
+      .modal-content {
+        background: var(--white);
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
 
+      .modal-close {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--black);
+        color: var(--white);
+        border: none;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .modal-close .material-icons {
+        font-size: 32px;
+      }
+
+      .modal-body {
+        padding: clamp(80px, 12vh, 140px) var(--content-padding) 80px;
+        overflow-y: auto;
+        height: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .modal-body h1 {
+        font-size: clamp(48px, 8vw, 100px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        color: var(--black);
+      }
+
+      .modal-subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gray);
+        margin-bottom: 60px;
+      }
+
+      .modal-body h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 900;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: var(--black);
+      }
+
+      .modal-body h2:first-of-type {
+        margin-top: 0;
+      }
+
+      .modal-body h3 {
+        font-size: 24px;
+        font-weight: 900;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        line-height: 1.2;
+        color: var(--black);
+      }
+
+      .modal-body p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
+
+      .modal-body ul,
+      .modal-body ol {
+        margin: 20px 0 20px 24px;
+        line-height: 1.7;
+      }
+
+      .modal-body li {
+        margin-bottom: 12px;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--black);
+      }
+
+      .modal-body strong {
+        font-weight: 900;
+      }
+
+      .modal-body a {
+        color: var(--black);
+        text-decoration: underline;
+        font-weight: 700;
+      }
+
+      .info-box {
+        background: var(--off-white);
+        padding: 32px;
+        border-radius: 16px;
+        margin: 32px 0;
+      }
+
+      .info-box h3 {
+        margin-top: 0;
+      }
+
+      .info-box p {
+        margin-bottom: 12px;
+      }
+
+      .info-box p:last-child {
+        margin-bottom: 0;
+      }
+
+      .highlight-box {
+        background: var(--off-white);
+        padding: 32px;
+        border-radius: 16px;
+        margin: 32px 0;
+        border-left: 4px solid var(--black);
+      }
+
+      @media (max-width: 768px) {
+        .modal-body {
+          padding: 80px 6vw 60px;
+        }
+
+        .modal-body h1 {
+          font-size: 40px;
+        }
+
+        .modal-close {
+          width: 56px;
+          height: 56px;
+          top: 16px;
+          right: 16px;
+        }
+
+        .modal-close .material-icons {
+          font-size: 28px;
+        }
+
+        .info-box,
+        .highlight-box {
+          padding: 24px;
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .desktop-btn {
+          display: none;
+        }
+        .burger-menu {
+          display: flex;
+        }
+        .header-right {
+          gap: 15px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .grid-item:nth-child(odd) {
+          border-right: none;
+        }
+        .about-mini {
+          grid-template-columns: 1fr;
+        }
+        .material-icons.huge {
+          font-size: 90px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -498,7 +675,7 @@
         >
           <span class="material-icons">light_mode</span>
         </button>
-        <a href="mailto:info@kefe.ch" class="header-btn desktop-btn"
+        <a href="mailto:volodymyr@kefe.ch" class="header-btn desktop-btn"
           >Get Started</a
         >
         <div class="burger-menu" id="burger-menu">
@@ -513,287 +690,798 @@
         <a href="#consulting" class="mobile-link">Consulting</a>
         <a href="#process" class="mobile-link">Our Process</a>
         <a href="#services" class="mobile-link">Services</a>
-        <a href="mailto:info@kefe.ch" class="mobile-cta">Get Started</a>
+        <a href="mailto:volodymyr@kefe.ch" class="mobile-cta">Get Started</a>
       </nav>
     </header>
 
- 
-<section class="hero">
-  <h1>Design<br />Strategy<br />Growth</h1>
-</section>
+    <section class="hero">
+      <h1>Design<br />Strategy<br />Growth</h1>
+    </section>
 
-<section class="about-mini">
-  <p>
-    We are a strategic design and consulting studio based in Switzerland.
-    Our work is grounded in established industry research and proven best
-    practices in strategy, design, and digital systems.
-  </p>
-</section>
+    <section class="about-mini">
+      <p>
+        We are a strategic design and consulting studio based in Switzerland.
+        Our work is grounded in established industry research and proven best
+        practices in strategy, design, and digital systems.
+      </p>
+    </section>
 
-<div class="grid">
-  <div class="grid-item" id="strategy">
-    <span class="material-icons huge">psychology</span>
-    <h2 class="item-title">Strategy</h2>
-    <p class="item-desc">
-      High-level architecture for complex business challenges and roadmap
-      optimization.
-    </p>
-  </div>
-  <div class="grid-item" id="design">
-    <span class="material-icons huge">token</span>
-    <h2 class="item-title">Design</h2>
-    <p class="item-desc">
-      Visual languages that capture attention, drive conversions, and
-      strengthen brand authority.
-    </p>
-  </div>
-  <div class="grid-item" id="scaling">
-    <span class="material-icons huge">polyline</span>
-    <h2 class="item-title">Scaling</h2>
-    <p class="item-desc">
-      Infrastructural growth patterns for modern businesses in a
-      digital-first economy.
-    </p>
-  </div>
-  <div class="grid-item" id="consulting">
-    <span class="material-icons huge">public</span>
-    <h2 class="item-title">Consulting</h2>
-    <p class="item-desc">
-      Global market navigation, tactical consulting, and digital product
-      leadership.
-    </p>
-  </div>
-</div>
-
-<section class="grid" id="process">
-  <div class="grid-item process-item">
-    <div class="step-number">01</div>
-    <h3 class="item-title">Discovery</h3>
-    <p class="item-desc">
-      In-depth analysis of your business, market positioning, and growth
-      objectives. We analyze competitors, identify gaps, and uncover
-      opportunities.
-    </p>
-  </div>
-  <div class="grid-item process-item">
-    <div class="step-number">02</div>
-    <h3 class="item-title">Strategy</h3>
-    <p class="item-desc">
-      Development of a comprehensive strategic framework aligned with
-      business goals. Definition of positioning, messaging architecture,
-      and growth roadmap.
-    </p>
-  </div>
-  <div class="grid-item process-item">
-    <div class="step-number">03</div>
-    <h3 class="item-title">Execution</h3>
-    <p class="item-desc">
-      Precise development and implementation of systems. From brand
-      identity to digital products, every element is crafted for maximum
-      impact and performance.
-    </p>
-  </div>
-  <div class="grid-item process-item">
-    <div class="step-number">04</div>
-    <h3 class="item-title">Optimization</h3>
-    <p class="item-desc">
-      Continuous refinement based on data and market feedback. We ensure
-      sustainable growth through systematic iteration and improvement.
-    </p>
-  </div>
-</section>
-
-<section class="grid" id="services">
-  <div class="grid-item">
-    <span class="material-icons huge">branding_watermark</span>
-    <h2 class="item-title">Brand Identity</h2>
-    <p class="item-desc">
-      Logos, visual systems, naming, positioning, guidelines, touchpoint
-      design
-    </p>
-  </div>
-  <div class="grid-item">
-    <span class="material-icons huge">devices</span>
-    <h2 class="item-title">Digital Products</h2>
-    <p class="item-desc">
-      Websites, apps, platforms, user experience, interface design,
-      prototyping
-    </p>
-  </div>
-  <div class="grid-item">
-    <span class="material-icons huge">insights</span>
-    <h2 class="item-title">Business Strategy</h2>
-    <p class="item-desc">
-      Market analysis, growth planning, competitive positioning,
-      go-to-market
-    </p>
-  </div>
-  <div class="grid-item">
-    <span class="material-icons huge">support_agent</span>
-    <h2 class="item-title">Consulting Services</h2>
-    <p class="item-desc">
-      Fractional CMO, design leadership, strategic consulting, workshops
-    </p>
-  </div>
-</section>
-
-<a href="mailto:info@kefe.ch" class="contact-trigger">Get in Touch</a>
-
-<footer>
-  <div class="footer-accordion">
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>Headquarters</span>
-        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
-      </button>
-      <div class="accordion-content">
-        <p>4102 Binningen</p>
-        <p>Switzerland</p>
+    <div class="grid">
+      <div class="grid-item" id="strategy">
+        <span class="material-icons huge">psychology</span>
+        <h2 class="item-title">Strategy</h2>
+        <p class="item-desc">
+          High-level architecture for complex business challenges and roadmap
+          optimization.
+        </p>
+      </div>
+      <div class="grid-item" id="design">
+        <span class="material-icons huge">token</span>
+        <h2 class="item-title">Design</h2>
+        <p class="item-desc">
+          Visual languages that capture attention, drive conversions, and
+          strengthen brand authority.
+        </p>
+      </div>
+      <div class="grid-item" id="scaling">
+        <span class="material-icons huge">polyline</span>
+        <h2 class="item-title">Scaling</h2>
+        <p class="item-desc">
+          Infrastructural growth patterns for modern businesses in a
+          digital-first economy.
+        </p>
+      </div>
+      <div class="grid-item" id="consulting">
+        <span class="material-icons huge">public</span>
+        <h2 class="item-title">Consulting</h2>
+        <p class="item-desc">
+          Global market navigation, tactical consulting, and digital product
+          leadership.
+        </p>
       </div>
     </div>
-    
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>Contact</span>
-        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
-      </button>
-      <div class="accordion-content">
-        <p><a href="mailto:info@kefe.ch">info@kefe.ch</a></p>
-        <p>+41 78 351 48 22</p>
-      </div>
-    </div>
-    
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>Social Media</span>
-        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
-      </button>
-      <div class="accordion-content">
-        <a href="https://wa.me/41783514822">WhatsApp</a>
-        <a href="https://t.me/kefestudio">Telegram</a>
-      </div>
-    </div>
-    
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>Legal</span>
-        <span class="material-icons accordion-icon">keyboard_arrow_down</span>
-      </button>
-      <div class="accordion-content">
-        <a href="/en/terms.html">Terms & Conditions</a>
-        <a href="/en/imprint.html">Imprint</a>
-        <a href="/en/privacy.html">Privacy Policy</a>
-      </div>
-    </div>
-  </div>
-  
-  <div class="footer-big-elements">
-    <div class="footer-logo-giant">KEFE</div>
-    <div class="legal-bar-giant">©<span id="year"></span></div>
-  </div>
-</footer>
 
-<script>
-  // Accordion functionality
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
-  
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const accordionItem = header.parentElement;
-      const isActive = accordionItem.classList.contains('active');
-      
-      // Close all accordion items
-      document.querySelectorAll('.accordion-item').forEach(item => {
-        item.classList.remove('active');
+    <section class="grid" id="process">
+      <div class="grid-item process-item">
+        <div class="step-number">01</div>
+        <h3 class="item-title">Discovery</h3>
+        <p class="item-desc">
+          In-depth analysis of your business, market positioning, and growth
+          objectives. We analyze competitors, identify gaps, and uncover
+          opportunities.
+        </p>
+      </div>
+      <div class="grid-item process-item">
+        <div class="step-number">02</div>
+        <h3 class="item-title">Strategy</h3>
+        <p class="item-desc">
+          Development of a comprehensive strategic framework aligned with
+          business goals. Definition of positioning, messaging architecture, and
+          growth roadmap.
+        </p>
+      </div>
+      <div class="grid-item process-item">
+        <div class="step-number">03</div>
+        <h3 class="item-title">Execution</h3>
+        <p class="item-desc">
+          Precise development and implementation of systems. From brand identity
+          to digital products, every element is crafted for maximum impact and
+          performance.
+        </p>
+      </div>
+      <div class="grid-item process-item">
+        <div class="step-number">04</div>
+        <h3 class="item-title">Optimization</h3>
+        <p class="item-desc">
+          Continuous refinement based on data and market feedback. We ensure
+          sustainable growth through systematic iteration and improvement.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid" id="services">
+      <div class="grid-item">
+        <span class="material-icons huge">branding_watermark</span>
+        <h2 class="item-title">Brand Identity</h2>
+        <p class="item-desc">
+          Logos, visual systems, naming, positioning, guidelines, touchpoint
+          design
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">devices</span>
+        <h2 class="item-title">Digital Products</h2>
+        <p class="item-desc">
+          Websites, apps, platforms, user experience, interface design,
+          prototyping
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">insights</span>
+        <h2 class="item-title">Business Strategy</h2>
+        <p class="item-desc">
+          Market analysis, growth planning, competitive positioning,
+          go-to-market
+        </p>
+      </div>
+      <div class="grid-item">
+        <span class="material-icons huge">support_agent</span>
+        <h2 class="item-title">Consulting Services</h2>
+        <p class="item-desc">
+          Fractional CMO, design leadership, strategic consulting, workshops
+        </p>
+      </div>
+    </section>
+
+    <a
+      href="mailto:volodymyr@kefe.ch"
+      class="contact-trigger"
+      id="contact-trigger"
+      >Get in Touch</a
+    >
+
+    <!-- Legal Modals -->
+    <div class="modal" id="terms-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="terms-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Terms & Conditions</h1>
+          <p class="modal-subtitle">Last updated: February 2026</p>
+
+          <h2>1. General Information</h2>
+          <p>
+            These Terms and Conditions govern the use of services provided by
+            KEFE (Volodymyr Shalavylo), a sole proprietor operating in
+            Switzerland. By engaging with KEFE's services, you agree to be bound
+            by these terms.
+          </p>
+
+          <h2>2. Services</h2>
+          <p>
+            KEFE provides strategic design and consulting services including but
+            not limited to:
+          </p>
+          <ul>
+            <li>Strategic business consulting</li>
+            <li>Brand identity design</li>
+            <li>Digital product design and development</li>
+            <li>Business strategy development</li>
+            <li>Design leadership consulting</li>
+          </ul>
+
+          <h2>3. Scope of Services</h2>
+          <p>
+            The specific scope, deliverables, timeline, and compensation for
+            each project will be defined in a separate agreement or proposal.
+            Services begin only after mutual agreement on project terms and
+            receipt of initial payment where applicable.
+          </p>
+
+          <h2>4. Client Obligations</h2>
+          <p>Clients agree to:</p>
+          <ul>
+            <li>
+              Provide timely and accurate information necessary for project
+              completion
+            </li>
+            <li>Respond to communications within reasonable timeframes</li>
+            <li>Make timely payments as agreed upon</li>
+            <li>
+              Provide necessary feedback and approvals during project milestones
+            </li>
+          </ul>
+
+          <h2>5. Payment Terms</h2>
+          <p>
+            Payment terms are specified in individual project agreements. Unless
+            otherwise agreed, standard terms include:
+          </p>
+          <ul>
+            <li>50% deposit upon project commencement</li>
+            <li>50% upon project completion and delivery</li>
+            <li>Payment due within 14 days of invoice date</li>
+          </ul>
+
+          <h2>6. Intellectual Property</h2>
+          <p>
+            <strong>Client Ownership:</strong> Upon full payment, clients
+            receive ownership of final deliverables as specified in the project
+            agreement.
+          </p>
+          <p>
+            <strong>KEFE Ownership:</strong> KEFE retains ownership of all
+            concepts, processes, methodologies, and work-in-progress materials
+            not explicitly included in final deliverables.
+          </p>
+
+          <h2>7. Confidentiality</h2>
+          <p>
+            Both parties agree to maintain confidentiality of proprietary
+            information shared during the engagement. This obligation survives
+            termination of the service agreement.
+          </p>
+
+          <h2>8. Website and Communication</h2>
+          <p>
+            KEFE's website is hosted via GitHub Pages. Email services are
+            provided through Apple Inc. By using KEFE's website and
+            communication channels, you agree to use them solely for legitimate
+            business purposes. The following are strictly prohibited:
+          </p>
+          <ul>
+            <li>Unauthorized data scraping or collection</li>
+            <li>Spam or unsolicited communications</li>
+            <li>Malicious activities or attempts to breach security</li>
+            <li>Use for illegal purposes</li>
+          </ul>
+
+          <h2>9. No Data Collection</h2>
+          <p>
+            KEFE does not use cookies, tracking scripts, or analytics tools on
+            its website. The only data collected is information voluntarily
+            shared by clients through email communications, phone conversations,
+            and in-person meetings.
+          </p>
+
+          <h2>10. Copyright and Content</h2>
+          <p>
+            All content on KEFE's website, including text, images, graphics, and
+            design elements, is the exclusive property of Volodymyr Shalavylo
+            unless otherwise noted. Unauthorized reproduction, distribution, or
+            use is strictly prohibited.
+          </p>
+          <p><strong>Third-Party Resources:</strong></p>
+          <ul>
+            <li>Icons: Google Material Icons (Apache License 2.0)</li>
+            <li>Hosting: GitHub Pages</li>
+            <li>Email: Apple Inc. services</li>
+          </ul>
+
+          <h2>11. Governing Law</h2>
+          <p>
+            These Terms and Conditions are governed by Swiss law. The exclusive
+            place of jurisdiction is Basel-Landschaft, Switzerland.
+          </p>
+
+          <h2>12. Contact Information</h2>
+          <p>
+            <strong>Volodymyr Shalavylo</strong><br />
+            KEFE<br />
+            Ziegelweg 1<br />
+            4102 Binningen<br />
+            Basel-Landschaft, Switzerland<br />
+            <br />
+            Phone: <a href="tel:+41783514822">+41 78 351 48 22</a><br />
+            Email: <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="imprint-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="imprint-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Imprint</h1>
+          <p class="modal-subtitle">Legal disclosure according to Swiss law</p>
+
+          <h2>Information according to Swiss Law</h2>
+          <p>
+            In accordance with Swiss law and the principle of transparency, this
+            page provides all legally required information about the operator of
+            this website and service provider.
+          </p>
+
+          <div class="info-box">
+            <h3>Service Provider</h3>
+            <p>
+              <strong>Name:</strong> Volodymyr Shalavylo<br />
+              <strong>Business Name:</strong> KEFE<br />
+              <strong>Legal Form:</strong> Sole Proprietorship
+            </p>
+
+            <h3>Address</h3>
+            <p>
+              Ziegelweg 1<br />
+              4102 Binningen<br />
+              Basel-Landschaft<br />
+              Switzerland
+            </p>
+
+            <h3>Contact Information</h3>
+            <p>
+              <strong>Phone:</strong>
+              <a href="tel:+41783514822">+41 78 351 48 22</a><br />
+              <strong>Email:</strong>
+              <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a>
+            </p>
+          </div>
+
+          <h2>Scope of Services</h2>
+          <p>
+            KEFE provides strategic design and consulting services, including:
+          </p>
+          <ul>
+            <li>Strategic business consulting</li>
+            <li>Brand identity design and development</li>
+            <li>Digital product design</li>
+            <li>User experience and interface design</li>
+            <li>Business strategy and positioning</li>
+            <li>Design leadership consulting</li>
+          </ul>
+
+          <h2>Responsible for Content</h2>
+          <p>
+            Volodymyr Shalavylo is solely responsible for all content published
+            on this website and through KEFE services.
+          </p>
+
+          <h2>Legal Status</h2>
+          <p>
+            KEFE operates as a sole proprietorship under Swiss law. Volodymyr
+            Shalavylo is a private individual offering professional services to
+            the public. KEFE is not a registered company or corporation.
+          </p>
+
+          <h2>Copyright and Intellectual Property</h2>
+          <p>
+            All content on this website is the exclusive property of Volodymyr
+            Shalavylo (KEFE) and is protected by Swiss and international
+            copyright laws.
+          </p>
+
+          <h2>Third-Party Resources</h2>
+          <p>This website utilizes the following third-party resources:</p>
+          <ul>
+            <li>
+              <strong>Icons:</strong> Google Material Icons (Apache License 2.0)
+            </li>
+            <li>
+              <strong>Fonts:</strong> Inter by Rasmus Andersson (SIL Open Font
+              License)
+            </li>
+            <li><strong>Hosting:</strong> GitHub Pages</li>
+            <li><strong>Email Services:</strong> Apple Inc.</li>
+          </ul>
+
+          <h2>Prohibited Uses</h2>
+          <p>The following activities are strictly prohibited:</p>
+          <ul>
+            <li>Data scraping, mining, or unauthorized automated access</li>
+            <li>Spam, unsolicited communications, or mass mailings</li>
+            <li>Attempts to breach security or access restricted areas</li>
+            <li>Malicious activities including virus distribution</li>
+            <li>
+              Use for illegal purposes or activities contrary to Swiss law
+            </li>
+          </ul>
+
+          <h2>Dispute Resolution and Jurisdiction</h2>
+          <p>
+            Any disputes arising from the use of this website or services
+            provided by KEFE shall be governed by Swiss law. The exclusive place
+            of jurisdiction is Basel-Landschaft, Switzerland.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="privacy-modal">
+      <div class="modal-content">
+        <button class="modal-close" data-modal="privacy-modal">
+          <span class="material-icons">close</span>
+        </button>
+        <div class="modal-body">
+          <h1>Privacy Policy</h1>
+          <p class="modal-subtitle">Last updated: February 2026</p>
+
+          <div class="highlight-box">
+            <p style="margin-bottom: 0">
+              <strong>Simple Summary:</strong> KEFE does not use cookies,
+              tracking tools, or analytics. We do not collect any personal data
+              through this website. The only information we have is what you
+              voluntarily share with us via email, phone, or in-person meetings.
+            </p>
+          </div>
+
+          <h2>1. Introduction</h2>
+          <p>
+            This Privacy Policy explains how KEFE (Volodymyr Shalavylo) handles
+            personal information in compliance with Swiss data protection laws,
+            including the Federal Act on Data Protection (FADP).
+          </p>
+
+          <h2>2. Data Controller</h2>
+          <p>
+            <strong>Volodymyr Shalavylo</strong><br />
+            KEFE<br />
+            Ziegelweg 1<br />
+            4102 Binningen<br />
+            Basel-Landschaft, Switzerland<br />
+            <br />
+            Email: <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a
+            ><br />
+            Phone: <a href="tel:+41783514822">+41 78 351 48 22</a>
+          </p>
+
+          <h2>3. No Website Tracking or Cookies</h2>
+          <p>KEFE's website does not use:</p>
+          <ul>
+            <li>Cookies of any kind</li>
+            <li>Tracking pixels or web beacons</li>
+            <li>Analytics tools (such as Google Analytics)</li>
+            <li>Third-party advertising or tracking services</li>
+            <li>Social media plugins or widgets</li>
+          </ul>
+          <p>
+            Your visit to this website is completely private and anonymous. No
+            data about your browsing behavior, IP address, location, device, or
+            any other information is collected, stored, or analyzed.
+          </p>
+
+          <h2>4. Data We Collect</h2>
+          <p>
+            KEFE only collects personal data that you
+            <strong>voluntarily provide</strong> through:
+          </p>
+          <ul>
+            <li>Email communications</li>
+            <li>Phone calls and messaging apps (WhatsApp, Telegram)</li>
+            <li>In-person meetings</li>
+            <li>Project engagement</li>
+          </ul>
+
+          <h2>5. How We Use Your Data</h2>
+          <p>
+            KEFE uses your personal data solely for legitimate business
+            purposes:
+          </p>
+          <ul>
+            <li>
+              <strong>Communication:</strong> Responding to inquiries and
+              maintaining business correspondence
+            </li>
+            <li>
+              <strong>Service Delivery:</strong> Providing requested design and
+              consulting services
+            </li>
+            <li>
+              <strong>Project Management:</strong> Coordinating timelines,
+              deliverables, and feedback
+            </li>
+            <li>
+              <strong>Billing:</strong> Processing payments and maintaining
+              financial records
+            </li>
+          </ul>
+
+          <h2>6. Legal Basis for Data Processing</h2>
+          <p>
+            Under Swiss data protection law, KEFE processes your personal data
+            based on:
+          </p>
+          <ul>
+            <li>
+              <strong>Contract Performance:</strong> Fulfilling service
+              agreements
+            </li>
+            <li>
+              <strong>Legitimate Interest:</strong> Operating our business
+            </li>
+            <li>
+              <strong>Consent:</strong> Your voluntary provision of information
+            </li>
+            <li>
+              <strong>Legal Obligation:</strong> Compliance with Swiss law
+            </li>
+          </ul>
+
+          <h2>7. Data Sharing and Third Parties</h2>
+          <p>
+            KEFE does not sell, rent, or trade your personal data to third
+            parties.
+          </p>
+          <p>Limited sharing may occur only for:</p>
+          <ul>
+            <li>
+              <strong>Email Services:</strong> Apple Inc.'s email services
+            </li>
+            <li>
+              <strong>Website Hosting:</strong> GitHub Pages (no personal data
+              collected)
+            </li>
+            <li>
+              <strong>Legal Requirements:</strong> If required by Swiss law
+            </li>
+          </ul>
+
+          <h2>8. Data Security</h2>
+          <p>KEFE implements appropriate security measures:</p>
+          <ul>
+            <li>Secure email communications using encrypted connections</li>
+            <li>Password-protected devices and systems</li>
+            <li>Limited access to personal data (only Volodymyr Shalavylo)</li>
+            <li>Regular backups stored securely</li>
+          </ul>
+
+          <h2>9. Data Retention</h2>
+          <p>KEFE retains personal data only as long as necessary:</p>
+          <ul>
+            <li>
+              <strong>Active Projects:</strong> Throughout project duration
+            </li>
+            <li>
+              <strong>Completed Projects:</strong> For portfolio use and legal
+              requirements
+            </li>
+            <li><strong>Inquiry Communications:</strong> Typically 2 years</li>
+            <li>
+              <strong>Financial Records:</strong> 10 years (Swiss law
+              requirement)
+            </li>
+          </ul>
+
+          <h2>10. Your Rights</h2>
+          <p>Under Swiss data protection law, you have:</p>
+          <ul>
+            <li>
+              <strong>Right to Access:</strong> Request a copy of your data
+            </li>
+            <li>
+              <strong>Right to Rectification:</strong> Request correction of
+              inaccurate data
+            </li>
+            <li>
+              <strong>Right to Erasure:</strong> Request deletion of your data
+            </li>
+            <li>
+              <strong>Right to Restriction:</strong> Request limitation of
+              processing
+            </li>
+            <li>
+              <strong>Right to Data Portability:</strong> Receive your data in
+              structured format
+            </li>
+            <li><strong>Right to Object:</strong> Object to processing</li>
+          </ul>
+          <p>
+            To exercise these rights, contact us at
+            <a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a>
+          </p>
+
+          <h2>11. Complaints and Regulatory Authority</h2>
+          <p>
+            You have the right to lodge a complaint with the Swiss Federal Data
+            Protection and Information Commissioner (FDPIC):
+          </p>
+          <p>
+            <strong>Federal Data Protection and Information Commissioner</strong
+            ><br />
+            Feldeggweg 1<br />
+            3003 Bern<br />
+            Switzerland<br />
+            <a href="https://www.edoeb.admin.ch" target="_blank"
+              >www.edoeb.admin.ch</a
+            >
+          </p>
+
+          <h2>12. Commitment to Privacy</h2>
+          <p>
+            KEFE (Volodymyr Shalavylo) is personally committed to protecting
+            your privacy. As a sole proprietor, I handle all data personally and
+            take this responsibility seriously.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Headquarters</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <p>4102 Binningen</p>
+            <p>Switzerland</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Contact</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <p><a href="mailto:volodymyr@kefe.ch">volodymyr@kefe.ch</a></p>
+            <p>+41 78 351 48 22</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Social Media</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <a href="https://wa.me/41783514822">WhatsApp</a>
+            <a href="https://t.me/kefestudio">Telegram</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Legal</span>
+            <span class="material-icons accordion-icon"
+              >keyboard_arrow_down</span
+            >
+          </button>
+          <div class="accordion-content">
+            <a href="#" data-modal="terms-modal">Terms & Conditions</a>
+            <a href="#" data-modal="imprint-modal">Imprint</a>
+            <a href="#" data-modal="privacy-modal">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-big-elements">
+        <div class="footer-logo-giant">KEFE</div>
+        <div class="legal-bar-giant">©<span id="year"></span></div>
+      </div>
+    </footer>
+
+    <script>
+      // Modal functionality
+      const modalTriggers = document.querySelectorAll("[data-modal]");
+      const modals = document.querySelectorAll(".modal");
+      const modalCloses = document.querySelectorAll(".modal-close");
+
+      // Open modal
+      modalTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          const modalId = trigger.getAttribute("data-modal");
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
       });
-      
-      // Open clicked item if it wasn't active
-      if (!isActive) {
-        accordionItem.classList.add('active');
+
+      // Close modal
+      modalCloses.forEach((closeBtn) => {
+        closeBtn.addEventListener("click", () => {
+          const modalId = closeBtn.getAttribute("data-modal");
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+
+      // Close modal on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          modals.forEach((modal) => {
+            modal.classList.remove("active");
+          });
+          document.body.style.overflow = "";
+        }
+      });
+    </script>
+
+    <script>
+      // Accordion functionality
+      const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+      accordionHeaders.forEach((header) => {
+        header.addEventListener("click", () => {
+          const accordionItem = header.parentElement;
+          const isActive = accordionItem.classList.contains("active");
+
+          // Close all accordion items
+          document.querySelectorAll(".accordion-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Open clicked item if it wasn't active
+          if (!isActive) {
+            accordionItem.classList.add("active");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+      // Burger menu
+      const burger = document.getElementById("burger-menu");
+      const mobileNav = document.getElementById("mobile-nav");
+      const body = document.body;
+      let scrollPosition = 0;
+
+      function openMenu() {
+        scrollPosition = window.scrollY;
+        body.style.top = `-${scrollPosition}px`;
+        body.classList.add("no-scroll");
+        burger.classList.add("active");
+        mobileNav.classList.add("active");
       }
-    });
-  });
-</script>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+      function closeMenu() {
+        body.classList.remove("no-scroll");
+        body.style.top = "";
+        window.scrollTo(0, scrollPosition);
+        burger.classList.remove("active");
+        mobileNav.classList.remove("active");
+      }
 
-<script>
-  // Burger menu
-  const burger = document.getElementById("burger-menu");
-  const mobileNav = document.getElementById("mobile-nav");
-  const body = document.body;
-  let scrollPosition = 0;
+      burger.addEventListener("click", () => {
+        if (!burger.classList.contains("active")) openMenu();
+        else closeMenu();
+      });
 
-  function openMenu() {
-    scrollPosition = window.scrollY;
-    body.style.top = `-${scrollPosition}px`;
-    body.classList.add("no-scroll");
-    burger.classList.add("active");
-    mobileNav.classList.add("active");
-  }
+      document
+        .querySelectorAll(".mobile-link")
+        .forEach((link) => link.addEventListener("click", closeMenu));
 
-  function closeMenu() {
-    body.classList.remove("no-scroll");
-    body.style.top = "";
-    window.scrollTo(0, scrollPosition);
-    burger.classList.remove("active");
-    mobileNav.classList.remove("active");
-  }
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileNav.contains(e.target) &&
+          !burger.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          closeMenu();
+        }
+      });
+    </script>
 
-  burger.addEventListener("click", () => {
-    if (!burger.classList.contains("active")) openMenu();
-    else closeMenu();
-  });
+    <script>
+      // Theme toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = themeToggle.querySelector(".material-icons");
+      const currentTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
 
-  document
-    .querySelectorAll(".mobile-link")
-    .forEach((link) => link.addEventListener("click", closeMenu));
+      if (currentTheme === "dark" || (!currentTheme && systemPrefersDark)) {
+        body.classList.add("dark-mode");
+        themeIcon.textContent = "dark_mode";
+      } else {
+        body.classList.add("light-mode");
+        themeIcon.textContent = "light_mode";
+      }
 
-  document.addEventListener("click", (e) => {
-    if (
-      !mobileNav.contains(e.target) &&
-      !burger.contains(e.target) &&
-      mobileNav.classList.contains("active")
-    ) {
-      closeMenu();
-    }
-  });
-</script>
-
-<script>
-  // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeIcon = themeToggle.querySelector(".material-icons");
-  const currentTheme = localStorage.getItem("theme");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
-
-  if (currentTheme === "dark" || (!currentTheme && systemPrefersDark)) {
-    body.classList.add("dark-mode");
-    themeIcon.textContent = "dark_mode";
-  } else {
-    body.classList.add("light-mode");
-    themeIcon.textContent = "light_mode";
-  }
-
-  themeToggle.addEventListener("click", () => {
-    if (body.classList.contains("dark-mode")) {
-      body.classList.remove("dark-mode");
-      body.classList.add("light-mode");
-      themeIcon.textContent = "light_mode";
-      localStorage.setItem("theme", "light");
-    } else {
-      body.classList.remove("light-mode");
-      body.classList.add("dark-mode");
-      themeIcon.textContent = "dark_mode";
-      localStorage.setItem("theme", "dark");
-    }
-  });
-</script>
- 
-
+      themeToggle.addEventListener("click", () => {
+        if (body.classList.contains("dark-mode")) {
+          body.classList.remove("dark-mode");
+          body.classList.add("light-mode");
+          themeIcon.textContent = "light_mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          body.classList.remove("light-mode");
+          body.classList.add("dark-mode");
+          themeIcon.textContent = "dark_mode";
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
   </body>
 </html>
